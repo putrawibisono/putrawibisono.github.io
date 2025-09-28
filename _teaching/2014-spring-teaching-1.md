@@ -8,13 +8,22 @@ venue: "University of California, San Diego, Department of Computer Science and 
 location: "San Diego, CA"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+Students who successfully complete CSE 8A will be able to:
+* Read a computational problem and formulate an algorithm to solve that problem
+* Describe the functionality of a program that you or someone else has written
+* Write simple Python programs using variables, functions, conditional statements, and loops
+* Store data in a  program using data structures like lists, tuples, and dictionaries
+* Use memory models to trace the state of data during a program’s execution
+* Debug and test Python programs that you or someone else has written
+* Describe ways in which computer science plays a role in society and in other scientific disciplines
 
 Heading 1
 ======
+Sample text
 
 Heading 2
 ======
+
 
 Heading 3
 ======
