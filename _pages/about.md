@@ -23,4 +23,4 @@ Today, I’m channeling that technical foundation into something deeply personal
 * Building tools to generate transparent reporting for government and industry partners.
 * Exploring value-added services like farmer training and digital platforms for agricultural monitoring.
 
-In short: I’m passionate about bridging advanced data systems with real-world agriculture, proving that the same rigor we apply in tech can drive sustainability and food security.
+I’m passionate about bridging advanced data systems with real-world agriculture, proving that the same rigor we apply in tech can drive sustainability and food security.
