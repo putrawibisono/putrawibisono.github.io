@@ -11,26 +11,37 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.Eng in Materials Science and Engineering + Data Science, University of California, Berkeley
+* B.S. in Chemical Engineering and Computer Science, University of California, San Diego
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Senior Data Engineer
+  * Stripe, Remote
+  * Duties includes:
+    - Design, develop, and manage scalable services, data pipelines, tools, and systems for internal employee information.
+    - Implement robust controls and strong security measures across pipelines to guarantee high accuracy and strict privacy.
+    - Collaborate with cross-functional teams to build carefully scoped shared datasets, establishing a unified source of truth.
+    - Deliver accurate, dependable, and timely data to a centralized source-of-truth.
+    - Contribute in a collaborative setting with diverse stakeholders and subject matter experts.
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Data Scientist
+  * Tesla
+  * Duties included:
+    - Designed, developed, and managed experimental trials to evaluate and optimize battery performance.
+    - Built and maintained FAST (Formation Analytics Screening Toolbox) to support analytics and process improvements.
+    - Developed and validated 4680 Cybercell and Drycell recipes (4680C/D Build) for GFTX manufacturing.
+    - Conducted data-driven analysis of formation metrics, identifying machine errors and calculation discrepancies to improve accuracy and reliability.
+    
+
+
+* Data Scientist
+  * ATOM Research
+  * Duties included:
+    - Using Python to curate drug discovery-related datasets and build machine learning models to predict molecular properties
+    - Using ML Models to explore several questions around transfer learning and active learning techniques in order to make the most of the information available within the datasets
+    - Screens large databases of molecules in order to identify the best candidates to move into wet lab testing
   
 Skills
 ======
@@ -41,18 +52,7 @@ Skills
   * Sub-skill 2.3
 * Skill 3
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
+
 Teaching
 ======
   <ul>{% for post in site.teaching reversed %}
