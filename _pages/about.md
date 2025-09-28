@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi, I’m Putra Wibisono. a former Senior Data Engineer turned agri-tech entrepreneur.
+Hi, I’m Putra Wibisono. a former Senior Data Engineer turned agri-tech entrepreneur. (Ex-Stripe, Ex-Tesla)
 
 I started my career in data engineering, where I built and optimized large-scale data pipelines for industries ranging from automotive to energy. My focus was on making data clean, reliable, and actionable, so decision makers could move fast and with confidence. Over the years, I became fluent in modern data engineering stacks such as:
 
