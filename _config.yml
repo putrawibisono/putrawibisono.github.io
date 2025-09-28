@@ -24,13 +24,13 @@ repository               : "putrawibisono/putrawibisono.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "Putra Wibisono"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Cofounder of Agricultural Technology Startup in Indonesia. Ex-Stripe, Ex-Tesla. Passionate about ML/AI"
+  location         : "Home"
+  employer         : "University of California, Berkeley"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "president@agrosindustry.com" 
 
   # Academic websites
   academia         : # URL
