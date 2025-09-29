@@ -23,7 +23,6 @@ Sample text
 
 Heading 2
 ======
-
-
+Sample text
 Heading 3
 ======
