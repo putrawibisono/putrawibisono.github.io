@@ -1,8 +1,11 @@
 ---
+layout: single
 title: "Recommendation Letters"
-excerpt: "Information about requesting recommendation letters"
-collection: letters
+permalink: /letters/
+author_profile: true
 ---
+
+I provide recommendation letters for individuals I have worked with as colleagues, students, or collaborators. If you've worked with me at Stripe, Tesla, in agricultural technology projects, or as a student in my classes, I'm happy to support your next career step.
 
 ## Requesting a Recommendation Letter
 
