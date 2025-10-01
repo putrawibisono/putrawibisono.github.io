@@ -1,0 +1,16 @@
+---
+layout: archive
+title: "Recommendation Letters"
+permalink: /letters/
+author_profile: true
+---
+
+<p>I provide recommendation letters for individuals I have worked with as colleagues, students, or collaborators. If you've worked with me at Stripe, Tesla, in agricultural technology projects, or as a student in my classes, I'm happy to support your next career step.</p>
+
+<p>Please review the information below for details on requesting a letter.</p>
+
+{% include base_path %}
+
+{% for post in site.letters %}
+  {% include archive-single.html %}
+{% endfor %}
