@@ -50,12 +50,4 @@ Include "Recommendation Letter Request" in the subject line and provide all the 
 
 ---
 
-## About My Background
-
-For reference, I can speak to your qualifications from my perspective as:
-- **Former Senior Data Engineer** at Stripe and Tesla
-- **Cofounder** of an agricultural technology company
-- **Affiliated with UC Berkeley**
-- **Technical leader** with expertise in data engineering, ML/AI applications, and sustainable agriculture
-
 I look forward to supporting talented individuals in their next steps!
