@@ -27,7 +27,7 @@ main:
     url: /letters/
 
   - title: "CV"
-    url: /cv/
+    url: /files/cv.pdf
     
   # - title: "CV"
   #   url: /cv-json/
