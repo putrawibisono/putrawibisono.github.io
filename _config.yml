@@ -9,9 +9,9 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Putra Wibisono (Tata)"
+title                    : "Putra Wibisono"
 title_separator          : "-"
-name                     : &name "Putra Wibisono (Tata)"
+name                     : &name "Putra Wibisono"
 description              : &description "About me"   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : "https://putrawibisono.com" #https://putrawibisono.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
@@ -24,7 +24,7 @@ repository               : "putrawibisono/putrawibisono.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Putra Wibisono (Tata)"
+  name             : "Putra Wibisono"
   pronouns         : # example: "she/her"  
   bio              : "Cofounder of Agricultural Technologies. Ex-Stripe, Ex-Tesla. Passionate about ML/AI"
   location         : "Home"
