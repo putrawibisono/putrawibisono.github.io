@@ -8,5 +8,9 @@ author_profile: true
 {% include base_path %}
 
 {% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+  <div style="margin-bottom: 2em;">
+    <h2 style="margin-bottom: 0.25em;">{{ post.title }}</h2>
+    {% if post.type %}<p style="margin: 0 0 0.25em; font-style: italic; color: #6a6a6a;">{{ post.type }}{% if post.venue %} &mdash; {{ post.venue }}{% endif %}</p>{% endif %}
+    <div>{{ post.content }}</div>
+  </div>
 {% endfor %}
