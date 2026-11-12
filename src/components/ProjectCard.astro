@@ -1,0 +1,148 @@
+---
+import type { ProjectItem } from '../data/profile';
+import SystemDiagram from './SystemDiagram.astro';
+
+export interface Props {
+  project: ProjectItem;
+  showVisual?: boolean;
+}
+
+const { project, showVisual = true } = Astro.props;
+---
+
+<article class="surface-card interactive project-card" data-category={project.category}>
+  <div class="project-card-top">
+    <div class="project-meta-row">
+      <span class="mono-meta">PRJ // {project.index}</span>
+      <span class="tag tag-accent">{project.category}</span>
+    </div>
+
+    <h3 class="project-card-title">
+      <a href={`/projects/${project.slug}/`}>{project.title}</a>
+    </h3>
+
+    <p class="project-context mono-meta">
+      {project.organizationOrContext} &middot; {project.period}
+    </p>
+  </div>
+
+  {
+    showVisual && (
+      <div class="project-visual">
+        <SystemDiagram type={project.diagramType} />
+      </div>
+    )
+  }
+
+  <p class="project-summary">{project.summary}</p>
+
+  <ul class="project-outcomes">
+    {project.outcomes.slice(0, 2).map((outcome) => <li>{outcome}</li>)}
+  </ul>
+
+  <div class="project-card-footer">
+    <div class="project-tags">
+      {project.technologies.slice(0, 5).map((tech) => <span class="tag">{tech}</span>)}
+    </div>
+
+    <a href={`/projects/${project.slug}/`} class="project-link">
+      <span>Technical Case Study</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    height: 100%;
+  }
+
+  .project-card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .project-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .project-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.55rem;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+
+  .project-card-title a:hover {
+    color: var(--accent-primary);
+  }
+
+  .project-summary {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .project-outcomes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-left: 0;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.9rem;
+  }
+
+  .project-outcomes li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 0.87rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .project-outcomes li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+  }
+
+  .project-card-footer {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+  }
+
+  .project-link:hover {
+    gap: 0.7rem;
+  }
+</style>

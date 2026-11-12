@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { teachingCourses, recommendationLetterPolicy } from '../data/profile';
+---
+
+<BaseLayout
+  title="Teaching & Mentorship"
+  description="Undergraduate computer science courses (CSE 8A and CSE 20) at UC San Diego Department of Computer Science and Engineering and academic mentorship."
+  canonicalPath="/teaching/"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>04 // ACADEMIC INSTRUCTION &amp; TECHNICAL MENTORSHIP</span>
+      </span>
+      <h1 class="page-title" style="margin-top: 0.6rem;">
+        Teaching &amp; Mentorship
+      </h1>
+      <p class="lead-text" style="margin-top: 0.85rem;">
+        Undergraduate instruction at the <strong>University of California, San Diego — Department of Computer Science and Engineering (CSE)</strong>, alongside ongoing mentorship for students, data engineers, and field researchers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="mono-meta">UC SAN DIEGO // DEPARTMENT OF COMPUTER SCIENCE &amp; ENGINEERING</span>
+          <h2 class="section-title">Undergraduate Computer Science Courses</h2>
+        </div>
+        <a href="/letters/" class="btn btn-primary">Request a Recommendation Letter →</a>
+      </div>
+
+      <div class="courses-stack">
+        {
+          teachingCourses.map((course, idx) => (
+            <article class="surface-card course-card">
+              <div class="course-header">
+                <div>
+                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; margin-bottom: 0.45rem;">
+                    <span class="tag tag-accent">{course.code}</span>
+                    <span class="tag">{course.type}</span>
+                    <span class="mono-meta">COURSE // 0{idx + 1}</span>
+                  </div>
+                  <h3 class="course-title">
+                    {course.code}: {course.title}
+                  </h3>
+                  <p class="course-venue">
+                    <strong>{course.institution}</strong> &mdash; {course.department} ({course.location})
+                  </p>
+                </div>
+              </div>
+
+              <p class="course-summary">{course.summary}</p>
+
+              <div class="course-outcomes-box">
+                <p class="mono-meta" style="margin-bottom: 0.65rem;">
+                  VERIFIED COURSE LEARNING OUTCOMES &amp; COMPETENCIES
+                </p>
+                <ul class="course-outcomes-list">
+                  {course.learningOutcomes.map((outcome) => (
+                    <li>{outcome}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="course-footer">
+                <span class="mono-meta">CORE TOPICS:</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                  {course.toolsAndTopics.map((topic) => (
+                    <span class="tag">{topic}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommendation Letters Callout -->
+  <section class="section">
+    <div class="container">
+      <div class="surface-card mentorship-banner">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>FOR FORMER STUDENTS &amp; COLLEAGUES</span>
+          </span>
+          <h2 class="section-title" style="margin-top: 0.4rem;">
+            Need a Recommendation Letter for Graduate School or Industry?
+          </h2>
+          <p style="color: var(--text-secondary); margin-top: 0.6rem; max-width: 64ch;">
+            {recommendationLetterPolicy.lead}
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.65rem; flex-shrink: 0;">
+          <a href="/letters/" class="btn btn-primary">Open Recommendation Letter Guide →</a>
+          <span class="mono-meta" style="text-align: center;">Lead Time: 3–4 Weeks Before Deadline</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .courses-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .course-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .course-header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .course-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+
+  .course-venue {
+    margin-top: 0.35rem;
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+  }
+
+  .course-summary {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .course-outcomes-box {
+    padding: 1.25rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .course-outcomes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .course-outcomes-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .course-outcomes-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: 700;
+  }
+
+  .course-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+  }
+
+  .mentorship-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border-color: var(--accent-border);
+  }
+</style>

@@ -1,0 +1,587 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import SystemDiagram from '../components/SystemDiagram.astro';
+import {
+  siteMetadata,
+  heroStats,
+  biographyNarrative,
+  experienceList,
+  educationList,
+  projectsList,
+  skillGroups,
+  teachingCourses,
+} from '../data/profile';
+
+const featuredProjects = projectsList.filter((p) => p.featured);
+const highlightedExperience = experienceList.slice(0, 4);
+---
+
+<BaseLayout title={siteMetadata.title} description={siteMetadata.subheadline} canonicalPath="/">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>{siteMetadata.statusBadge}</span>
+          </div>
+
+          <h1 class="display-title hero-heading">
+            Engineering reliable data systems from <span class="serif-italic">gigafactories</span> to <span class="accent-word">living soil</span>.
+          </h1>
+
+          <p class="lead-text hero-lead">
+            I’m <strong>{siteMetadata.name}</strong>—a former Senior Data Engineer at <strong>Stripe</strong> and <strong>Tesla</strong> turned agricultural technology cofounder. I build distributed data pipelines, machine learning models, and field-level IoT systems that turn complex physical signals into confident decisions.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/projects/" class="btn btn-primary">
+              <span>Explore Case Studies</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="/experience/" class="btn btn-secondary">
+              <span>Career Timeline</span>
+            </a>
+            <a href="/cv/" class="btn btn-ghost">
+              <span>Interactive CV</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="surface-card hero-telemetry-card" aria-label="System Architecture Overview">
+          <div class="telemetry-header">
+            <span class="mono-meta">TELEMETRY // IDENTITY MATRIX</span>
+            <span class="tag tag-accent">ACTIVE</span>
+          </div>
+
+          <div class="telemetry-diagram-wrap">
+            <SystemDiagram type="agritech-pipeline" />
+          </div>
+
+          <dl class="telemetry-kv-list">
+            <div class="telemetry-kv">
+              <dt class="mono-meta">CURRENT VENTURE</dt>
+              <dd>Agros Industry (Agricultural Technologies)</dd>
+            </div>
+            <div class="telemetry-kv">
+              <dt class="mono-meta">PRIOR ENGINEERING</dt>
+              <dd>Stripe · Tesla (4680 / GFTX) · ATOM · Rivian</dd>
+            </div>
+            <div class="telemetry-kv">
+              <dt class="mono-meta">ACADEMIC TRAINING</dt>
+              <dd>UC Berkeley (M.Eng.) &middot; UC San Diego (B.S.)</dd>
+            </div>
+            <div class="telemetry-kv">
+              <dt class="mono-meta">DIRECT CHANNEL</dt>
+              <dd><a href={`mailto:${siteMetadata.email}`}>{siteMetadata.email}</a></dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+
+      <!-- 3 Pillar Cards -->
+      <div class="grid-3 hero-pillars">
+        {
+          heroStats.map((stat) => (
+            <div class="surface-card pillar-card">
+              <span class="mono-meta pillar-code">{stat.code}</span>
+              <p class="pillar-value">{stat.value}</p>
+              <p class="pillar-label">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Agri-Tech Mission & Current Initiatives -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>01 // CURRENT FOCUS — AGRICULTURAL TECHNOLOGY</span>
+          </span>
+          <h2 class="section-title">Data Rigor Applied to Sustainable Agriculture</h2>
+        </div>
+        <a href="/about/" class="btn btn-ghost">Read Full Biography →</a>
+      </div>
+
+      <div class="mission-layout">
+        <div class="surface-card mission-narrative">
+          <p class="mission-quote">“{biographyNarrative.philosophyQuote}”</p>
+          <p class="mission-body">{biographyNarrative.paragraphs[0]}</p>
+          <p class="mission-body">{biographyNarrative.paragraphs[2]}</p>
+          <div class="mission-meta-bar">
+            <span class="tag tag-accent">IoT Soil Telemetry</span>
+            <span class="tag tag-accent">Satellite Earth Observation</span>
+            <span class="tag tag-accent">Organic Fertilizer Trials</span>
+          </div>
+        </div>
+
+        <div class="grid-2 initiatives-grid">
+          {
+            biographyNarrative.currentInitiatives.map((item) => (
+              <div class="surface-card initiative-card">
+                <span class="mono-meta">{item.code}</span>
+                <h3 class="initiative-title">{item.title}</h3>
+                <p class="initiative-desc">{item.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>02 // SELECTED ENGINEERING &amp; RESEARCH SYSTEMS</span>
+          </span>
+          <h2 class="section-title">Featured Technical Case Studies</h2>
+        </div>
+        <a href="/projects/" class="btn btn-secondary">View All {projectsList.length} Projects →</a>
+      </div>
+
+      <div class="grid-2">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Experience Highlights -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>03 // PROFESSIONAL TRAJECTORY</span>
+          </span>
+          <h2 class="section-title">Experience Across Tech, Energy &amp; Agriculture</h2>
+        </div>
+        <a href="/experience/" class="btn btn-secondary">Full Career Timeline →</a>
+      </div>
+
+      <ExperienceTimeline items={highlightedExperience} compact={true} />
+    </div>
+  </section>
+
+  <!-- Technical Stack & Capabilities -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>04 // TECHNICAL ARCHITECTURE &amp; TOOLING</span>
+        </span>
+        <h2 class="section-title">Production Stack &amp; Scientific Computing</h2>
+        <p class="lead-text">
+          Fluent across modern distributed data engineering stacks, cloud infrastructure, machine learning frameworks, and multiphysics engineering simulation.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        {
+          skillGroups.map((group) => (
+            <div class="surface-card skill-group-card">
+              <div class="skill-group-header">
+                <span class="mono-meta">{group.code}</span>
+                <h3 class="skill-group-title">{group.category}</h3>
+              </div>
+              <p class="skill-group-desc">{group.description}</p>
+              <div class="skill-pills">
+                {group.skills.map((skill) => (
+                  <span class:list={['tag', { 'tag-accent': skill.tier === 'Primary' }]}>
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Education, Teaching & Letters Callout -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div class="surface-card academic-card">
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>05 // EDUCATION &amp; TEACHING</span>
+          </span>
+          <h2 class="card-section-title">UC Berkeley &amp; UC San Diego</h2>
+          <div class="edu-mini-list">
+            {
+              educationList.map((edu) => (
+                <div class="edu-mini-item">
+                  <div class="edu-mini-top">
+                    <strong>{edu.institution}</strong>
+                    <span class="mono-meta">{edu.graduationDate}</span>
+                  </div>
+                  <p class="edu-mini-degree">{edu.degree}</p>
+                  <p class="mono-meta">
+                    {edu.concentrationOrMinor}
+                    {edu.honorsOrGpa ? ` · ${edu.honorsOrGpa}` : ''}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+          <div class="teaching-mini-box">
+            <p class="mono-meta">UNDERGRADUATE INSTRUCTION (UCSD CSE)</p>
+            <p class="teaching-mini-courses">
+              {teachingCourses.map((c) => `${c.code}: ${c.title}`).join(' · ')}
+            </p>
+            <a href="/teaching/" class="btn btn-ghost">Explore Teaching →</a>
+          </div>
+        </div>
+
+        <div class="surface-card letters-cta-card">
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>06 // MENTORSHIP &amp; COLLABORATION</span>
+          </span>
+          <h2 class="card-section-title">Recommendation Letters &amp; Direct Contact</h2>
+          <p class="letters-cta-text">
+            Worked with me at <strong>Stripe</strong>, <strong>Tesla</strong>, in <strong>agricultural technology</strong> projects, or as a student in my <strong>UC San Diego CSE</strong> classes? I am glad to support your graduate school or career applications with a detailed recommendation letter.
+          </p>
+          <ul class="letters-quick-points">
+            <li>Please submit requests at least <strong>3–4 weeks</strong> prior to your earliest deadline.</li>
+            <li>Include your current CV, program/role details, our collaboration context, and key accomplishments.</li>
+          </ul>
+          <div class="letters-cta-actions">
+            <a href="/letters/" class="btn btn-primary">Recommendation Letter Guide →</a>
+            <a href="/contact/" class="btn btn-secondary">Contact Directly</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding: 4rem 0 4.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 960px) {
+    .hero-section {
+      padding: 5.5rem 0 5rem;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 980px) {
+    .hero-grid {
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 3rem;
+    }
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .hero-heading {
+    margin-top: 0.2rem;
+  }
+
+  .serif-italic {
+    font-style: italic;
+  }
+
+  .accent-word {
+    color: var(--accent-primary);
+  }
+
+  .hero-lead strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 0.4rem;
+  }
+
+  .hero-telemetry-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    border-color: var(--border-strong);
+  }
+
+  .telemetry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .telemetry-kv-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .telemetry-kv {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .telemetry-kv dd {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .telemetry-kv dd a {
+    color: var(--accent-primary);
+  }
+
+  .hero-pillars {
+    margin-top: 3rem;
+  }
+
+  .pillar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .pillar-value {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    color: var(--text-primary);
+    line-height: 1.15;
+  }
+
+  .pillar-label {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  /* Mission Layout */
+  .mission-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 980px) {
+    .mission-layout {
+      grid-template-columns: 1fr 1.2fr;
+    }
+  }
+
+  .mission-narrative {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    justify-content: space-between;
+  }
+
+  .mission-quote {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    line-height: 1.3;
+    color: var(--text-primary);
+    border-left: 3px solid var(--accent-primary);
+    padding-left: 1rem;
+  }
+
+  .mission-body {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .mission-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: 0.5rem;
+  }
+
+  .initiative-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .initiative-title {
+    font-size: 1.06rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .initiative-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.58;
+  }
+
+  /* Skills */
+  .skill-group-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .skill-group-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .skill-group-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.45rem;
+    color: var(--text-primary);
+  }
+
+  .skill-group-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  /* Academic & Letters Callout */
+  .academic-card,
+  .letters-cta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .card-section-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 1.15;
+    color: var(--text-primary);
+  }
+
+  .edu-mini-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .edu-mini-item {
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .edu-mini-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  .edu-mini-degree {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  .teaching-mini-box {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    align-items: flex-start;
+  }
+
+  .teaching-mini-courses {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .letters-cta-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .letters-cta-text strong {
+    color: var(--text-primary);
+  }
+
+  .letters-quick-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .letters-quick-points li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  .letters-quick-points li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: 700;
+  }
+
+  .letters-cta-actions {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>

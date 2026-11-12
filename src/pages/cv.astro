@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  siteMetadata,
+  educationList,
+  experienceList,
+  skillGroups,
+  projectsList,
+  teachingCourses,
+} from '../data/profile';
+---
+
+<BaseLayout
+  title="Curriculum Vitae & Resume"
+  description="Interactive and print-ready Curriculum Vitae (CV) of Putra Wibisono — Education, Work Experience, Projects, Skills, and Teaching."
+  canonicalPath="/cv/"
+>
+  <section class="page-hero no-print">
+    <div class="container">
+      <div class="cv-hero-row">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>06 // CURRICULUM VITAE &amp; VERIFIED CREDENTIALS</span>
+          </span>
+          <h1 class="page-title" style="margin-top: 0.6rem;">
+            Curriculum Vitae
+          </h1>
+          <p class="lead-text" style="margin-top: 0.65rem;">
+            Consolidated, current record of education, engineering leadership, agricultural technology initiatives, and academic instruction.
+          </p>
+        </div>
+
+        <div class="cv-actions">
+          <button type="button" id="print-cv-btn" class="btn btn-primary">
+            <span>Print / Save Current CV as PDF</span>
+          </button>
+          <a href="/files/cvsreal.pdf" download="Putra_Wibisono_Engineering_Resume_2024.pdf" class="btn btn-secondary">
+            <span>Download Archived 2024 Resume (PDF) ↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="surface-card cv-sheet">
+        <!-- Document Header -->
+        <header class="cv-doc-header">
+          <div>
+            <h2 class="cv-doc-name">{siteMetadata.name}</h2>
+            <p class="cv-doc-headline">{siteMetadata.headline}</p>
+          </div>
+          <div class="cv-doc-contact">
+            <p><a href={`mailto:${siteMetadata.email}`}>{siteMetadata.email}</a></p>
+            <p><a href={siteMetadata.siteUrl}>putrawibisono.com</a></p>
+            <p><a href={siteMetadata.githubUrl}>github.com/{siteMetadata.githubUsername}</a></p>
+            <p class="mono-meta">UC Berkeley &middot; UC San Diego</p>
+          </div>
+        </header>
+
+        <!-- 1. Education -->
+        <section class="cv-block">
+          <h3 class="cv-block-title">Education</h3>
+          <div class="cv-items-stack">
+            {
+              educationList.map((edu) => (
+                <div class="cv-entry">
+                  <div class="cv-entry-row">
+                    <strong>{edu.institution}</strong>
+                    <span class="mono-meta">{edu.location} &middot; {edu.graduationDate}</span>
+                  </div>
+                  <div class="cv-entry-row" style="margin-top: 0.15rem;">
+                    <span>
+                      {edu.degree} ({edu.concentrationOrMinor})
+                    </span>
+                    {edu.honorsOrGpa && <span class="mono-meta">{edu.honorsOrGpa}</span>}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- 2. Work & Venture Experience -->
+        <section class="cv-block">
+          <h3 class="cv-block-title">Professional &amp; Entrepreneurial Experience</h3>
+          <div class="cv-items-stack">
+            {
+              experienceList.map((exp) => (
+                <div class="cv-entry">
+                  <div class="cv-entry-row">
+                    <div>
+                      <strong>{exp.role}</strong> &mdash; <span>{exp.organization}</span>
+                    </div>
+                    <span class="mono-meta">
+                      {exp.location} &middot; {exp.period}
+                    </span>
+                  </div>
+                  {exp.secondaryRole && (
+                    <p class="mono-meta" style="margin-top: 0.15rem;">{exp.secondaryRole}</p>
+                  )}
+                  <ul class="cv-bullets">
+                    {exp.highlights.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- 3. Technical Skills -->
+        <section class="cv-block">
+          <h3 class="cv-block-title">Technical Skills &amp; Platforms</h3>
+          <div class="cv-skills-grid">
+            {
+              skillGroups.map((group) => (
+                <div class="cv-skill-row">
+                  <strong class="cv-skill-cat">{group.category}:</strong>
+                  <span class="cv-skill-items">{group.skills.map((s) => s.name).join(', ')}</span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- 4. Selected Engineering & Research Projects -->
+        <section class="cv-block">
+          <h3 class="cv-block-title">Selected Engineering &amp; Research Projects</h3>
+          <div class="cv-items-stack">
+            {
+              projectsList.map((proj) => (
+                <div class="cv-entry">
+                  <div class="cv-entry-row">
+                    <div>
+                      <strong>{proj.title}</strong>
+                      <span class="mono-meta"> ({proj.organizationOrContext})</span>
+                    </div>
+                    <span class="mono-meta">{proj.period}</span>
+                  </div>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                    {proj.summary}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- 5. Academic Teaching -->
+        <section class="cv-block" style="border-bottom: none; padding-bottom: 0;">
+          <h3 class="cv-block-title">Academic Teaching</h3>
+          <div class="cv-items-stack">
+            {
+              teachingCourses.map((course) => (
+                <div class="cv-entry">
+                  <div class="cv-entry-row">
+                    <div>
+                      <strong>
+                        {course.code}: {course.title}
+                      </strong>{' '}
+                      &mdash; <span>{course.institution}</span>
+                    </div>
+                    <span class="mono-meta">{course.type}</span>
+                  </div>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                    {course.department} &middot; Topics: {course.toolsAndTopics.join(', ')}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var printBtn = document.getElementById('print-cv-btn');
+    if (printBtn) {
+      printBtn.addEventListener('click', function () {
+        window.print();
+      });
+    }
+  })();
+</script>
+
+<style>
+  .cv-hero-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .cv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .cv-sheet {
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .cv-sheet {
+      padding: 3rem 3.5rem;
+    }
+  }
+
+  .cv-doc-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-strong);
+  }
+
+  .cv-doc-name {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--text-primary);
+  }
+
+  .cv-doc-headline {
+    font-size: 1rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+    margin-top: 0.35rem;
+  }
+
+  .cv-doc-contact {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  @media (min-width: 768px) {
+    .cv-doc-contact {
+      text-align: right;
+    }
+  }
+
+  .cv-doc-contact a:hover {
+    color: var(--accent-primary);
+  }
+
+  .cv-block {
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .cv-block-title {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-primary);
+    margin-bottom: 1.15rem;
+  }
+
+  .cv-items-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .cv-entry-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.96rem;
+  }
+
+  .cv-entry-row strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .cv-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.55rem;
+  }
+
+  .cv-bullets li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .cv-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0.15rem;
+    color: var(--accent-primary);
+  }
+
+  .cv-skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .cv-skill-row {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .cv-skill-cat {
+    color: var(--text-primary);
+    margin-right: 0.35rem;
+  }
+
+  .cv-skill-items {
+    color: var(--text-secondary);
+  }
+</style>

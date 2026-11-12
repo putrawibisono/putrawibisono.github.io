@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://putrawibisono.com/sitemap-index.xml

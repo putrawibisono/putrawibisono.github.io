@@ -1,0 +1,299 @@
+---
+export interface Props {
+  type:
+    | 'agritech-pipeline'
+    | 'battery-telemetry'
+    | 'spectroscopy-bandgap'
+    | 'lpcvd-reactor'
+    | 'gitlet-dag'
+    | 'signal-processing';
+}
+
+const { type } = Astro.props;
+---
+
+<div class="diagram-frame" aria-hidden="true">
+  {
+    type === 'agritech-pipeline' && (
+      <svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="schematic-svg">
+        <rect x="16" y="34" width="136" height="76" rx="8" class="node-box" />
+        <text x="30" y="58" class="node-code">SAT // 01</text>
+        <text x="30" y="80" class="node-title">Satellite History</text>
+        <text x="30" y="96" class="node-sub">Spectral Baseline</text>
+
+        <rect x="16" y="130" width="136" height="76" rx="8" class="node-box" />
+        <text x="30" y="154" class="node-code">IOT // 02</text>
+        <text x="30" y="176" class="node-title">Field Telemetry</text>
+        <text x="30" y="192" class="node-sub">pH · Moisture · NPK</text>
+
+        <path d="M152 72 H198 V110 H236" class="flow-line" />
+        <path d="M152 168 H198 V130 H236" class="flow-line" />
+
+        <rect x="236" y="64" width="168" height="112" rx="10" class="node-box-accent" />
+        <text x="254" y="92" class="node-code-accent">PIPELINE // 03</text>
+        <text x="254" y="116" class="node-title">Agros Data Engine</text>
+        <text x="254" y="136" class="node-sub">Demo Plot Trials</text>
+        <text x="254" y="154" class="node-sub">&amp; Soil Yield Models</text>
+
+        <path d="M404 120 H464" class="flow-line-accent" />
+
+        <rect x="464" y="48" width="160" height="62" rx="8" class="node-box" />
+        <text x="480" y="72" class="node-code">OUT // 04A</text>
+        <text x="480" y="94" class="node-title">Gov / Partner Reports</text>
+
+        <rect x="464" y="130" width="160" height="62" rx="8" class="node-box" />
+        <text x="480" y="154" class="node-code">OUT // 04B</text>
+        <text x="480" y="176" class="node-title">Farmer Digital Tools</text>
+      </svg>
+    )
+  }
+
+  {
+    type === 'battery-telemetry' && (
+      <svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="schematic-svg">
+        <rect x="16" y="34" width="144" height="76" rx="8" class="node-box" />
+        <text x="30" y="58" class="node-code">GFTX · BERLIN</text>
+        <text x="30" y="80" class="node-title">4680C/D &amp; Milmont</text>
+        <text x="30" y="96" class="node-sub">Temp · pH · Current</text>
+
+        <rect x="16" y="130" width="144" height="76" rx="8" class="node-box" />
+        <text x="30" y="154" class="node-code">API SYNC</text>
+        <text x="30" y="176" class="node-title">Recipe System</text>
+        <text x="30" y="192" class="node-sub">R&amp;D Trial Control</text>
+
+        <path d="M160 72 H234" class="flow-line" />
+        <path d="M160 168 H234" class="flow-line" />
+
+        <rect x="234" y="34" width="172" height="76" rx="8" class="node-box-accent" />
+        <text x="250" y="58" class="node-code-accent">FAST // LIBRARY</text>
+        <text x="250" y="80" class="node-title">Formation Screening</text>
+        <text x="250" y="96" class="node-sub">Deterministic Trial Pass/Fail</text>
+
+        <rect x="234" y="130" width="172" height="76" rx="8" class="node-box-accent" />
+        <text x="250" y="154" class="node-code-accent">RAPID // LIVE</text>
+        <text x="250" y="176" class="node-title">Real-Time Dashboard</text>
+        <text x="250" y="192" class="node-sub">Line Control &amp; EoL Scoring</text>
+
+        <path d="M406 72 H464" class="flow-line-accent" />
+        <path d="M406 168 H464" class="flow-line-accent" />
+
+        <rect x="464" y="64" width="160" height="112" rx="8" class="node-box" />
+        <text x="480" y="92" class="node-code">ML // GEN 4 &amp; 5</text>
+        <text x="480" y="116" class="node-title">Cell Simulation</text>
+        <text x="480" y="136" class="node-sub">Model 3/Y Vendor</text>
+        <text x="480" y="154" class="node-sub">&amp; Defect Analytics</text>
+      </svg>
+    )
+  }
+
+  {
+    type === 'spectroscopy-bandgap' && (
+      <svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="schematic-svg">
+        <rect x="24" y="32" width="260" height="176" rx="10" class="node-box" />
+        <text x="44" y="58" class="node-code">OPTICAL ABSORPTION // TAUC PLOT</text>
+        <line x1="56" y1="180" x2="256" y2="180" class="axis-line" />
+        <line x1="56" y1="74" x2="56" y2="180" class="axis-line" />
+        <path d="M62 176 Q118 174 148 152 T232 82" class="curve-accent" />
+        <line x1="138" y1="180" x2="226" y2="88" class="tangent-line" />
+        <circle cx="138" cy="180" r="4" class="dot-accent" />
+        <text x="122" y="198" class="node-code-accent">Eg (Band Gap)</text>
+
+        <path d="M284 120 H340" class="flow-line-accent" />
+
+        <rect x="340" y="48" width="276" height="144" rx="10" class="node-box-accent" />
+        <text x="362" y="78" class="node-code-accent">DUAL UV-VIS-NIR PIPELINE</text>
+        <text x="362" y="106" class="node-title">Shimadzu SolidSpec-3700</text>
+        <text x="362" y="130" class="node-sub">1. Transmittance &amp; Reflectance Stitching</text>
+        <text x="362" y="150" class="node-sub">2. Baseline &amp; Detector Normalization</text>
+        <text x="362" y="170" class="node-sub">3. Semiconductor Thin-Film (αhν)^n Fit</text>
+      </svg>
+    )
+  }
+
+  {
+    type === 'lpcvd-reactor' && (
+      <svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="schematic-svg">
+        <rect x="24" y="54" width="336" height="132" rx="16" class="node-box-accent" />
+        <text x="44" y="80" class="node-code-accent">COMSOL MULTIPHYSICS // QUARTZ BOAT REACTOR</text>
+        <line x1="48" y1="126" x2="332" y2="126" class="flow-line-accent" />
+        <line x1="110" y1="96" x2="110" y2="156" class="wafer-line" />
+        <line x1="145" y1="96" x2="145" y2="156" class="wafer-line" />
+        <line x1="180" y1="96" x2="180" y2="156" class="wafer-line" />
+        <line x1="215" y1="96" x2="215" y2="156" class="wafer-line" />
+        <line x1="250" y1="96" x2="250" y2="156" class="wafer-line" />
+        <line x1="285" y1="96" x2="285" y2="156" class="wafer-line" />
+        <text x="44" y="172" class="node-sub">Laminar Flow · Heat Transfer · Mass Transport</text>
+
+        <path d="M360 120 H408" class="flow-line" />
+
+        <rect x="408" y="44" width="208" height="152" rx="10" class="node-box" />
+        <text x="426" y="72" class="node-code">2^k FACTORIAL DOE</text>
+        <text x="426" y="98" class="node-title">~100% Uniformity</text>
+        <text x="426" y="122" class="node-sub">· MATLAB 2D/3D Wafer Maps</text>
+        <text x="426" y="142" class="node-sub">· Main &amp; Interaction Effects</text>
+        <text x="426" y="162" class="node-sub">· Silicon Wafer Boat Design</text>
+      </svg>
+    )
+  }
+
+  {
+    type === 'gitlet-dag' && (
+      <svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="schematic-svg">
+        <rect x="20" y="32" width="600" height="176" rx="10" class="node-box" />
+        <text x="42" y="60" class="node-code">COMMIT DAG // O(N) BRANCH &amp; THREE-WAY MERGE ENGINE</text>
+        <line x1="86" y1="116" x2="290" y2="116" class="flow-line-accent" />
+        <path d="M188 116 C216 116 220 162 254 162 H392 C424 162 432 116 462 116" class="flow-line" />
+        <line x1="290" y1="116" x2="540" y2="116" class="flow-line-accent" />
+
+        <circle cx="86" cy="116" r="14" class="dag-node" />
+        <circle cx="188" cy="116" r="14" class="dag-node" />
+        <circle cx="290" cy="116" r="14" class="dag-node" />
+        <circle cx="290" cy="162" r="14" class="dag-node-secondary" />
+        <circle cx="392" cy="162" r="14" class="dag-node-secondary" />
+        <circle cx="462" cy="116" r="16" class="dag-node-accent" />
+
+        <text x="72" y="92" class="node-sub">init</text>
+        <text x="166" y="92" class="node-sub">split</text>
+        <text x="442" y="90" class="node-code-accent">merge</text>
+        <text x="488" y="120" class="node-title">HEAD (main)</text>
+      </svg>
+    )
+  }
+
+  {
+    type === 'signal-processing' && (
+      <svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="schematic-svg">
+        <rect x="20" y="48" width="176" height="144" rx="10" class="node-box" />
+        <text x="38" y="76" class="node-code">ARDUINO + G-CODE</text>
+        <text x="38" y="102" class="node-title">Spatial Scanner</text>
+        <text x="38" y="126" class="node-sub">Motorized Acoustic</text>
+        <text x="38" y="146" class="node-sub">&amp; Optical Stage</text>
+
+        <path d="M196 120 H238" class="flow-line" />
+
+        <rect x="238" y="48" width="176" height="144" rx="10" class="node-box-accent" />
+        <text x="256" y="76" class="node-code-accent">PWM + LOW-PASS</text>
+        <text x="256" y="102" class="node-title">Signal Conditioning</text>
+        <path d="M258 152 Q278 122 298 152 T338 152 T378 152" class="curve-accent" />
+
+        <path d="M414 120 H456" class="flow-line-accent" />
+
+        <rect x="456" y="48" width="164" height="144" rx="10" class="node-box" />
+        <text x="474" y="76" class="node-code">MATLAB // SNR</text>
+        <text x="474" y="102" class="node-title">Field Mapping</text>
+        <text x="474" y="126" class="node-sub">Time-Domain Avg</text>
+        <text x="474" y="146" class="node-sub">&amp; Video Analysis</text>
+      </svg>
+    )
+  }
+</div>
+
+<style>
+  .diagram-frame {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    padding: 0.75rem;
+    overflow: hidden;
+  }
+
+  .schematic-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .node-box {
+    fill: var(--bg-card);
+    stroke: var(--border-strong);
+    stroke-width: 1.25;
+  }
+
+  .node-box-accent {
+    fill: var(--accent-surface);
+    stroke: var(--accent-border);
+    stroke-width: 1.5;
+  }
+
+  .node-code {
+    fill: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .node-code-accent {
+    fill: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .node-title {
+    fill: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .node-sub {
+    fill: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 11px;
+  }
+
+  .flow-line {
+    stroke: var(--border-strong);
+    stroke-width: 1.75;
+    stroke-dasharray: 4 4;
+  }
+
+  .flow-line-accent {
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+  }
+
+  .axis-line {
+    stroke: var(--text-muted);
+    stroke-width: 1.25;
+  }
+
+  .curve-accent {
+    stroke: var(--accent-primary);
+    stroke-width: 2.5;
+    fill: none;
+  }
+
+  .tangent-line {
+    stroke: var(--accent-amber);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 3;
+  }
+
+  .dot-accent {
+    fill: var(--accent-primary);
+  }
+
+  .wafer-line {
+    stroke: var(--accent-primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+
+  .dag-node {
+    fill: var(--bg-card);
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+  }
+
+  .dag-node-secondary {
+    fill: var(--bg-card);
+    stroke: var(--text-muted);
+    stroke-width: 2;
+  }
+
+  .dag-node-accent {
+    fill: var(--accent-primary);
+  }
+</style>

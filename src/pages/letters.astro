@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { recommendationLetterPolicy } from '../data/profile';
+---
+
+<BaseLayout
+  title="Recommendation Letters"
+  description="Guidelines, eligibility, timeline, and interactive checklist for requesting a recommendation letter from Putra Wibisono."
+  canonicalPath="/letters/"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>05 // RECOMMENDATION LETTERS &amp; CANDIDATE ENDORSEMENTS</span>
+      </span>
+      <h1 class="page-title" style="margin-top: 0.6rem;">
+        {recommendationLetterPolicy.title}
+      </h1>
+      <p class="lead-text" style="margin-top: 0.85rem;">
+        {recommendationLetterPolicy.lead}
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container letters-grid">
+      <div class="letters-main">
+        <!-- Timeline Alert -->
+        <div class="surface-card timeline-banner">
+          <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.35rem;">
+            <span class="tag tag-amber">IMPORTANT TIMELINE</span>
+            <span class="mono-meta">LEAD TIME: 3–4 WEEKS MINIMUM</span>
+          </div>
+          <p style="font-size: 0.96rem; color: var(--text-primary); font-weight: 500;">
+            {recommendationLetterPolicy.timelineNotice}
+          </p>
+        </div>
+
+        <!-- Who I Can Write For -->
+        <div class="surface-card">
+          <span class="mono-meta">ELIGIBILITY // 01</span>
+          <h2 class="section-title" style="margin: 0.3rem 0 0.75rem;">Who I Can Write For</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
+            {recommendationLetterPolicy.philosophy}
+          </p>
+
+          <div class="grid-2">
+            {
+              recommendationLetterPolicy.eligibleGroups.map((item) => (
+                <div class="eligible-box">
+                  <strong>{item.group}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Areas of Expertise -->
+        <div class="surface-card">
+          <span class="mono-meta">EVALUATION SCOPE // 02</span>
+          <h2 class="section-title" style="margin: 0.3rem 0 0.75rem;">My Areas of Expertise</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+            I can speak most credibly to technical and collaborative work involving:
+          </p>
+          <ul class="expertise-list">
+            {recommendationLetterPolicy.credibleAreas.map((area) => <li>{area}</li>)}
+          </ul>
+        </div>
+
+        <!-- What I Need From You -->
+        <div class="surface-card">
+          <span class="mono-meta">REQUIRED PACKAGE // 03</span>
+          <h2 class="section-title" style="margin: 0.3rem 0 1rem;">What I Need From You</h2>
+          <div class="requirements-list">
+            {
+              recommendationLetterPolicy.requiredMaterials.map((req) => (
+                <div class="requirement-row">
+                  <span class="req-step">{req.step}</span>
+                  <div>
+                    <h3 style="font-size: 1rem; font-weight: 600; color: var(--text-primary);">{req.title}</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">{req.detail}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Request Readiness Checklist & Composer -->
+      <aside class="letters-sidebar">
+        <div class="surface-card sticky-composer">
+          <span class="mono-meta">INTERACTIVE REQUEST BUILDER</span>
+          <h2 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; margin: 0.35rem 0 0.65rem;">
+            Prepare Your Request
+          </h2>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Check off your materials below and generate a pre-structured email to <strong>{recommendationLetterPolicy.contactEmail}</strong> with the required subject line.
+          </p>
+
+          <div class="checklist-group" role="group" aria-label="Recommendation packet checklist">
+            <label class="check-item">
+              <input type="checkbox" class="req-check" checked />
+              <span>1. Current Resume / CV attached</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" class="req-check" checked />
+              <span>2. Opportunity details &amp; earliest deadline</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" class="req-check" checked />
+              <span>3. Our connection &amp; timeframe noted</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" class="req-check" checked />
+              <span>4. Specific projects / accomplishments listed</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" class="req-check" />
+              <span>5. Deadline is at least 3–4 weeks away</span>
+            </label>
+          </div>
+
+          <div class="composer-fields">
+            <label class="field-label">
+              <span class="mono-meta">YOUR NAME</span>
+              <input type="text" id="req-name" class="field-input" placeholder="e.g. Alex Chen" />
+            </label>
+            <label class="field-label">
+              <span class="mono-meta">HOW WE WORKED TOGETHER</span>
+              <select id="req-context" class="field-input">
+                <option value="Colleague at Stripe / Tesla">Colleague at Stripe or Tesla</option>
+                <option value="Student in UCSD CSE Course (CSE 8A / CSE 20)">Student in UCSD Course (CSE 8A / CSE 20)</option>
+                <option value="Agri-Tech / Field Trial Collaborator">Agri-Tech / Field Trial Collaborator</option>
+                <option value="Research / Engineering Collaborator">Research / Engineering Collaborator</option>
+              </select>
+            </label>
+            <label class="field-label">
+              <span class="mono-meta">EARLIEST SUBMISSION DEADLINE</span>
+              <input type="text" id="req-deadline" class="field-input" placeholder="e.g. December 15, 2026" />
+            </label>
+          </div>
+
+          <div class="submission-meta">
+            <p class="mono-meta">DESTINATION</p>
+            <p style="font-size: 0.9rem; font-weight: 600; color: var(--accent-primary);">
+              {recommendationLetterPolicy.contactEmail}
+            </p>
+            <p class="mono-meta" style="margin-top: 0.45rem;">REQUIRED SUBJECT LINE</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-primary);">
+              "{recommendationLetterPolicy.subjectLine}"
+            </p>
+          </div>
+
+          <a
+            id="compose-letter-btn"
+            href={`mailto:${recommendationLetterPolicy.contactEmail}?subject=${encodeURIComponent(recommendationLetterPolicy.subjectLine)}`}
+            class="btn btn-primary"
+            style="width: 100%; margin-top: 1.15rem;"
+          >
+            Draft Email Request →
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var nameInput = document.getElementById('req-name');
+    var contextInput = document.getElementById('req-context');
+    var deadlineInput = document.getElementById('req-deadline');
+    var btn = document.getElementById('compose-letter-btn');
+    if (!btn) return;
+
+    function updateMailto() {
+      var name = (nameInput && nameInput.value.trim()) || '[Your Name]';
+      var context = (contextInput && contextInput.value) || '[Our Connection & Timeframe]';
+      var deadline = (deadlineInput && deadlineInput.value.trim()) || '[Submission Deadline]';
+
+      var subject = 'Recommendation Letter Request - ' + name;
+      var body = [
+        'Hi Putra,',
+        '',
+        'I hope you are doing well. I am writing to request a letter of recommendation for my upcoming application.',
+        '',
+        '1. Connection & Timeframe: ' + context,
+        '2. Opportunity & Program Details: [Insert role/program name & link]',
+        '3. Earliest Submission Deadline: ' + deadline,
+        '4. Key Projects / Accomplishments to Highlight:',
+        '   - [Project or achievement 1]',
+        '   - [Project or achievement 2]',
+        '5. Draft Talking Points & Attached CV: Please find my current resume/CV attached.',
+        '',
+        'Thank you very much for your time and support!',
+        '',
+        'Best regards,',
+        name,
+      ].join('\r\n');
+
+      btn.setAttribute(
+        'href',
+        'mailto:president@agrosindustry.com?subject=' +
+          encodeURIComponent(subject) +
+          '&body=' +
+          encodeURIComponent(body)
+      );
+    }
+
+    [nameInput, contextInput, deadlineInput].forEach(function (el) {
+      if (el) {
+        el.addEventListener('input', updateMailto);
+        el.addEventListener('change', updateMailto);
+      }
+    });
+    updateMailto();
+  })();
+</script>
+
+<style>
+  .letters-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .letters-grid {
+      grid-template-columns: 1.4fr 0.9fr;
+    }
+  }
+
+  .letters-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .timeline-banner {
+    border-color: rgba(245, 158, 11, 0.35);
+    background: var(--bg-elevated);
+  }
+
+  .eligible-box {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .eligible-box strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+  }
+
+  .eligible-box p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .expertise-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .expertise-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+  }
+
+  .expertise-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+  }
+
+  .requirements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .requirement-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.95rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .req-step {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    background: var(--accent-surface);
+    border: 1px solid var(--accent-border);
+    padding: 0.25rem 0.55rem;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .sticky-composer {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .checklist-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.9rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 1.15rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+
+  .check-item input {
+    accent-color: var(--accent-primary);
+    width: 15px;
+    height: 15px;
+  }
+
+  .composer-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .field-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+  }
+
+  .submission-meta {
+    padding: 0.85rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+  }
+</style>

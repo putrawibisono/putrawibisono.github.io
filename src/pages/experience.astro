@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import { experienceList, educationList, skillGroups } from '../data/profile';
+---
+
+<BaseLayout
+  title="Professional Experience"
+  description="Putra Wibisono's career timeline across Agricultural Technologies, Stripe, Tesla, ATOM Science, Rivian, and UC San Diego Nanoengineering."
+  canonicalPath="/experience/"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>02 // PROFESSIONAL EXPERIENCE &amp; LEADERSHIP</span>
+      </span>
+      <h1 class="page-title" style="margin-top: 0.6rem;">
+        Career Trajectory &amp; Production Systems
+      </h1>
+      <p class="lead-text" style="margin-top: 0.85rem;">
+        Spanning enterprise financial data infrastructure at <strong>Stripe</strong>, multi-gigafactory 4680 battery analytics at <strong>Tesla</strong>, molecular machine learning at <strong>ATOM Science</strong>, cell formation engineering at <strong>Rivian</strong>, and founding <strong>Agros Industry</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="mono-meta">CHRONOLOGICAL RECORD // 6 ROLES</span>
+          <h2 class="section-title">Work &amp; Research Experience</h2>
+        </div>
+        <a href="/cv/" class="btn btn-secondary">Open Print-Ready CV →</a>
+      </div>
+
+      <ExperienceTimeline items={experienceList} compact={false} />
+    </div>
+  </section>
+
+  <!-- Education & Stack Summary -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>ACADEMIC CREDENTIALS</span>
+          </span>
+          <h2 class="section-title" style="margin: 0.5rem 0 1.5rem;">Education</h2>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            {
+              educationList.map((edu) => (
+                <div class="surface-card">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                    <span class="tag tag-accent">{edu.graduationDate}</span>
+                    {edu.honorsOrGpa && <span class="mono-meta">{edu.honorsOrGpa}</span>}
+                  </div>
+                  <h3 style="font-family: var(--font-serif); font-size: 1.45rem; font-weight: 400;">
+                    {edu.institution}
+                  </h3>
+                  <p style="font-weight: 600; color: var(--text-secondary); margin: 0.2rem 0;">
+                    {edu.degree}
+                  </p>
+                  <p class="mono-meta">{edu.concentrationOrMinor}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>TECHNICAL FLUENCY</span>
+          </span>
+          <h2 class="section-title" style="margin: 0.5rem 0 1.5rem;">Core Stack by Domain</h2>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            {
+              skillGroups.map((group) => (
+                <div class="surface-card" style="padding: 1.25rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.55rem;">
+                    <strong style="font-size: 0.96rem;">{group.category}</strong>
+                    <span class="mono-meta">{group.code}</span>
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                    {group.skills.map((s) => (
+                      <span class:list={['tag', { 'tag-accent': s.tier === 'Primary' }]}>{s.name}</span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
