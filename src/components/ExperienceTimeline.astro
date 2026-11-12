@@ -9,71 +9,37 @@ export interface Props {
 const { items, compact = false } = Astro.props;
 ---
 
-<div class="timeline">
+<div class="dossier-ledger">
   {
     items.map((item, idx) => (
-      <article class="timeline-item" id={item.id}>
-        <div class="timeline-rail" aria-hidden="true">
-          <span class:list={['timeline-node', { current: item.isCurrent }]} />
-          {idx < items.length - 1 && <span class="timeline-line" />}
+      <article class="dossier-row" id={item.id}>
+        <!-- Col 1: Dates, Organization, Location -->
+        <div class="dossier-meta">
+          <span class="dossier-index">0{idx + 1} // {item.period}</span>
+          <h3 class="dossier-org">{item.organization}</h3>
+          <p class="dossier-loc">{item.location}</p>
+          {item.periodNote && !compact && <p class="dossier-note">{item.periodNote}</p>}
         </div>
 
-        <div class="surface-card timeline-card">
-          <div class="timeline-header">
-            <div>
-              <div class="timeline-badges">
-                {item.isCurrent && <span class="tag tag-accent">Current Venture</span>}
-                <span class="tag">{item.domainTag}</span>
-              </div>
-              <h3 class="timeline-role">{item.role}</h3>
-              {item.secondaryRole && <p class="timeline-secondary-role">{item.secondaryRole}</p>}
-              <p class="timeline-org">
-                <strong>{item.organization}</strong>
-                <span class="timeline-sep">&middot;</span>
-                <span>{item.location}</span>
-              </p>
-            </div>
-
-            <div class="timeline-period-box">
-              <span class="mono-meta timeline-period">{item.period}</span>
-              {item.periodNote && !compact && <span class="timeline-period-note">{item.periodNote}</span>}
-            </div>
+        <!-- Col 2: Role, Narrative & Record -->
+        <div class="dossier-content">
+          <div class="dossier-role-line">
+            <h4 class="dossier-role">{item.role}</h4>
+            <span class="dossier-domain">{item.domainTag}</span>
           </div>
+          {item.secondaryRole && <p class="dossier-secondary">{item.secondaryRole}</p>}
 
-          <p class="timeline-summary">{item.summary}</p>
+          <p class="dossier-summary">{item.summary}</p>
 
-          {!compact && (
-            <ul class="timeline-highlights">
-              {item.highlights.map((bullet) => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
-          )}
-
-          {compact && (
-            <ul class="timeline-highlights">
-              {item.highlights.slice(0, 2).map((bullet) => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
-          )}
-
-          {item.metricsOrArtifacts && item.metricsOrArtifacts.length > 0 && (
-            <div class="timeline-artifacts">
-              {item.metricsOrArtifacts.map((artifact) => (
-                <div class="artifact-pill">
-                  <span class="mono-meta">{artifact.label}:</span>
-                  <strong>{artifact.value}</strong>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div class="timeline-tech">
-            {item.technologies.map((tech) => (
-              <span class="tag">{tech}</span>
+          <ul class="dossier-points">
+            {(compact ? item.highlights.slice(0, 2) : item.highlights).map((pt) => (
+              <li>{pt}</li>
             ))}
-          </div>
+          </ul>
+
+          <p class="dossier-stack">
+            <span class="sidenote-label">Stack &amp; Methods:</span> {item.technologies.join(' · ')}
+          </p>
         </div>
       </article>
     ))
@@ -81,200 +47,136 @@ const { items, compact = false } = Astro.props;
 </div>
 
 <style>
-  .timeline {
+  .dossier-ledger {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
   }
 
-  .timeline-item {
+  .dossier-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
+    padding: 2.1rem 0;
+    border-top: 1px solid var(--rule);
   }
 
-  @media (min-width: 768px) {
-    .timeline-item {
-      grid-template-columns: 28px 1fr;
-      gap: 1.25rem;
+  .dossier-row:first-child {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  @media (min-width: 820px) {
+    .dossier-row {
+      grid-template-columns: 215px minmax(0, 1fr);
+      gap: 2.75rem;
     }
   }
 
-  .timeline-rail {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-rail {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 1.85rem;
-    }
-  }
-
-  .timeline-node {
-    width: 12px;
-    height: 12px;
-    border-radius: 999px;
-    background: var(--bg-card);
-    border: 2px solid var(--text-muted);
-    flex-shrink: 0;
-  }
-
-  .timeline-node.current {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 12px var(--accent-primary);
-  }
-
-  .timeline-line {
-    width: 1px;
-    flex: 1;
-    background: var(--border-strong);
-    margin-top: 0.5rem;
-  }
-
-  .timeline-card {
+  .dossier-meta {
+    font-family: var(--font-sans);
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 0.22rem;
   }
 
-  .timeline-header {
+  .dossier-index {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--rubric);
+    letter-spacing: 0.04em;
+  }
+
+  .dossier-org {
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 0.15rem;
+  }
+
+  .dossier-loc {
+    font-size: 0.76rem;
+    color: var(--ink-secondary);
+  }
+
+  .dossier-note {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--ink-muted);
+    margin-top: 0.4rem;
+    line-height: 1.45;
+  }
+
+  .dossier-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 68ch;
+  }
+
+  .dossier-role-line {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
-    padding-bottom: 0.9rem;
-    border-bottom: 1px solid var(--border-subtle);
+    align-items: baseline;
+    gap: 0.5rem;
   }
 
-  .timeline-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 0.55rem;
-  }
-
-  .timeline-role {
+  .dossier-role {
     font-family: var(--font-serif);
     font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 1.18;
-    color: var(--text-primary);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    color: var(--ink);
   }
 
-  .timeline-secondary-role {
+  .dossier-domain {
     font-family: var(--font-mono);
-    font-size: 0.76rem;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
+    font-size: 0.65rem;
+    color: var(--ink-muted);
   }
 
-  .timeline-org {
-    margin-top: 0.35rem;
+  .dossier-secondary {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-secondary);
+    margin-top: -0.35rem;
+  }
+
+  .dossier-summary {
     font-size: 0.95rem;
-    color: var(--text-secondary);
-  }
-
-  .timeline-org strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .timeline-sep {
-    margin: 0 0.45rem;
-    color: var(--text-muted);
-  }
-
-  .timeline-period-box {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-period-box {
-      align-items: flex-end;
-      text-align: right;
-    }
-  }
-
-  .timeline-period {
-    padding: 0.3rem 0.7rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-    font-weight: 500;
-  }
-
-  .timeline-period-note {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    max-width: 32ch;
-  }
-
-  .timeline-summary {
-    color: var(--text-secondary);
-    font-size: 0.96rem;
+    color: var(--ink);
     line-height: 1.65;
   }
 
-  .timeline-highlights {
+  .dossier-points {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
+    gap: 0.45rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--ink-secondary);
   }
 
-  .timeline-highlights li {
+  .dossier-points li {
     position: relative;
-    padding-left: 1.25rem;
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.58;
+    padding-left: 1.15rem;
+    line-height: 1.56;
   }
 
-  .timeline-highlights li::before {
+  .dossier-points li::before {
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--accent-primary);
+    color: var(--rubric);
+  }
+
+  .dossier-stack {
     font-family: var(--font-mono);
-  }
-
-  .timeline-artifacts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    font-size: 0.66rem;
+    color: var(--ink-muted);
     padding-top: 0.35rem;
-  }
-
-  .artifact-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.4rem 0.75rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
-    font-size: 0.82rem;
-  }
-
-  .artifact-pill strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .timeline-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    padding-top: 0.4rem;
+    border-top: 1px dotted var(--rule-dotted);
   }
 </style>

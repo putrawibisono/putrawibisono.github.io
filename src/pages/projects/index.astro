@@ -4,270 +4,232 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { projectsList, additionalEngineeringProjects } from '../../data/profile';
 
 const categories = [
-  'All',
+  'All Monographs',
   'Agri-Tech & IoT',
   'Data & Battery Systems',
   'Scientific Computing & Materials',
   'Software Engineering',
-] as const;
-
-const spectroscopyProject = projectsList.find((p) => p.slug === 'uv-vis-semiconductor-spectroscopy');
+];
 ---
 
 <BaseLayout
-  title="Projects & Technical Case Studies"
-  description="Engineering, data infrastructure, agricultural technology, battery telemetry, and scientific computing projects by Putra Wibisono."
-  canonicalPath="/projects/"
+  title="IV. Engineering Monographs & Laboratory Archive — Putra Wibisono"
+  description="Technical monographs, system schematics, and experimental studies spanning agricultural IoT pipelines, Tesla 4680 battery telemetry, UV-Vis semiconductor spectroscopy, and COMSOL reactor modeling."
 >
-  <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow">
-        <span class="eyebrow-dot" aria-hidden="true"></span>
-        <span>03 // SYSTEMS, RESEARCH &amp; CASE STUDIES</span>
-      </span>
-      <h1 class="page-title" style="margin-top: 0.6rem;">
-        Engineering &amp; Agri-Tech Projects
-      </h1>
-      <p class="lead-text" style="margin-top: 0.85rem;">
-        Selected architectures, scientific models, and software systems built across agricultural technology, EV battery formation, semiconductor spectroscopy, and computer science.
-      </p>
+  <article>
+    <div class="reading-with-margin">
+      <div class="main-reading-col">
+        <span class="rubric-mark">§ IV. Technical Monographs · Fol. 04</span>
+        <h1 class="monograph-title">
+          Engineering <em>Monographs</em> &amp; Laboratory Archive.
+        </h1>
 
-      <!-- Category Filter Bar -->
-      <div class="filter-bar" role="toolbar" aria-label="Filter projects by category">
-        {
-          categories.map((cat, idx) => (
-            <button
-              type="button"
-              class:list={['filter-btn', { active: idx === 0 }]}
-              data-filter={cat}
-              aria-pressed={idx === 0 ? 'true' : 'false'}
-            >
-              {cat}
-            </button>
-          ))
-        }
+        <div class="essay-prose" style="margin-top: 1.5rem;">
+          <p class="dropcap">
+            Rather than presenting software and physical engineering work as interchangeable marketing tiles, this archive documents six technical studies as self-contained monographs. Each entry pairs a statement of the underlying physical or computational problem with an architectural figure and a record of empirical outcomes.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Main Project Cards Grid -->
-  <section class="section">
-    <div class="container">
-      <div class="grid-2" id="projects-grid">
-        {projectsList.map((project) => <ProjectCard project={project} />)}
+      <aside class="margin-column" aria-label="Archive notes">
+        <div class="sidenote-block">
+          <span class="sidenote-label">Indexing Convention</span>
+          <p>
+            Monographs 01–06 include dedicated system diagrams (<code>Fig. 1.1</code> through <code>Fig. 6.1</code>) and full methodological breakdowns on their individual folio pages.
+          </p>
+        </div>
+        <div class="sidenote-block">
+          <span class="sidenote-label">Source &amp; Reproducibility</span>
+          <p>
+            Where academic integrity policies or proprietary industrial agreements govern source code, view-only access or simulation reports are noted explicitly.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Typographic Index Filter Bar -->
+    <section class="ledger-section" aria-label="Monograph index filter">
+      <div class="filter-bar" role="toolbar" aria-label="Filter monographs by discipline">
+        <span class="mono-cite" style="margin-right: 0.5rem;">Filter Index:</span>
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            class:list={['index-filter-btn', { active: idx === 0 }]}
+            data-filter={cat}
+            aria-pressed={idx === 0 ? 'true' : 'false'}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
-    </div>
-  </section>
 
-  <!-- Featured Lab Instrumentation Spotlight (Real Preserved Image) -->
-  {
-    spectroscopyProject && (
-      <section class="section">
-        <div class="container">
-          <div class="surface-card lab-spotlight">
-            <div class="lab-spotlight-copy">
-              <span class="eyebrow">
-                <span class="eyebrow-dot" aria-hidden="true"></span>
-                <span>LABORATORY INSTRUMENTATION ARCHIVE</span>
-              </span>
-              <h2 class="section-title" style="margin-top: 0.4rem;">
-                {spectroscopyProject.title}
-              </h2>
-              <p style="color: var(--text-secondary); font-size: 0.96rem; line-height: 1.65;">
-                {spectroscopyProject.summary}
-              </p>
-              <p class="mono-meta" style="margin-top: 0.25rem;">
-                INSTRUMENTATION: SHIMADZU SOLIDSPEC-3700 UV-VIS-NIR SPECTROPHOTOMETER
-              </p>
-              <div style="margin-top: 0.75rem;">
-                <a href={`/projects/${spectroscopyProject.slug}/`} class="btn btn-primary">
-                  Read Full Spectroscopy Case Study →
-                </a>
-              </div>
-            </div>
+      <div id="projects-monograph-list">
+        {projectsList.map((project) => (
+          <div class="project-item-wrapper" data-category={project.category}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+    </section>
 
-            <figure class="lab-figure">
-              <img
-                src="/images/portfolio1.jpg"
-                alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer workstation in the laboratory"
-                loading="lazy"
-                width="800"
-                height="600"
-              />
-              <figcaption class="mono-meta">
-                {spectroscopyProject.imageCaption}
-              </figcaption>
-            </figure>
+    <!-- Archival Plate Feature: UV-Vis-NIR Spectrophotometer -->
+    <section class="ledger-section" aria-labelledby="archival-plate-heading">
+      <div class="ledger-header">
+        <div>
+          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Archival Plate I · Experimental Optical Physics</span>
+          <h2 id="archival-plate-heading" class="section-heading">
+            Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer Workstation
+          </h2>
+        </div>
+        <a href="/projects/uv-vis-semiconductor-spectroscopy/" class="text-link mono-cite">
+          Open Monograph No. 03 →
+        </a>
+      </div>
+
+      <div class="plate-showcase">
+        <figure class="archival-plate">
+          <img
+            src="/images/portfolio1.jpg"
+            alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer and optical reference standards in the laboratory"
+            loading="lazy"
+          />
+          <figcaption class="plate-caption">
+            <strong>Plate I (Original Laboratory Photograph):</strong> Experimental optical bench featuring the Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer, spectral reference standards, and acquisition terminal used to measure transmission and reflectance across semiconductor thin-film samples.
+          </figcaption>
+        </figure>
+
+        <div class="plate-commentary">
+          <span class="sidenote-label">Instrument &amp; Calibration Notes</span>
+          <p class="sans-note" style="margin-top: 0.4rem;">
+            Wide-band optical characterization requires stitching spectral measurements across ultraviolet, visible, and near-infrared regimes while correcting for detector switching artifacts and substrate interference.
+          </p>
+          <p class="sans-note" style="margin-top: 0.75rem;">
+            By reconciling dual-spectrometer transmittance and reflectance curves in Python and MATLAB, the pipeline extracts continuous absorption coefficients ($\alpha$) and constructs Tauc plots ($(\alpha h\nu)^n$ vs. $h\nu$) to resolve direct and indirect electronic band gaps.
+          </p>
+          <div style="margin-top: 1.25rem;">
+            <a href="/projects/uv-vis-semiconductor-spectroscopy/" class="folio-action">
+              Read Full Spectroscopy Study →
+            </a>
           </div>
         </div>
-      </section>
-    )
-  }
+      </div>
+    </section>
 
-  <!-- Additional Engineering & Academic Project Index -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="eyebrow">
-          <span class="eyebrow-dot" aria-hidden="true"></span>
-          <span>ADDITIONAL COURSEWORK &amp; SIMULATION ARCHIVE</span>
-        </span>
-        <h2 class="section-title">Additional Engineering &amp; Software Models</h2>
-        <p class="lead-text">
-          Additional verified projects from chemical engineering, computational modeling, and computer science coursework (view-only source code available upon direct email request).
-        </p>
+    <!-- Additional Engineering & Simulation Studies Table -->
+    <section class="ledger-section" aria-labelledby="additional-studies-heading">
+      <div class="ledger-header">
+        <div>
+          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Appendix A · Additional Works</span>
+          <h2 id="additional-studies-heading" class="section-heading">
+            Supplementary Coursework, Simulations &amp; Software Engines
+          </h2>
+        </div>
+        <span class="mono-cite">Verified CV Archive</span>
       </div>
 
-      <div class="surface-card archive-table-wrap">
-        <table class="archive-table">
-          <thead>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th style="width: 14%;">Ref.</th>
+            <th style="width: 44%;">Study or System Title</th>
+            <th style="width: 24%;">Primary Methods</th>
+            <th>Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          {additionalEngineeringProjects.map((item, idx) => (
             <tr>
-              <th>Project / Model</th>
-              <th>Primary Stack / Discipline</th>
-              <th>Context</th>
+              <td class="mono-cite">APP. 0{idx + 1}</td>
+              <td>
+                <strong style="color: var(--ink); font-weight: 600;">{item.name}</strong>
+              </td>
+              <td class="mono-cite" style="color: var(--rubric);">{item.domain}</td>
+              <td class="sans-note">{item.context}</td>
             </tr>
-          </thead>
-          <tbody>
-            {
-              additionalEngineeringProjects.map((item) => (
-                <tr>
-                  <td><strong>{item.name}</strong></td>
-                  <td><span class="tag">{item.domain}</span></td>
-                  <td class="mono-meta">{item.context}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  </article>
 </BaseLayout>
 
-<script is:inline>
-  (function () {
-    var buttons = document.querySelectorAll('.filter-btn');
-    var cards = document.querySelectorAll('#projects-grid .project-card');
-    if (!buttons.length || !cards.length) return;
+<script>
+  function initMonographFilter() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.index-filter-btn');
+    const items = document.querySelectorAll<HTMLElement>('.project-item-wrapper');
+    if (!buttons.length || !items.length) return;
 
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var filter = btn.getAttribute('data-filter');
-        buttons.forEach(function (b) {
-          b.classList.remove('active');
-          b.setAttribute('aria-pressed', 'false');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter') || 'All Monographs';
+        buttons.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
-        btn.classList.add('active');
-        btn.setAttribute('aria-pressed', 'true');
 
-        cards.forEach(function (card) {
-          var cat = card.getAttribute('data-category');
-          if (filter === 'All' || cat === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
+        items.forEach((item) => {
+          const cat = item.getAttribute('data-category');
+          const match = filter === 'All Monographs' || cat === filter;
+          item.style.display = match ? '' : 'none';
         });
       });
     });
-  })();
+  }
+
+  initMonographFilter();
+  document.addEventListener('astro:after-swap', initMonographFilter);
 </script>
 
 <style>
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 2rem;
+    align-items: baseline;
+    gap: 0.55rem 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .filter-btn {
-    padding: 0.5rem 0.95rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-strong);
-    background: var(--bg-card);
-    color: var(--text-secondary);
+  .index-filter-btn {
+    background: transparent;
+    border: none;
+    padding: 0.2rem 0;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-muted);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    border-bottom: 1.5px solid transparent;
+    transition: color 140ms ease, border-color 140ms ease;
   }
 
-  .filter-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--accent-border);
+  .index-filter-btn:hover {
+    color: var(--ink);
   }
 
-  .filter-btn.active {
-    background: var(--accent-primary);
-    color: #07130e;
-    border-color: var(--accent-primary);
-    font-weight: 600;
+  .index-filter-btn.active {
+    color: var(--rubric);
+    border-bottom-color: var(--rubric);
+    font-weight: 500;
   }
 
-  [data-theme='light'] .filter-btn.active {
-    color: #ffffff;
-  }
-
-  .lab-spotlight {
+  .plate-showcase {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    align-items: center;
+    align-items: start;
   }
 
-  @media (min-width: 920px) {
-    .lab-spotlight {
-      grid-template-columns: 1.1fr 1fr;
+  @media (min-width: 860px) {
+    .plate-showcase {
+      grid-template-columns: 1.35fr 1fr;
+      gap: 2.5rem;
     }
   }
 
-  .lab-spotlight-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .lab-figure {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
-
-  .lab-figure img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-strong);
-    object-fit: cover;
-  }
-
-  .archive-table-wrap {
-    overflow-x: auto;
-    padding: 0.5rem 1.25rem;
-  }
-
-  .archive-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-  }
-
-  .archive-table th,
-  .archive-table td {
-    padding: 0.95rem 0.75rem;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .archive-table th {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-  }
-
-  .archive-table tr:last-child td {
-    border-bottom: none;
+  .plate-commentary {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
   }
 </style>

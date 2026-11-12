@@ -4,374 +4,251 @@ import { recommendationLetterPolicy } from '../data/profile';
 ---
 
 <BaseLayout
-  title="Recommendation Letters"
-  description="Guidelines, eligibility, timeline, and interactive checklist for requesting a recommendation letter from Putra Wibisono."
-  canonicalPath="/letters/"
+  title="VI. Recommendation Letters & Correspondence Guide — Putra Wibisono"
+  description="Protocol and required materials for requesting academic or professional recommendation letters from Putra Wibisono."
 >
-  <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow">
-        <span class="eyebrow-dot" aria-hidden="true"></span>
-        <span>05 // RECOMMENDATION LETTERS &amp; CANDIDATE ENDORSEMENTS</span>
-      </span>
-      <h1 class="page-title" style="margin-top: 0.6rem;">
-        {recommendationLetterPolicy.title}
-      </h1>
-      <p class="lead-text" style="margin-top: 0.85rem;">
-        {recommendationLetterPolicy.lead}
-      </p>
-    </div>
-  </section>
+  <article>
+    <div class="reading-with-margin">
+      <div class="main-reading-col">
+        <span class="rubric-mark">§ VI. Academic &amp; Professional References · Fol. 06</span>
+        <h1 class="monograph-title">
+          Recommendation <em>Letters</em> &amp; Protocol.
+        </h1>
 
-  <section class="section">
-    <div class="container letters-grid">
-      <div class="letters-main">
-        <!-- Timeline Alert -->
-        <div class="surface-card timeline-banner">
-          <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.35rem;">
-            <span class="tag tag-amber">IMPORTANT TIMELINE</span>
-            <span class="mono-meta">LEAD TIME: 3–4 WEEKS MINIMUM</span>
-          </div>
-          <p style="font-size: 0.96rem; color: var(--text-primary); font-weight: 500;">
-            {recommendationLetterPolicy.timelineNotice}
+        <div class="essay-prose" style="margin-top: 1.5rem;">
+          <p class="dropcap">
+            {recommendationLetterPolicy.lead}
           </p>
-        </div>
-
-        <!-- Who I Can Write For -->
-        <div class="surface-card">
-          <span class="mono-meta">ELIGIBILITY // 01</span>
-          <h2 class="section-title" style="margin: 0.3rem 0 0.75rem;">Who I Can Write For</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
+          <p>
             {recommendationLetterPolicy.philosophy}
           </p>
-
-          <div class="grid-2">
-            {
-              recommendationLetterPolicy.eligibleGroups.map((item) => (
-                <div class="eligible-box">
-                  <strong>{item.group}</strong>
-                  <p>{item.detail}</p>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Areas of Expertise -->
-        <div class="surface-card">
-          <span class="mono-meta">EVALUATION SCOPE // 02</span>
-          <h2 class="section-title" style="margin: 0.3rem 0 0.75rem;">My Areas of Expertise</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-            I can speak most credibly to technical and collaborative work involving:
-          </p>
-          <ul class="expertise-list">
-            {recommendationLetterPolicy.credibleAreas.map((area) => <li>{area}</li>)}
-          </ul>
-        </div>
-
-        <!-- What I Need From You -->
-        <div class="surface-card">
-          <span class="mono-meta">REQUIRED PACKAGE // 03</span>
-          <h2 class="section-title" style="margin: 0.3rem 0 1rem;">What I Need From You</h2>
-          <div class="requirements-list">
-            {
-              recommendationLetterPolicy.requiredMaterials.map((req) => (
-                <div class="requirement-row">
-                  <span class="req-step">{req.step}</span>
-                  <div>
-                    <h3 style="font-size: 1rem; font-weight: 600; color: var(--text-primary);">{req.title}</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">{req.detail}</p>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
         </div>
       </div>
 
-      <!-- Interactive Request Readiness Checklist & Composer -->
-      <aside class="letters-sidebar">
-        <div class="surface-card sticky-composer">
-          <span class="mono-meta">INTERACTIVE REQUEST BUILDER</span>
-          <h2 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; margin: 0.35rem 0 0.65rem;">
-            Prepare Your Request
-          </h2>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
-            Check off your materials below and generate a pre-structured email to <strong>{recommendationLetterPolicy.contactEmail}</strong> with the required subject line.
+      <aside class="margin-column" aria-label="Notice and lead time">
+        <div class="sidenote-block">
+          <span class="sidenote-label">Lead-Time Requirement</span>
+          <p>
+            <strong style="color: var(--rubric);">Minimum 3–4 Weeks Notice:</strong> {recommendationLetterPolicy.timelineNotice}
           </p>
+        </div>
 
-          <div class="checklist-group" role="group" aria-label="Recommendation packet checklist">
-            <label class="check-item">
-              <input type="checkbox" class="req-check" checked />
-              <span>1. Current Resume / CV attached</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" class="req-check" checked />
-              <span>2. Opportunity details &amp; earliest deadline</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" class="req-check" checked />
-              <span>3. Our connection &amp; timeframe noted</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" class="req-check" checked />
-              <span>4. Specific projects / accomplishments listed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" class="req-check" />
-              <span>5. Deadline is at least 3–4 weeks away</span>
-            </label>
-          </div>
-
-          <div class="composer-fields">
-            <label class="field-label">
-              <span class="mono-meta">YOUR NAME</span>
-              <input type="text" id="req-name" class="field-input" placeholder="e.g. Alex Chen" />
-            </label>
-            <label class="field-label">
-              <span class="mono-meta">HOW WE WORKED TOGETHER</span>
-              <select id="req-context" class="field-input">
-                <option value="Colleague at Stripe / Tesla">Colleague at Stripe or Tesla</option>
-                <option value="Student in UCSD CSE Course (CSE 8A / CSE 20)">Student in UCSD Course (CSE 8A / CSE 20)</option>
-                <option value="Agri-Tech / Field Trial Collaborator">Agri-Tech / Field Trial Collaborator</option>
-                <option value="Research / Engineering Collaborator">Research / Engineering Collaborator</option>
-              </select>
-            </label>
-            <label class="field-label">
-              <span class="mono-meta">EARLIEST SUBMISSION DEADLINE</span>
-              <input type="text" id="req-deadline" class="field-input" placeholder="e.g. December 15, 2026" />
-            </label>
-          </div>
-
-          <div class="submission-meta">
-            <p class="mono-meta">DESTINATION</p>
-            <p style="font-size: 0.9rem; font-weight: 600; color: var(--accent-primary);">
-              {recommendationLetterPolicy.contactEmail}
-            </p>
-            <p class="mono-meta" style="margin-top: 0.45rem;">REQUIRED SUBJECT LINE</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-primary);">
-              "{recommendationLetterPolicy.subjectLine}"
-            </p>
-          </div>
-
-          <a
-            id="compose-letter-btn"
-            href={`mailto:${recommendationLetterPolicy.contactEmail}?subject=${encodeURIComponent(recommendationLetterPolicy.subjectLine)}`}
-            class="btn btn-primary"
-            style="width: 100%; margin-top: 1.15rem;"
-          >
-            Draft Email Request →
-          </a>
+        <div class="sidenote-block">
+          <span class="sidenote-label">Direct Dispatch</span>
+          <p>
+            Address requests to <a href={`mailto:${recommendationLetterPolicy.contactEmail}?subject=${encodeURIComponent(recommendationLetterPolicy.subjectLine)}`} class="text-link mono-cite">{recommendationLetterPolicy.contactEmail}</a> with the subject line <code>"{recommendationLetterPolicy.subjectLine}"</code>.
+          </p>
         </div>
       </aside>
     </div>
-  </section>
+
+    <!-- Part I: Eligibility & Evaluation Scope -->
+    <section class="ledger-section" aria-labelledby="eligibility-heading">
+      <div class="ledger-header">
+        <div>
+          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Part I · Standing &amp; Scope</span>
+          <h2 id="eligibility-heading" class="section-heading">Eligible Candidates &amp; Areas of Evaluation</h2>
+        </div>
+        <span class="mono-cite">Reference Protocol</span>
+      </div>
+
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Candidate Group</th>
+            <th>Relationship &amp; Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          {recommendationLetterPolicy.eligibleGroups.map((item) => (
+            <tr>
+              <td>
+                <strong style="color: var(--ink); font-weight: 600;">{item.group}</strong>
+              </td>
+              <td class="sans-note">{item.detail}</td>
+            </tr>
+          ))}
+          <tr>
+            <td>
+              <strong style="color: var(--rubric); font-weight: 600;">Credible Evaluation Domains</strong>
+            </td>
+            <td class="sans-note">
+              {recommendationLetterPolicy.credibleAreas.join(' · ')}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Part II: Required Dossier Packet & Interactive Draft Generator -->
+    <section class="ledger-section" aria-labelledby="packet-heading">
+      <div class="ledger-header">
+        <div>
+          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Part II · Required Dossier Packet</span>
+          <h2 id="packet-heading" class="section-heading">Five Materials to Include in Your Request</h2>
+        </div>
+        <span class="mono-cite">Checklist 01–05</span>
+      </div>
+
+      <div class="reading-with-margin" style="margin-top: 1rem;">
+        <div>
+          <ol class="packet-checklist">
+            {recommendationLetterPolicy.requiredMaterials.map((item) => (
+              <li>
+                <span class="mono-cite" style="color: var(--rubric);">{item.step}.</span>
+                <div>
+                  <strong style="font-family: var(--font-sans); font-size: 0.88rem; color: var(--ink); display: block;">
+                    {item.title}
+                  </strong>
+                  <span class="sans-note">{item.detail}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <!-- Archival Worksheet: Pre-populate Mailto Request -->
+        <aside class="worksheet-box" aria-labelledby="worksheet-title">
+          <span class="sidenote-label" id="worksheet-title">Correspondence Worksheet</span>
+          <p class="sans-note" style="font-size: 0.74rem; margin-top: 0.3rem;">
+            Complete the fields below to format a structured email draft with all five required sections:
+          </p>
+
+          <div class="worksheet-fields">
+            <label class="worksheet-label" for="req-name">
+              <span>Your Full Name</span>
+              <input id="req-name" type="text" placeholder="e.g., Jane Doe" class="worksheet-input" />
+            </label>
+
+            <label class="worksheet-label" for="req-context">
+              <span>Collaboration Context</span>
+              <select id="req-context" class="worksheet-input">
+                <option value="UC San Diego (CSE 8A / CSE 20)">UC San Diego (CSE 8A / CSE 20)</option>
+                <option value="Tesla Battery / Data Engineering">Tesla Battery / Data Engineering</option>
+                <option value="Stripe Data Engineering">Stripe Data Engineering</option>
+                <option value="Agros Industry / Agri-Tech Field Project">Agros Industry / Agri-Tech Field Project</option>
+                <option value="Research / Project Collaboration">Research / Project Collaboration</option>
+              </select>
+            </label>
+
+            <label class="worksheet-label" for="req-deadline">
+              <span>Earliest Submission Deadline</span>
+              <input id="req-deadline" type="date" class="worksheet-input" />
+            </label>
+
+            <button
+              type="button"
+              id="compose-letter-btn"
+              class="folio-action folio-action-rubric"
+              style="width: 100%; justify-content: center; margin-top: 0.4rem;"
+            >
+              Compose Request Email →
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </article>
 </BaseLayout>
 
-<script is:inline>
-  (function () {
-    var nameInput = document.getElementById('req-name');
-    var contextInput = document.getElementById('req-context');
-    var deadlineInput = document.getElementById('req-deadline');
-    var btn = document.getElementById('compose-letter-btn');
+<script>
+  function initLetterWorksheet() {
+    const btn = document.getElementById('compose-letter-btn');
     if (!btn) return;
 
-    function updateMailto() {
-      var name = (nameInput && nameInput.value.trim()) || '[Your Name]';
-      var context = (contextInput && contextInput.value) || '[Our Connection & Timeframe]';
-      var deadline = (deadlineInput && deadlineInput.value.trim()) || '[Submission Deadline]';
+    btn.addEventListener('click', () => {
+      const nameInput = document.getElementById('req-name') as HTMLInputElement | null;
+      const contextInput = document.getElementById('req-context') as HTMLSelectElement | null;
+      const deadlineInput = document.getElementById('req-deadline') as HTMLInputElement | null;
 
-      var subject = 'Recommendation Letter Request - ' + name;
-      var body = [
-        'Hi Putra,',
+      const name = nameInput?.value.trim() || '[Your Name]';
+      const context = contextInput?.value || '[Our Connection / Course / Team]';
+      const deadline = deadlineInput?.value || '[Earliest Deadline Date]';
+
+      const subject = `Recommendation Letter Request — ${name}`;
+      const body = [
+        'Dear Putra,',
         '',
-        'I hope you are doing well. I am writing to request a letter of recommendation for my upcoming application.',
+        `I hope you are doing well. I am writing to request a letter of recommendation in support of my upcoming application.`,
         '',
-        '1. Connection & Timeframe: ' + context,
-        '2. Opportunity & Program Details: [Insert role/program name & link]',
-        '3. Earliest Submission Deadline: ' + deadline,
-        '4. Key Projects / Accomplishments to Highlight:',
-        '   - [Project or achievement 1]',
-        '   - [Project or achievement 2]',
-        '5. Draft Talking Points & Attached CV: Please find my current resume/CV attached.',
+        '1. CURRENT RESUME / CV:',
+        '[Attached to this email / Linked here]',
         '',
-        'Thank you very much for your time and support!',
+        '2. OPPORTUNITY DETAILS & EARLIEST DEADLINE:',
+        `- Target Program / Role: [Insert Graduate Program or Position]`,
+        `- Earliest Deadline: ${deadline}`,
+        `- Submission Method: [Portal Link / Direct Email]`,
+        '',
+        '3. OUR CONNECTION & TIMEFRAME:',
+        `- Context: ${context}`,
+        `- Dates Worked Together: [Insert Term or Dates]`,
+        '',
+        '4. SPECIFIC PROJECTS & ACCOMPLISHMENTS:',
+        '- [Highlight 1-2 projects, trials, or coursework milestones]',
+        '',
+        '5. OPTIONAL TALKING POINTS:',
+        '- [Key technical or leadership strengths to emphasize]',
+        '',
+        'Thank you very much for your time and consideration.',
         '',
         'Best regards,',
         name,
       ].join('\r\n');
 
-      btn.setAttribute(
-        'href',
-        'mailto:president@agrosindustry.com?subject=' +
-          encodeURIComponent(subject) +
-          '&body=' +
-          encodeURIComponent(body)
-      );
-    }
-
-    [nameInput, contextInput, deadlineInput].forEach(function (el) {
-      if (el) {
-        el.addEventListener('input', updateMailto);
-        el.addEventListener('change', updateMailto);
-      }
+      window.location.href = `mailto:president@agrosindustry.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
-    updateMailto();
-  })();
+  }
+
+  initLetterWorksheet();
+  document.addEventListener('astro:after-swap', initLetterWorksheet);
 </script>
 
 <style>
-  .letters-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  @media (min-width: 980px) {
-    .letters-grid {
-      grid-template-columns: 1.4fr 0.9fr;
-    }
-  }
-
-  .letters-main {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .timeline-banner {
-    border-color: rgba(245, 158, 11, 0.35);
-    background: var(--bg-elevated);
-  }
-
-  .eligible-box {
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
-  }
-
-  .eligible-box strong {
-    display: block;
-    color: var(--text-primary);
-    margin-bottom: 0.3rem;
-  }
-
-  .eligible-box p {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .expertise-list {
+  .packet-checklist {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .expertise-list li {
-    position: relative;
-    padding-left: 1.25rem;
-    color: var(--text-secondary);
-    font-size: 0.94rem;
-  }
-
-  .expertise-list li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--accent-primary);
-  }
-
-  .requirements-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .requirement-row {
-    display: flex;
-    align-items: flex-start;
     gap: 1rem;
-    padding: 0.95rem 1rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
   }
 
-  .req-step {
+  .packet-checklist li {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px dotted var(--rule-dotted);
+  }
+
+  .worksheet-box {
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    padding: 1.15rem;
+    align-self: start;
+  }
+
+  .worksheet-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.85rem;
+  }
+
+  .worksheet-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
     font-family: var(--font-mono);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--accent-primary);
-    background: var(--accent-surface);
-    border: 1px solid var(--accent-border);
-    padding: 0.25rem 0.55rem;
-    border-radius: 6px;
-    flex-shrink: 0;
+    font-size: 0.64rem;
+    color: var(--ink-secondary);
   }
 
-  .sticky-composer {
-    position: sticky;
-    top: 6rem;
-  }
-
-  .checklist-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.9rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
-    margin-bottom: 1.15rem;
-  }
-
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-  }
-
-  .check-item input {
-    accent-color: var(--accent-primary);
-    width: 15px;
-    height: 15px;
-  }
-
-  .composer-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.15rem;
-  }
-
-  .field-label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .field-input {
-    width: 100%;
-    padding: 0.6rem 0.75rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-strong);
-    background: var(--bg-primary);
-    color: var(--text-primary);
+  .worksheet-input {
     font-family: var(--font-sans);
-    font-size: 0.88rem;
-  }
-
-  .submission-meta {
-    padding: 0.85rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
+    font-size: 0.78rem;
+    padding: 0.42rem 0.55rem;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--rule-strong);
+    border-radius: 0;
   }
 </style>

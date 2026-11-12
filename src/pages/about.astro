@@ -9,319 +9,200 @@ import {
 ---
 
 <BaseLayout
-  title="About Putra Wibisono"
-  description="Biography, engineering background, academic training at UC Berkeley and UC San Diego, and current agricultural technology mission."
+  title="Essay & Education"
+  description="Biographical essay, academic training at UC Berkeley and UC San Diego, and agricultural technology work of Putra Wibisono."
   canonicalPath="/about/"
   ogType="profile"
 >
-  <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow">
-        <span class="eyebrow-dot" aria-hidden="true"></span>
-        <span>01 // BIOGRAPHY &amp; ENGINEERING PHILOSOPHY</span>
-      </span>
-      <h1 class="page-title" style="margin-top: 0.6rem;">
-        From Distributed Data Pipelines to Precision Agriculture
+  <div class="reading-with-margin">
+    <article class="essay-prose">
+      <span class="rubric-mark">§ II — BIOGRAPHICAL ESSAY &amp; ACADEMIC TRAINING</span>
+      <h1 class="monograph-title" style="margin-bottom: 1.75rem;">
+        On physical measurements, reliable pipelines, and returning to <em>agriculture</em>.
       </h1>
-      <p class="lead-text" style="margin-top: 0.85rem;">
-        {biographyNarrative.lead}
+
+      <p class="dropcap">
+        {biographyNarrative.paragraphs[0]}
       </p>
-    </div>
-  </section>
+      <p>
+        {biographyNarrative.paragraphs[1]}
+      </p>
+      <p>
+        {biographyNarrative.paragraphs[2]}
+      </p>
 
-  <!-- Main Biography Narrative -->
-  <section class="section">
-    <div class="container about-grid">
-      <div class="about-prose">
-        <h2 class="section-title">The Thread Connecting Silicon Valley &amp; Soil Health</h2>
-        {biographyNarrative.paragraphs.map((p) => <p class="prose-paragraph">{p}</p>)}
+      <blockquote class="essay-epigraph">
+        “{biographyNarrative.philosophyQuote}”
+      </blockquote>
 
-        <blockquote class="editorial-pullquote">
-          <p>“{biographyNarrative.philosophyQuote}”</p>
-        </blockquote>
+      <!-- Education as Narrative Academic Record (Not Dashboard Cards) -->
+      <section class="ledger-section">
+        <div class="ledger-header">
+          <h2 class="section-heading">Academic Training &amp; Degrees</h2>
+          <span class="mono-cite">California, 2017 — 2023</span>
+        </div>
 
-        <h3 class="subsection-heading">{biographyNarrative.currentInitiativesTitle}</h3>
-        <div class="grid-2" style="margin-top: 1.25rem;">
+        <div class="academic-records">
           {
-            biographyNarrative.currentInitiatives.map((item) => (
-              <div class="surface-card">
-                <span class="mono-meta">{item.code}</span>
-                <h4 style="font-size: 1.05rem; margin: 0.35rem 0 0.45rem; color: var(--text-primary);">
-                  {item.title}
-                </h4>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">{item.description}</p>
+            educationList.map((edu, idx) => (
+              <div class="academic-item">
+                <div class="academic-item-head">
+                  <div>
+                    <span class="mono-cite" style="color: var(--rubric);">DEGREE 0{idx + 1} // {edu.graduationDate}</span>
+                    <h3 class="academic-inst">{edu.institution}</h3>
+                  </div>
+                  {edu.honorsOrGpa && <span class="mono-cite">{edu.honorsOrGpa}</span>}
+                </div>
+
+                <p class="academic-degree">
+                  {edu.degree} — <em>{edu.concentrationOrMinor}</em>
+                </p>
+
+                <ul class="academic-focus">
+                  {edu.focusAreas.map((area) => (
+                    <li>{area}</li>
+                  ))}
+                </ul>
               </div>
             ))
           }
         </div>
+      </section>
+
+      <!-- Technical Concordance -->
+      <section class="ledger-section">
+        <div class="ledger-header">
+          <h2 class="section-heading">Technical Stack &amp; Scientific Computing Concordance</h2>
+        </div>
+
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th style="width: 220px;">Domain</th>
+              <th>Scope &amp; Production Technologies</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              skillGroups.map((group) => (
+                <tr>
+                  <td style="font-weight: 600; color: var(--ink);">
+                    {group.category}
+                    <span class="mono-cite" style="display:block; font-weight:400; margin-top:0.15rem;">{group.code}</span>
+                  </td>
+                  <td style="color: var(--ink-secondary);">
+                    <p style="margin-bottom: 0.35rem;">{group.description}</p>
+                    <p class="mono-cite" style="color: var(--ink);">
+                      {group.skills.map((s) => s.name).join(' · ')}
+                    </p>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </section>
+    </article>
+
+    <!-- Right Marginalia -->
+    <aside class="margin-column" aria-label="Biographical Sidenotes">
+      <div class="sidenote-block">
+        <span class="sidenote-label">Dossier Summary</span>
+        <p><strong>Name:</strong> {siteMetadata.name}</p>
+        <p><strong>Current Focus:</strong> Cofounder, Agricultural Technologies (Agros Industry)</p>
+        <p><strong>Prior Tenures:</strong> Stripe, Tesla, ATOM Science, Rivian</p>
+        <p><strong>Location:</strong> Berkeley, CA &amp; Indonesia</p>
       </div>
 
-      <aside class="about-sidebar">
-        <div class="surface-card profile-summary-card">
-          <div class="monogram-banner">
-            <span class="large-monogram">PW</span>
-            <div>
-              <h2 style="font-size: 1.25rem; font-weight: 600;">{siteMetadata.name}</h2>
-              <p class="mono-meta">Agri-Tech Entrepreneur &amp; Data Engineer</p>
-            </div>
-          </div>
-
-          <dl class="sidebar-facts">
-            <div>
-              <dt class="mono-meta">CURRENT ROLE</dt>
-              <dd>Cofounder, Agricultural Technologies (Agros Industry)</dd>
-            </div>
-            <div>
-              <dt class="mono-meta">PREVIOUS ROLES</dt>
-              <dd>Senior Data Engineer at Stripe &middot; Sr. Data Engineer (P3) / Data Scientist at Tesla &middot; ATOM Science &middot; Rivian</dd>
-            </div>
-            <div>
-              <dt class="mono-meta">GRADUATE EDUCATION</dt>
-              <dd>M.Eng. Materials Science &amp; Engineering + Data Science, UC Berkeley</dd>
-            </div>
-            <div>
-              <dt class="mono-meta">UNDERGRADUATE EDUCATION</dt>
-              <dd>B.S. Chemical Engineering (Minor: CS), UC San Diego</dd>
-            </div>
-            <div>
-              <dt class="mono-meta">PRIMARY CONTACT</dt>
-              <dd><a href={`mailto:${siteMetadata.email}`} style="color: var(--accent-primary);">{siteMetadata.email}</a></dd>
-            </div>
-            <div>
-              <dt class="mono-meta">GITHUB</dt>
-              <dd>
-                <a href={siteMetadata.githubUrl} target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary);">
-                  github.com/{siteMetadata.githubUsername} ↗
-                </a>
-              </dd>
-            </div>
-          </dl>
-
-          <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem;">
-            <a href="/cv/" class="btn btn-primary" style="width: 100%;">View Full Resume / CV</a>
-            <a href="/letters/" class="btn btn-secondary" style="width: 100%;">Recommendation Letters</a>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="eyebrow">
-          <span class="eyebrow-dot" aria-hidden="true"></span>
-          <span>02 // ACADEMIC TRAINING</span>
-        </span>
-        <h2 class="section-title">Education</h2>
-        <p class="lead-text">
-          Grounded in chemical and materials engineering with formal specialization in data science, algorithms, and computational modeling.
+      <div class="sidenote-block">
+        <span class="sidenote-label">Note a · Chemical &amp; Materials Foundation</span>
+        <p>
+          Training in chemical engineering (UCSD) and materials science (UC Berkeley) grounded my approach to data science in conservation laws, transport phenomena, and experimental design ($2^k$ factorial screening) before scaling to cloud data platforms.
         </p>
       </div>
 
-      <div class="grid-2">
-        {
-          educationList.map((edu) => (
-            <article class="surface-card edu-card">
-              <div class="edu-card-header">
-                <span class="tag tag-accent">{edu.graduationDate}</span>
-                {edu.honorsOrGpa && <span class="mono-meta">{edu.honorsOrGpa}</span>}
-              </div>
-              <h3 class="edu-inst">{edu.institution}</h3>
-              <p class="edu-degree">{edu.degree}</p>
-              <p class="mono-meta" style="margin-bottom: 1rem;">
-                {edu.concentrationOrMinor} &middot; {edu.location}
-              </p>
-
-              <ul class="edu-focus-list">
-                {edu.focusAreas.map((area) => (
-                  <li>{area}</li>
-                ))}
-              </ul>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Technical Competencies -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="eyebrow">
-          <span class="eyebrow-dot" aria-hidden="true"></span>
-          <span>03 // TECHNICAL CAPABILITIES</span>
-        </span>
-        <h2 class="section-title">Core Engineering &amp; Scientific Stack</h2>
+      <div class="sidenote-block">
+        <span class="sidenote-label">Note b · Agricultural Field Trials</span>
+        <p>
+          Rather than treating agricultural software as purely a dashboard problem, our work pairs remote satellite baselines with physical demonstration plot trials to measure actual soil pH, moisture, and organic fertilizer yield response.
+        </p>
       </div>
 
-      <div class="grid-2">
-        {
-          skillGroups.map((group) => (
-            <div class="surface-card">
-              <span class="mono-meta">{group.code}</span>
-              <h3 style="font-family: var(--font-serif); font-size: 1.45rem; font-weight: 400; margin: 0.25rem 0 0.5rem;">
-                {group.category}
-              </h3>
-              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
-                {group.description}
-              </p>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
-                {group.skills.map((s) => (
-                  <span class:list={['tag', { 'tag-accent': s.tier === 'Primary' }]}>{s.name}</span>
-                ))}
-              </div>
-            </div>
-          ))
-        }
+      <div class="sidenote-block">
+        <span class="sidenote-label">Direct Links</span>
+        <p><a href="/cv/" class="text-link">Curriculum Vitae (§ VII) →</a></p>
+        <p style="margin-top: 0.3rem;"><a href="/letters/" class="text-link">Recommendation Letters (§ VI) →</a></p>
+        <p style="margin-top: 0.3rem;"><a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a></p>
       </div>
-    </div>
-  </section>
+    </aside>
+  </div>
 </BaseLayout>
 
 <style>
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  @media (min-width: 980px) {
-    .about-grid {
-      grid-template-columns: 1.45fr 0.85fr;
-      gap: 3rem;
-    }
-  }
-
-  .about-prose {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .prose-paragraph {
-    font-size: 1.02rem;
-    color: var(--text-secondary);
-    line-height: 1.75;
-  }
-
-  .editorial-pullquote {
-    margin: 0.75rem 0;
-    padding: 1.35rem 1.5rem;
-    background: var(--bg-elevated);
-    border-left: 3px solid var(--accent-primary);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  .essay-epigraph {
+    margin: 2rem 0;
+    padding: 0.5rem 0 0.5rem 1.35rem;
+    border-left: 2px solid var(--rubric);
     font-family: var(--font-serif);
-    font-size: 1.45rem;
-    line-height: 1.35;
-    color: var(--text-primary);
+    font-style: italic;
+    font-size: 1.28rem;
+    line-height: 1.42;
+    color: var(--ink);
   }
 
-  .subsection-heading {
-    font-family: var(--font-serif);
-    font-size: 1.65rem;
-    font-weight: 400;
-    margin-top: 1rem;
-    color: var(--text-primary);
-  }
-
-  .profile-summary-card {
-    position: sticky;
-    top: 6rem;
-  }
-
-  .monogram-banner {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border-subtle);
-    margin-bottom: 1.25rem;
-  }
-
-  .large-monogram {
-    width: 3.4rem;
-    height: 3.4rem;
-    border-radius: 12px;
-    background: var(--accent-surface);
-    border: 1px solid var(--accent-border);
-    color: var(--accent-primary);
-    font-family: var(--font-mono);
-    font-size: 1.25rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .sidebar-facts {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .sidebar-facts div {
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .sidebar-facts dd {
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    margin-top: 0.2rem;
-  }
-
-  .edu-card {
+  .academic-records {
     display: flex;
     flex-direction: column;
   }
 
-  .edu-card-header {
+  .academic-item {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .academic-item-head {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.85rem;
+    align-items: baseline;
+    gap: 0.5rem;
   }
 
-  .edu-inst {
+  .academic-inst {
     font-family: var(--font-serif);
-    font-size: 1.65rem;
     font-weight: 400;
-    color: var(--text-primary);
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-top: 0.15rem;
   }
 
-  .edu-degree {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin: 0.25rem 0;
+  .academic-degree {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    margin: 0.3rem 0 0.75rem;
   }
 
-  .edu-focus-list {
+  .academic-focus {
     list-style: none;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--ink-secondary);
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-    margin-top: auto;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--border-subtle);
+    gap: 0.3rem;
   }
 
-  .edu-focus-list li {
+  .academic-focus li {
     position: relative;
-    padding-left: 1.1rem;
-    font-size: 0.88rem;
-    color: var(--text-secondary);
+    padding-left: 1rem;
   }
 
-  .edu-focus-list li::before {
-    content: '▹';
+  .academic-focus li::before {
+    content: '—';
     position: absolute;
     left: 0;
-    color: var(--accent-primary);
+    color: var(--rubric);
   }
 </style>

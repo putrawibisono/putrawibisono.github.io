@@ -4,337 +4,338 @@ import {
   siteMetadata,
   educationList,
   experienceList,
-  skillGroups,
   projectsList,
+  additionalEngineeringProjects,
+  skillGroups,
   teachingCourses,
 } from '../data/profile';
 ---
 
 <BaseLayout
-  title="Curriculum Vitae & Resume"
-  description="Interactive and print-ready Curriculum Vitae (CV) of Putra Wibisono — Education, Work Experience, Projects, Skills, and Teaching."
-  canonicalPath="/cv/"
+  title="VII. Curriculum Vitae — Putra Wibisono"
+  description="Complete academic and professional Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Cofounder at Agros Industry, Ex-Stripe, Ex-Tesla)."
 >
-  <section class="page-hero no-print">
-    <div class="container">
-      <div class="cv-hero-row">
-        <div>
-          <span class="eyebrow">
-            <span class="eyebrow-dot" aria-hidden="true"></span>
-            <span>06 // CURRICULUM VITAE &amp; VERIFIED CREDENTIALS</span>
-          </span>
-          <h1 class="page-title" style="margin-top: 0.6rem;">
-            Curriculum Vitae
-          </h1>
-          <p class="lead-text" style="margin-top: 0.65rem;">
-            Consolidated, current record of education, engineering leadership, agricultural technology initiatives, and academic instruction.
-          </p>
-        </div>
-
-        <div class="cv-actions">
-          <button type="button" id="print-cv-btn" class="btn btn-primary">
-            <span>Print / Save Current CV as PDF</span>
-          </button>
-          <a href="/files/cvsreal.pdf" download="Putra_Wibisono_Engineering_Resume_2024.pdf" class="btn btn-secondary">
-            <span>Download Archived 2024 Resume (PDF) ↓</span>
-          </a>
-        </div>
+  <article class="cv-folio">
+    <!-- Top Archival Action Bar (Hidden in Print) -->
+    <div class="cv-action-bar no-print">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">§ VII. Curriculum Vitae · Fol. 07</span>
+        <p class="sans-note" style="font-size: 0.76rem;">
+          Typeset for direct browser reading and standard A4/Letter archival printing.
+        </p>
+      </div>
+      <div class="cv-action-buttons">
+        <button type="button" id="print-cv-btn" class="folio-action folio-action-rubric">
+          Print / Save Current CV as PDF
+        </button>
+        <a href="/files/cvsreal.pdf" target="_blank" rel="noopener noreferrer" class="folio-action">
+          Download Archived 2024 Resume (PDF) ↗
+        </a>
       </div>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="surface-card cv-sheet">
-        <!-- Document Header -->
-        <header class="cv-doc-header">
-          <div>
-            <h2 class="cv-doc-name">{siteMetadata.name}</h2>
-            <p class="cv-doc-headline">{siteMetadata.headline}</p>
-          </div>
-          <div class="cv-doc-contact">
-            <p><a href={`mailto:${siteMetadata.email}`}>{siteMetadata.email}</a></p>
-            <p><a href={siteMetadata.siteUrl}>putrawibisono.com</a></p>
-            <p><a href={siteMetadata.githubUrl}>github.com/{siteMetadata.githubUsername}</a></p>
-            <p class="mono-meta">UC Berkeley &middot; UC San Diego</p>
-          </div>
-        </header>
-
-        <!-- 1. Education -->
-        <section class="cv-block">
-          <h3 class="cv-block-title">Education</h3>
-          <div class="cv-items-stack">
-            {
-              educationList.map((edu) => (
-                <div class="cv-entry">
-                  <div class="cv-entry-row">
-                    <strong>{edu.institution}</strong>
-                    <span class="mono-meta">{edu.location} &middot; {edu.graduationDate}</span>
-                  </div>
-                  <div class="cv-entry-row" style="margin-top: 0.15rem;">
-                    <span>
-                      {edu.degree} ({edu.concentrationOrMinor})
-                    </span>
-                    {edu.honorsOrGpa && <span class="mono-meta">{edu.honorsOrGpa}</span>}
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <!-- 2. Work & Venture Experience -->
-        <section class="cv-block">
-          <h3 class="cv-block-title">Professional &amp; Entrepreneurial Experience</h3>
-          <div class="cv-items-stack">
-            {
-              experienceList.map((exp) => (
-                <div class="cv-entry">
-                  <div class="cv-entry-row">
-                    <div>
-                      <strong>{exp.role}</strong> &mdash; <span>{exp.organization}</span>
-                    </div>
-                    <span class="mono-meta">
-                      {exp.location} &middot; {exp.period}
-                    </span>
-                  </div>
-                  {exp.secondaryRole && (
-                    <p class="mono-meta" style="margin-top: 0.15rem;">{exp.secondaryRole}</p>
-                  )}
-                  <ul class="cv-bullets">
-                    {exp.highlights.map((bullet) => (
-                      <li>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <!-- 3. Technical Skills -->
-        <section class="cv-block">
-          <h3 class="cv-block-title">Technical Skills &amp; Platforms</h3>
-          <div class="cv-skills-grid">
-            {
-              skillGroups.map((group) => (
-                <div class="cv-skill-row">
-                  <strong class="cv-skill-cat">{group.category}:</strong>
-                  <span class="cv-skill-items">{group.skills.map((s) => s.name).join(', ')}</span>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <!-- 4. Selected Engineering & Research Projects -->
-        <section class="cv-block">
-          <h3 class="cv-block-title">Selected Engineering &amp; Research Projects</h3>
-          <div class="cv-items-stack">
-            {
-              projectsList.map((proj) => (
-                <div class="cv-entry">
-                  <div class="cv-entry-row">
-                    <div>
-                      <strong>{proj.title}</strong>
-                      <span class="mono-meta"> ({proj.organizationOrContext})</span>
-                    </div>
-                    <span class="mono-meta">{proj.period}</span>
-                  </div>
-                  <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
-                    {proj.summary}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <!-- 5. Academic Teaching -->
-        <section class="cv-block" style="border-bottom: none; padding-bottom: 0;">
-          <h3 class="cv-block-title">Academic Teaching</h3>
-          <div class="cv-items-stack">
-            {
-              teachingCourses.map((course) => (
-                <div class="cv-entry">
-                  <div class="cv-entry-row">
-                    <div>
-                      <strong>
-                        {course.code}: {course.title}
-                      </strong>{' '}
-                      &mdash; <span>{course.institution}</span>
-                    </div>
-                    <span class="mono-meta">{course.type}</span>
-                  </div>
-                  <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
-                    {course.department} &middot; Topics: {course.toolsAndTopics.join(', ')}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-        </section>
+    <!-- Classical Monograph CV Masthead -->
+    <header class="cv-masthead">
+      <div>
+        <h1 class="cv-name">{siteMetadata.name}</h1>
+        <p class="cv-subtitle">
+          Cofounder, Agricultural Technologies (Agros Industry) · Former Senior Data Engineer (Stripe, Tesla)
+        </p>
       </div>
-    </div>
-  </section>
+      <div class="cv-contact-ledger">
+        <div><a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a></div>
+        <div><a href={siteMetadata.siteUrl} class="text-link">putrawibisono.com</a></div>
+        <div><a href={siteMetadata.githubUrl} target="_blank" rel="noopener noreferrer" class="text-link">github.com/EytaW</a></div>
+        <div>{siteMetadata.location}</div>
+      </div>
+    </header>
+
+    <!-- I. Education -->
+    <section class="cv-section" aria-labelledby="cv-edu">
+      <h2 id="cv-edu" class="cv-section-title">I. Education</h2>
+      <div class="cv-entries">
+        {educationList.map((edu) => (
+          <div class="cv-row">
+            <div class="cv-left">
+              <div class="mono-cite" style="color: var(--rubric);">{edu.graduationDate}</div>
+              <div class="mono-cite">{edu.location}</div>
+            </div>
+            <div class="cv-right">
+              <div class="cv-entry-header">
+                <strong>{edu.institution}</strong>
+                {edu.honorsOrGpa && <span class="mono-cite" style="color: var(--ink);">{edu.honorsOrGpa}</span>}
+              </div>
+              <div class="cv-degree">{edu.degree} — <em>{edu.concentrationOrMinor}</em></div>
+              <div class="sans-note" style="font-size: 0.78rem; margin-top: 0.2rem;">
+                Focus: {edu.focusAreas.join(' · ')}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- II. Professional & Research Appointments -->
+    <section class="cv-section" aria-labelledby="cv-exp">
+      <h2 id="cv-exp" class="cv-section-title">II. Professional &amp; Research Experience</h2>
+      <div class="cv-entries">
+        {experienceList.map((exp) => (
+          <div class="cv-row">
+            <div class="cv-left">
+              <div class="mono-cite" style="color: var(--rubric);">{exp.period}</div>
+              <div class="mono-cite">{exp.location}</div>
+            </div>
+            <div class="cv-right">
+              <div class="cv-entry-header">
+                <strong>{exp.role}</strong>
+                <span class="cv-org">{exp.organization}</span>
+              </div>
+              {exp.periodNote && (
+                <div class="mono-cite" style="margin-top: 0.1rem; margin-bottom: 0.25rem;">
+                  {exp.periodNote}
+                </div>
+              )}
+              <ul class="cv-bullets">
+                {exp.highlights.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- III. Selected Engineering Monographs & Research Studies -->
+    <section class="cv-section" aria-labelledby="cv-proj">
+      <h2 id="cv-proj" class="cv-section-title">III. Selected Technical Studies &amp; Engineering Systems</h2>
+      <div class="cv-entries">
+        {projectsList.map((proj) => (
+          <div class="cv-row">
+            <div class="cv-left">
+              <div class="mono-cite">{proj.period}</div>
+              <div class="mono-cite">{proj.category}</div>
+            </div>
+            <div class="cv-right">
+              <div class="cv-entry-header">
+                <strong>
+                  <a href={`/projects/${proj.slug}/`} class="text-link">{proj.title}</a>
+                </strong>
+                <span class="mono-cite">{proj.organizationOrContext}</span>
+              </div>
+              <p class="sans-note" style="font-size: 0.8rem; margin-top: 0.2rem;">
+                {proj.summary}
+              </p>
+              <div class="mono-cite" style="margin-top: 0.25rem;">
+                Methods: {proj.technologies.join(' · ')}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px dotted var(--rule-dotted);">
+        <span class="mono-cite" style="color: var(--rubric); display: block; margin-bottom: 0.35rem;">
+          Additional Documented Engineering &amp; Coursework Models:
+        </span>
+        <p class="sans-note" style="font-size: 0.78rem;">
+          {additionalEngineeringProjects.map((p) => `${p.name} (${p.domain})`).join(' · ')}
+        </p>
+      </div>
+    </section>
+
+    <!-- IV. University Instruction -->
+    <section class="cv-section" aria-labelledby="cv-teaching">
+      <h2 id="cv-teaching" class="cv-section-title">IV. Academic Instruction</h2>
+      <div class="cv-entries">
+        {teachingCourses.map((course) => (
+          <div class="cv-row">
+            <div class="cv-left">
+              <div class="mono-cite" style="color: var(--rubric);">{course.code}</div>
+              <div class="mono-cite">{course.institution}</div>
+            </div>
+            <div class="cv-right">
+              <div class="cv-entry-header">
+                <strong>{course.title}</strong>
+                <span class="mono-cite">{course.department}</span>
+              </div>
+              <p class="sans-note" style="font-size: 0.8rem; margin-top: 0.15rem;">
+                {course.summary}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- V. Technical Concordance -->
+    <section class="cv-section" aria-labelledby="cv-skills">
+      <h2 id="cv-skills" class="cv-section-title">V. Technical Concordance &amp; Instrumentation</h2>
+      <table class="ledger-table">
+        <tbody>
+          {skillGroups.map((group) => (
+            <tr>
+              <td style="width: 34%;">
+                <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
+              </td>
+              <td class="sans-note">
+                {group.skills.map((s) => s.name).join(' · ')}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  </article>
 </BaseLayout>
 
-<script is:inline>
-  (function () {
-    var printBtn = document.getElementById('print-cv-btn');
-    if (printBtn) {
-      printBtn.addEventListener('click', function () {
-        window.print();
-      });
-    }
-  })();
+<script>
+  function initPrintCv() {
+    const printBtn = document.getElementById('print-cv-btn');
+    printBtn?.addEventListener('click', () => window.print());
+  }
+  initPrintCv();
+  document.addEventListener('astro:after-swap', initPrintCv);
 </script>
 
 <style>
-  .cv-hero-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
-
-  .cv-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .cv-sheet {
-    padding: 2.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  @media (min-width: 900px) {
-    .cv-sheet {
-      padding: 3rem 3.5rem;
-    }
-  }
-
-  .cv-doc-header {
+  .cv-action-bar {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 1.25rem;
+    align-items: center;
+    gap: 1rem;
     padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border-strong);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .cv-doc-name {
+  .cv-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .cv-masthead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding-bottom: 1.35rem;
+    border-bottom: 2px solid var(--rule-strong);
+  }
+
+  .cv-name {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
     font-weight: 400;
-    line-height: 1.05;
-    color: var(--text-primary);
+    font-size: clamp(2rem, 3.2vw, 2.65rem);
+    line-height: 1.1;
+    color: var(--ink);
   }
 
-  .cv-doc-headline {
-    font-size: 1rem;
-    color: var(--accent-primary);
-    font-weight: 500;
+  .cv-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--ink-secondary);
     margin-top: 0.35rem;
   }
 
-  .cv-doc-contact {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+  .cv-contact-ledger {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.65;
+    color: var(--ink-secondary);
+    text-align: left;
   }
 
-  @media (min-width: 768px) {
-    .cv-doc-contact {
+  @media (min-width: 760px) {
+    .cv-contact-ledger {
       text-align: right;
     }
   }
 
-  .cv-doc-contact a:hover {
-    color: var(--accent-primary);
+  .cv-section {
+    margin-top: 2.25rem;
   }
 
-  .cv-block {
-    padding-bottom: 1.75rem;
-    border-bottom: 1px solid var(--border-subtle);
+  .cv-section-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--rubric);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule-strong);
+    margin-bottom: 1.1rem;
   }
 
-  .cv-block-title {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent-primary);
-    margin-bottom: 1.15rem;
-  }
-
-  .cv-items-stack {
+  .cv-entries {
     display: flex;
     flex-direction: column;
     gap: 1.35rem;
   }
 
-  .cv-entry-row {
+  .cv-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  @media (min-width: 720px) {
+    .cv-row {
+      grid-template-columns: 185px 1fr;
+      gap: 1.75rem;
+    }
+  }
+
+  .cv-entry-header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
     gap: 0.5rem;
-    font-size: 0.96rem;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--ink);
   }
 
-  .cv-entry-row strong {
-    color: var(--text-primary);
+  .cv-org {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
     font-weight: 600;
+    color: var(--ink-secondary);
+  }
+
+  .cv-degree {
+    font-family: var(--font-serif);
+    font-size: 0.96rem;
+    color: var(--ink);
+    margin-top: 0.1rem;
   }
 
   .cv-bullets {
     list-style: none;
+    margin-top: 0.45rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.55rem;
+    gap: 0.35rem;
   }
 
   .cv-bullets li {
     position: relative;
-    padding-left: 1.15rem;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
+    padding-left: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    line-height: 1.54;
+    color: var(--ink);
   }
 
   .cv-bullets li::before {
-    content: '•';
+    content: '—';
     position: absolute;
-    left: 0.15rem;
-    color: var(--accent-primary);
-  }
-
-  .cv-skills-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
-
-  .cv-skill-row {
-    font-size: 0.92rem;
-    line-height: 1.55;
-  }
-
-  .cv-skill-cat {
-    color: var(--text-primary);
-    margin-right: 0.35rem;
-  }
-
-  .cv-skill-items {
-    color: var(--text-secondary);
+    left: 0;
+    color: var(--rubric);
   }
 </style>
