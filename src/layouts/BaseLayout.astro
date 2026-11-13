@@ -25,10 +25,9 @@ const tocEntries = [
   { href: '/about/', roman: 'II.', label: 'Biography & Education' },
   { href: '/experience/', roman: 'III.', label: 'Work Experience' },
   { href: '/projects/', roman: 'IV.', label: 'Projects & Research' },
-  { href: '/teaching/', roman: 'V.', label: 'Teaching (UCSD)' },
-  { href: '/letters/', roman: 'VI.', label: 'Reference Letters' },
-  { href: '/cv/', roman: 'VII.', label: 'Curriculum Vitae' },
-  { href: '/contact/', roman: 'VIII.', label: 'Contact' },
+  { href: '/letters/', roman: 'V.', label: 'Reference Letters' },
+  { href: '/cv/', roman: 'VI.', label: 'Curriculum Vitae' },
+  { href: '/contact/', roman: 'VII.', label: 'Contact' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -43,7 +42,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: siteMetadata.name,
-  jobTitle: 'Data Engineer & Materials Scientist; Acting President (as needed), Family-Owned Agricultural Business',
+  jobTitle: 'Data Engineer & Materials Scientist; Business Operations & Strategy — Family-Owned Enterprise',
   description: siteMetadata.subheadline,
   url: siteMetadata.siteUrl,
   email: `mailto:${siteMetadata.email}`,
@@ -169,9 +168,9 @@ const jsonLd = {
             <div class="spine-identity">
               <a href="/" class="spine-author">{siteMetadata.name}</a>
               <p class="spine-role-primary">Data Engineer &amp; Materials Scientist</p>
-              <p class="spine-Subrole">Ex-Stripe &middot; Ex-Tesla &middot; Ex-Rivian</p>
+              <p class="spine-Subrole">Ex-Tesla &middot; Ex-Rivian &middot; ATOM Science</p>
               <p class="spine-Subrole" style="margin-top: 0.3rem;">
-                Acting President (as needed),<br />Family-Owned Agricultural Business
+                Business Operations &amp; Strategy —<br />Family-Owned Enterprise
               </p>
               <p class="spine-credentials" style="margin-top: 0.45rem;">
                 M.Eng. UC Berkeley &middot; B.S. UCSD

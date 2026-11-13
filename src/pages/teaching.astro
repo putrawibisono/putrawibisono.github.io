@@ -4,17 +4,17 @@ import { teachingCourses } from '../data/profile';
 ---
 
 <BaseLayout
-  title="Academic Instruction (UC San Diego CSE) — Putra Wibisono"
-  description="Undergraduate computer science teaching record at UC San Diego (CSE 8A and CSE 20)."
+  title="Archival Teaching Files Audit (Unverified) — Putra Wibisono"
+  description="Provenance audit of legacy _teaching/2014-spring-teaching-1.md and _teaching/2015-spring-teaching-2.md files inherited from the AcademicPages template."
 >
   <article>
     <header style="border-bottom: 1.5px solid var(--rule-strong); padding-bottom: 1.5rem; margin-bottom: 2.25rem;">
-      <span class="rubric-mark">V. Academic Instruction</span>
+      <span class="rubric-mark">Archival Content Provenance Audit · Unverified Template Files</span>
       <h1 class="monograph-title">
-        University <em>Teaching</em> at UC San Diego.
+        Legacy <em>Teaching</em> Files Audit (UC San Diego CSE).
       </h1>
-      <p class="sans-note" style="max-width: 66ch; margin-top: 0.75rem;">
-        Alongside chemical engineering studies and nanoengineering battery research at the University of California, San Diego, I contributed to undergraduate instruction in the Department of Computer Science and Engineering (CSE).
+      <p class="sans-note" style="max-width: 68ch; margin-top: 0.75rem;">
+        <strong>Provenance Notice:</strong> The two files in the legacy repository’s <code>_teaching/</code> directory (<code>2014-spring-teaching-1.md</code> and <code>2015-spring-teaching-2.md</code>) were inherited from the upstream AcademicPages template and retain template demonstration headings and placeholder text. Because neither course appears in the December 2024 CV PDF (<code>files/cvsreal.pdf</code>), these entries are classified as <strong>Unverified — Modified AcademicPages Template Files</strong> and must not be treated as independent verification of UCSD teaching appointments unless confirmed.
       </p>
     </header>
 
@@ -24,13 +24,13 @@ import { teachingCourses } from '../data/profile';
         <div class="ledger-header">
           <div>
             <span class="rubric-mark" style="margin-bottom: 0.2rem;">
-              {course.code} · {course.type}
+              {course.code} · {course.provenanceStatus}
             </span>
             <h2 id={`course-${idx}-heading`} class="section-heading">
               {course.code}: {course.title}
             </h2>
           </div>
-          <span class="mono-cite">{course.institution} · {course.department}</span>
+          <span class="mono-cite">{course.templateFilename}</span>
         </div>
 
         <div class="reading-with-margin" style="margin-top: 1rem;">
@@ -42,7 +42,7 @@ import { teachingCourses } from '../data/profile';
             {course.learningOutcomes.length > 0 && (
               <>
                 <span class="sidenote-label" style="display: block; margin-bottom: 0.65rem;">
-                  Documented Course Learning Outcomes
+                  Catalog Learning Outcomes Pasted into {course.templateFilename}
                 </span>
                 <ol class="syllabus-outcomes">
                   {course.learningOutcomes.map((outcome, oIdx) => (
@@ -55,27 +55,25 @@ import { teachingCourses } from '../data/profile';
               </>
             )}
 
-            {course.sourceNote && (
-              <div class="source-note-box">
-                <span class="sidenote-label">Archival Source Note</span>
-                <p class="sans-note" style="margin-top: 0.25rem;">{course.sourceNote}</p>
-              </div>
-            )}
+            <div class="source-note-box" style="margin-top: 1.25rem;">
+              <span class="sidenote-label">Forensic Git Diff Note</span>
+              <p class="sans-note" style="margin-top: 0.25rem;">{course.sourceNote}</p>
+            </div>
           </div>
 
           <aside class="margin-column">
             <div class="sidenote-block">
-              <span class="sidenote-label">Department</span>
-              <p>{course.department}, {course.location}</p>
+              <span class="sidenote-label">Verification Status</span>
+              <p><strong style="color: var(--rubric);">{course.provenanceStatus}</strong></p>
             </div>
             <div class="sidenote-block">
-              <span class="sidenote-label">Topics</span>
-              <p>{course.toolsAndTopics.join(' · ')}</p>
+              <span class="sidenote-label">Template Source File</span>
+              <p><code>{course.templateFilename}</code></p>
             </div>
             <div class="sidenote-block">
-              <span class="sidenote-label">Student Reference Letters</span>
+              <span class="sidenote-label">Verified UCSD Academic Role</span>
               <p>
-                Former students requesting graduate school or employment references may review the <a href="/letters/" class="text-link">Reference Letter Protocol →</a>
+                Per <code>files/cvsreal.pdf</code>, Putra Wibisono’s verified UCSD academic appointment was <strong>Research Assistant — Battery Engineering, Department of Nanoengineering (Sep 2020 – Jun 2021)</strong>.
               </p>
             </div>
           </aside>

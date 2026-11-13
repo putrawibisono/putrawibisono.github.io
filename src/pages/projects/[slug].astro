@@ -21,7 +21,6 @@ interface Props {
 }
 
 const { project, prevProject, nextProject } = Astro.props;
-const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
 ---
 
 <BaseLayout
@@ -38,7 +37,7 @@ const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
     <div class="reading-with-margin">
       <div class="main-reading-col">
         <div style="margin-bottom: 0.75rem;">
-          <span class:list={['status-tag', { 'status-tag-rubric': isOngoing }]}>
+          <span class="status-tag">
             {project.statusLabel}
           </span>
         </div>
@@ -62,7 +61,7 @@ const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
         <!-- Section 2: System Architecture & Methodology -->
         <section class="monograph-subsection">
           <h2 class="section-heading">
-            {isOngoing ? 'Active Operations, Development & Exploration' : 'Methodology & System Design'}
+            Methodology &amp; System Design
           </h2>
           <ol class="methodology-list">
             {project.architectureAndApproach.map((step, idx) => (
@@ -74,25 +73,10 @@ const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
           </ol>
         </section>
 
-        <!-- Optional Archival Photograph (e.g. Shimadzu UV-Vis-NIR Spectrophotometer) -->
-        {project.image && (
-          <section class="monograph-subsection">
-            <h2 class="section-heading">Laboratory Instrumentation Photograph</h2>
-            <figure class="archival-plate" style="margin-top: 1rem;">
-              <img src={project.image} alt={project.title} loading="lazy" />
-              {project.imageCaption && (
-                <figcaption class="plate-caption">
-                  <strong>Laboratory Record:</strong> {project.imageCaption}
-                </figcaption>
-              )}
-            </figure>
-          </section>
-        )}
-
-        <!-- Section 3: Outcomes or Status Note -->
+        <!-- Section 3: Verified Outcomes -->
         <section class="monograph-subsection">
           <h2 class="section-heading">
-            {isOngoing ? 'Verification & Status Note' : 'Verified Outcomes'}
+            Verified Outcomes (files/cvsreal.pdf)
           </h2>
           <ul class="outcomes-list">
             {project.outcomes.map((outcome) => (

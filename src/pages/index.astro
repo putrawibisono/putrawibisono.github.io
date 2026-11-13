@@ -10,9 +10,7 @@ import {
   skillGroups,
 } from '../data/profile';
 
-const completedFeaturedProjects = projectsList.filter(
-  (p) => p.featured && p.statusLabel !== 'Ongoing & Exploratory Initiative'
-);
+const featuredProjects = projectsList.filter((p) => p.featured);
 ---
 
 <BaseLayout
@@ -45,12 +43,12 @@ const completedFeaturedProjects = projectsList.filter(
     </div>
   </section>
 
-  <!-- Section 1: Biographical Essay + Marginalia & Laboratory Plate -->
+  <!-- Section 1: Biographical Essay + Marginalia -->
   <div class="reading-with-margin">
     <div class="main-reading-col">
       <span class="rubric-mark">I. Biographical Overview</span>
       <h1 class="monograph-title">
-        Data engineering, <em>materials science</em>, and agricultural operations.
+        Data engineering, <em>materials science</em>, and business operations.
       </h1>
 
       <div class="essay-prose" style="margin-top: 1.5rem;">
@@ -65,7 +63,7 @@ const completedFeaturedProjects = projectsList.filter(
           Inspect Work Experience →
         </a>
         <a href="/projects/" class="folio-action">
-          Completed Engineering Projects →
+          Verified Engineering Projects →
         </a>
         <a href="/cv/" class="folio-action">
           Curriculum Vitae
@@ -73,26 +71,19 @@ const completedFeaturedProjects = projectsList.filter(
       </div>
     </div>
 
-    <!-- Right Margin Column: Laboratory Photograph Plate & Quick Notes -->
-    <aside class="margin-column" aria-label="Laboratory documentation and quick references">
-      <figure class="archival-plate">
-        <img
-          src="/images/portfolio1.jpg"
-          alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer bench used for semiconductor thin-film band-gap characterization"
-          loading="eager"
-        />
-        <figcaption class="plate-caption">
-          <span class="sidenote-label" style="display: block; margin-bottom: 0.25rem;">
-            Laboratory Archive · Optical Physics
-          </span>
-          Shimadzu SolidSpec-3700 UV-Vis-NIR spectrophotometer workstation used to measure semiconductor thin-film optical band gaps (<a href="/projects/uv-vis-semiconductor-spectroscopy/" class="text-link">Project 02</a>).
-        </figcaption>
-      </figure>
+    <!-- Right Margin Column: Provenance Ledger & Quick Notes -->
+    <aside class="margin-column" aria-label="Provenance notes and quick references">
+      <div class="sidenote-block">
+        <span class="sidenote-label">Provenance &amp; Verification Standard</span>
+        <p>
+          This portfolio distinguishes records corroborated by independent documentation (<a href="/files/cvsreal.pdf" target="_blank" rel="noopener noreferrer" class="text-link">December 2024 CV PDF ↗</a>) from claims appearing only in legacy Jekyll website drafts, which remain labeled <strong>Unverified</strong> pending confirmation.
+        </p>
+      </div>
 
       <div class="sidenote-block">
-        <span class="sidenote-label">Teaching &amp; Reference Letters</span>
+        <span class="sidenote-label">Reference Letters</span>
         <p>
-          Contributed to undergraduate computer science instruction at UC San Diego (<a href="/teaching/" class="text-link">CSE 8A &amp; CSE 20</a>). Former colleagues and students may review the protocol for <a href="/letters/" class="text-link">recommendation letters</a>.
+          Former engineering colleagues and research collaborators may review the protocol for <a href="/letters/" class="text-link">recommendation letters →</a>
         </p>
       </div>
 
@@ -105,10 +96,10 @@ const completedFeaturedProjects = projectsList.filter(
     </aside>
   </div>
 
-  <!-- Tinted Callout: Current Agricultural Responsibilities & Ongoing Initiatives -->
+  <!-- Tinted Callout: Current Role & Exploratory Concepts -->
   <section class="initiatives-callout" aria-labelledby="agri-initiatives-heading">
     <span class="rubric-mark" style="margin-bottom: 0.2rem;">
-      Family-Owned Agricultural Business · Acting President (as needed)
+      {siteMetadata.currentRoleTag}
     </span>
     <h2 id="agri-initiatives-heading" class="section-heading">
       {biographyNarrative.currentInitiativesTitle}
@@ -125,7 +116,7 @@ const completedFeaturedProjects = projectsList.filter(
               <span
                 class:list={[
                   'status-tag',
-                  { 'status-tag-rubric': item.status === 'Active Operations' },
+                  { 'status-tag-rubric': item.status === 'Current Role' },
                 ]}
               >
                 {item.status}
@@ -157,8 +148,8 @@ const completedFeaturedProjects = projectsList.filter(
       <thead>
         <tr>
           <th style="width: 19%;">Period</th>
-          <th style="width: 27%;">Organization</th>
-          <th style="width: 26%;">Role &amp; Classification</th>
+          <th style="width: 25%;">Organization</th>
+          <th style="width: 28%;">Role &amp; Provenance</th>
           <th>Primary Scope</th>
         </tr>
       </thead>
@@ -185,20 +176,20 @@ const completedFeaturedProjects = projectsList.filter(
     </table>
   </section>
 
-  <!-- Section 3: Selected Completed Engineering & Research Projects -->
+  <!-- Section 3: Selected Verified Engineering & Research Projects -->
   <section class="ledger-section" aria-labelledby="home-projects-heading">
     <div class="ledger-header">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">III. Completed Technical Works</span>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">III. Verified Technical Works (files/cvsreal.pdf)</span>
         <h2 id="home-projects-heading" class="section-heading">
           Selected Engineering &amp; Research Studies
         </h2>
       </div>
-      <a href="/projects/" class="text-link mono-cite">All 5 Completed Projects &amp; Field Initiatives →</a>
+      <a href="/projects/" class="text-link mono-cite">All 5 Verified Projects →</a>
     </div>
 
     <div>
-      {completedFeaturedProjects.map((project) => <ProjectCard project={project} />)}
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
     </div>
   </section>
 
@@ -217,7 +208,7 @@ const completedFeaturedProjects = projectsList.filter(
     <table class="ledger-table">
       <thead>
         <tr>
-          <th style="width: 34%;">Domain</th>
+          <th style="width: 36%;">Domain &amp; Provenance</th>
           <th>Documented Languages, Platforms &amp; Instruments</th>
         </tr>
       </thead>
@@ -227,7 +218,7 @@ const completedFeaturedProjects = projectsList.filter(
             <tr>
               <td>
                 <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
-                <div class="mono-cite">{group.sourceNote}</div>
+                <div class="mono-cite">{group.provenanceStatus}</div>
               </td>
               <td style="color: var(--ink-secondary);">
                 {group.skills.join(' · ')}

@@ -3,71 +3,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { projectsList, additionalEngineeringProjects } from '../../data/profile';
 
-const completedProjects = projectsList.filter(
-  (p) => p.statusLabel !== 'Ongoing & Exploratory Initiative'
-);
-const ongoingInitiatives = projectsList.filter(
-  (p) => p.statusLabel === 'Ongoing & Exploratory Initiative'
-);
-
 const categories = [
   'All Entries',
   'Data & Battery Systems',
   'Scientific Computing & Materials',
   'Software Engineering',
-  'Agricultural Operations (In Progress)',
 ];
 ---
 
 <BaseLayout
-  title="Projects, Research & Field Initiatives — Putra Wibisono"
-  description="Verified completed engineering and research projects (Tesla 4680 battery telemetry, UV-Vis semiconductor spectroscopy, COMSOL LPCVD reactor modeling, Java Gitlet, MATLAB acoustic scanning) and ongoing agricultural field initiatives."
+  title="Verified Engineering Projects — Putra Wibisono"
+  description="Completed industry and university engineering projects verified by Putra Wibisono's December 2024 CV PDF (Tesla FAST & RAPID, Rivian R1S/R2/R3 formation recipes, COMSOL LPCVD reactor modeling, Java Gitlet, and MATLAB acoustic/image signal analysis)."
 >
   <article>
-    <!-- Header + Authentic Laboratory Photograph Feature Spread (Distinct Composition for Projects Page) -->
     <header style="margin-bottom: 2.25rem;">
-      <span class="rubric-mark">IV. Technical Studies &amp; Field Initiatives</span>
+      <span class="rubric-mark">IV. Verified Technical Studies (files/cvsreal.pdf)</span>
       <h1 class="monograph-title">
-        Engineering <em>Projects</em> &amp; Laboratory Archive.
+        Completed <em>Engineering</em> Projects.
       </h1>
       <p class="sans-note" style="max-width: 68ch; margin-top: 0.75rem;">
-        This archive separates <strong>completed industry and university engineering projects (01–05)</strong> from <strong>ongoing and exploratory agricultural initiatives (06)</strong> so that verified technical deliverables are clearly distinguished from work currently in progress.
+        Every project featured on this page is independently corroborated by the December 2024 CV PDF (<code>files/cvsreal.pdf</code>). Template-modified placeholder files and exploratory agricultural concepts from the legacy website are excluded from this completed-project index and documented in the provenance note below.
       </p>
     </header>
 
-    <!-- Featured Authentic Laboratory Plate Showcase -->
-    <section class="plate-feature-banner" aria-labelledby="featured-plate-heading">
-      <div class="plate-showcase">
-        <figure class="archival-plate">
-          <img
-            src="/images/portfolio1.jpg"
-            alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer and optical reference standards in the laboratory"
-            loading="eager"
-          />
-          <figcaption class="plate-caption">
-            <strong>Authentic Laboratory Photograph (Project 02):</strong> Experimental optical workstation featuring the Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer and reference standards used to measure semiconductor thin-film band gaps.
-          </figcaption>
-        </figure>
-
-        <div class="plate-commentary">
-          <span class="status-tag">Completed Research / Lab Study</span>
-          <h2 id="featured-plate-heading" class="section-heading" style="margin-top: 0.65rem;">
-            Semiconductor Thin-Film Band Gap Analysis via UV-Vis Spectroscopy
-          </h2>
-          <p class="sans-note" style="margin-top: 0.65rem;">
-            Combines ultraviolet, visible, and near-infrared optical measurements across two UV-Vis spectrometers to extract continuous absorption spectra and determine electronic band gaps in semiconductor thin films.
-          </p>
-          <div style="margin-top: 1.15rem;">
-            <a href="/projects/uv-vis-semiconductor-spectroscopy/" class="folio-action folio-action-rubric">
-              Open Spectroscopy Case Study →
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Filter Toolbar -->
-    <section class="ledger-section" aria-label="Project directory">
+    <section class="ledger-section" style="margin-top: 1.5rem;" aria-label="Project directory">
       <div class="filter-bar" role="toolbar" aria-label="Filter projects by domain">
         <span class="mono-cite" style="margin-right: 0.4rem;">Filter by Domain:</span>
         {
@@ -84,31 +44,14 @@ const categories = [
         }
       </div>
 
-      <!-- Part I: Completed Engineering & Research Projects -->
+      <!-- Verified Completed Engineering & Research Projects -->
       <div id="completed-projects-group" style="margin-top: 1.75rem;">
         <div class="ledger-header" style="margin-bottom: 0.5rem;">
-          <h2 class="section-heading">Part I — Verified Completed Engineering &amp; Research Projects</h2>
-          <span class="mono-cite">5 Completed Works (2020 – 2024)</span>
+          <h2 class="section-heading">Verified Completed Industry &amp; Academic Systems</h2>
+          <span class="mono-cite">5 Works Verified in files/cvsreal.pdf (2020 – 2024)</span>
         </div>
         {
-          completedProjects.map((project) => (
-            <div class="project-item-wrapper" data-category={project.category}>
-              <ProjectCard project={project} />
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Part II: Ongoing & Exploratory Agricultural Initiatives -->
-      <div id="ongoing-projects-group" style="margin-top: 3rem;">
-        <div class="ledger-header" style="margin-bottom: 0.5rem;">
-          <h2 class="section-heading">
-            Part II — Current &amp; Exploratory Agricultural Initiatives <em>(In Progress)</em>
-          </h2>
-          <span class="mono-cite">Family-Owned Agricultural Business</span>
-        </div>
-        {
-          ongoingInitiatives.map((project) => (
+          projectsList.map((project) => (
             <div class="project-item-wrapper" data-category={project.category}>
               <ProjectCard project={project} />
             </div>
@@ -125,15 +68,15 @@ const categories = [
             Additional Documented Coursework &amp; Simulation Projects
           </h2>
         </div>
-        <span class="mono-cite">Verified in 2024 Resume</span>
+        <span class="mono-cite">Verified in files/cvsreal.pdf (Page 2)</span>
       </div>
 
       <table class="ledger-table">
         <thead>
           <tr>
             <th style="width: 46%;">Project Title</th>
-            <th style="width: 26%;">Discipline / Language</th>
-            <th>Context</th>
+            <th style="width: 24%;">Discipline / Language</th>
+            <th>Provenance &amp; Context</th>
           </tr>
         </thead>
         <tbody>
@@ -150,6 +93,19 @@ const categories = [
           }
         </tbody>
       </table>
+    </section>
+
+    <!-- Content Provenance Exclusion Note -->
+    <section class="ledger-section" aria-labelledby="provenance-exclusion-heading">
+      <div class="provenance-box">
+        <span class="sidenote-label" id="provenance-exclusion-heading">
+          Content Provenance Note — Excluded Template &amp; Exploratory Items
+        </span>
+        <p class="sans-note" style="margin-top: 0.4rem;">
+          <strong>1. Modified Template Portfolio File (<code>_portfolio/portfolio-1.md</code>):</strong> The legacy file <code>_portfolio/portfolio-1.md</code> (titled <em>"Absorption spectroscopy"</em>) was edited directly inside an upstream AcademicPages demonstration file while retaining verbatim template placeholder body text (<em>"This is an item in your portfolio..."</em>) and was subsequently commented out of site navigation in commit <code>9046f7b</code>. Because it has no corroboration in <code>files/cvsreal.pdf</code>, it is excluded from verified projects.<br />
+          <strong>2. Exploratory Agricultural Concepts (<code>_pages/about.md</code>):</strong> High-level ideas mentioned in legacy <code>_pages/about.md</code> (field IoT tracking, historical satellite baseline analysis, organic fertilizer demonstration plots, and partner reporting) are not presented as active or completed engineering systems; see <a href="/about/" class="text-link">Biography &amp; Education</a> for their classification as unverified exploratory concepts.
+        </p>
+      </div>
     </section>
   </article>
 </BaseLayout>
@@ -183,27 +139,6 @@ const categories = [
 </script>
 
 <style>
-  .plate-feature-banner {
-    background: var(--paper-tint);
-    border: 1px solid var(--rule);
-    border-top: 2px solid var(--rule-strong);
-    padding: 1.5rem;
-  }
-
-  .plate-showcase {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem;
-    align-items: center;
-  }
-
-  @media (min-width: 860px) {
-    .plate-showcase {
-      grid-template-columns: 1.25fr 1fr;
-      gap: 2.25rem;
-    }
-  }
-
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -234,5 +169,12 @@ const categories = [
     color: var(--rubric);
     border-bottom-color: var(--rubric);
     font-weight: 500;
+  }
+
+  .provenance-box {
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--rubric);
+    padding: 1.15rem 1.35rem;
   }
 </style>

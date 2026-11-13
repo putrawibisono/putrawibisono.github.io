@@ -10,21 +10,21 @@ import {
 
 <BaseLayout
   title="Biography & Academic Training — Putra Wibisono"
-  description="Biographical background, academic training at UC Berkeley and UC San Diego, and current operational responsibilities in agriculture."
+  description="Biographical background, verified academic training at UC Berkeley and UC San Diego, and Business Operations & Strategy at a family-owned enterprise."
 >
   <article>
     <header style="border-bottom: 1.5px solid var(--rule-strong); padding-bottom: 1.5rem; margin-bottom: 2.25rem;">
       <span class="rubric-mark">II. Biography &amp; Academic Background</span>
       <h1 class="monograph-title">
-        From chemical &amp; materials engineering to <em>distributed data</em> and agriculture.
+        From chemical &amp; materials engineering to <em>battery telemetry</em> and business operations.
       </h1>
     </header>
 
-    <!-- Two-Column Academic Training Diptych (Distinct Composition for About Page) -->
+    <!-- Two-Column Academic Training Diptych -->
     <section aria-labelledby="academic-diptych-heading" style="margin-bottom: 3rem;">
       <div class="ledger-header" style="margin-bottom: 1rem;">
         <h2 id="academic-diptych-heading" class="section-heading">University Degrees</h2>
-        <span class="mono-cite">University of California</span>
+        <span class="mono-cite">Verified in December 2024 CV PDF (files/cvsreal.pdf)</span>
       </div>
 
       <div class="academic-diptych">
@@ -35,7 +35,7 @@ import {
                 <span class="mono-cite" style="color: var(--rubric); font-weight: 500;">
                   {edu.graduationDate} · {edu.location}
                 </span>
-                {edu.honorsOrGpa && <span class="status-tag">{edu.honorsOrGpa}</span>}
+                <span class="status-tag">{edu.honorsOrGpa || edu.provenanceLabel}</span>
               </div>
               <h3 class="degree-inst">{edu.institution}</h3>
               <p class="degree-name">{edu.degree}</p>
@@ -63,27 +63,33 @@ import {
         </blockquote>
 
         <div class="role-clarification-note">
-          <span class="sidenote-label">Note on Current Agricultural Role</span>
+          <span class="sidenote-label">Note on Role &amp; Content Provenance</span>
           <p class="sans-note" style="margin-top: 0.35rem;">
-            My work in agriculture takes place at my family's agricultural business, where I step in as <strong>Acting President (as needed)</strong> to support day-to-day operations, run organic fertilizer demonstration plot trials, and develop practical soil-telemetry and partner-reporting workflows. It is an ad hoc operational and technical stewardship role in a family enterprise rather than a startup founded by me.
+            My current work is described as <strong>Business Operations &amp; Strategy — Family-Owned Enterprise</strong>. This is a family business rather than a startup I founded, and formal corporate title/entity details remain pending independent documentation. Exploratory agricultural ideas mentioned on the legacy website (such as field IoT tracking, historical satellite baseline concepts, and demonstration plot trials) are explicitly labeled below as <strong>Unverified — Legacy Website Only</strong> rather than active engineering development.
           </p>
         </div>
       </div>
 
       <aside class="margin-column" aria-label="Biographical notes">
         <div class="sidenote-block">
-          <span class="sidenote-label">Core Stack Fluency</span>
+          <span class="sidenote-label">Verified Stack (files/cvsreal.pdf)</span>
           <p>
-            <strong>Languages &amp; Frameworks:</strong> Python, SQL, PySpark, Flask/FastAPI, C++, Java, MATLAB.<br />
-            <strong>Platforms &amp; Cloud:</strong> PostgreSQL, Kafka, Hadoop, Airflow, AWS, GCP, Docker, Kubernetes.<br />
-            <strong>Analytics &amp; Simulation:</strong> Pandas, NumPy, TensorFlow/Keras, PowerBI, Tableau, COMSOL, Aspen.
+            <strong>Proficient:</strong> Python (NumPy, Pandas, Matplotlib.pyplot), SQL, C++, Java, MATLAB, COMSOL, Aspen, TensorFlow &amp; Keras, AWS.<br />
+            <strong>Intermediate:</strong> C, HTML, CSS, JavaScript.
           </p>
         </div>
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Laboratory Background</span>
+          <span class="sidenote-label">Verified Laboratory Background (cvsreal.pdf)</span>
           <p>
-            Hands-on experimental training in coin-cell assembly, automated battery cyclers, UV-Vis-NIR spectroscopy, XRD, FTIR, and NMR at UC San Diego and UC Berkeley.
+            Hands-on experimental work in coin-cell assembly, automated battery cyclers, cathode active material synthesis, XRD, FTIR, NMR, vacuum ovens, ROTAP shakers, and glove-box operations at UC San Diego Nanoengineering.
+          </p>
+        </div>
+
+        <div class="sidenote-block">
+          <span class="sidenote-label">Unverified Legacy Website Claims</span>
+          <p>
+            Additional tools listed only in legacy <code>_pages/about.md</code> (PySpark, FastAPI, PostgreSQL, Kafka, Hadoop, Airflow, GCP, Docker, Kubernetes, PowerBI, Tableau) and an undated Stripe entry in <code>_pages/cv.md</code> are separated and labeled <strong>Unverified</strong> pending confirmation.
           </p>
         </div>
 
@@ -101,7 +107,7 @@ import {
       <div class="ledger-header">
         <div>
           <h2 id="stack-concordance-heading" class="section-heading">
-            Documented Skills &amp; Instrumentation
+            Documented Skills &amp; Instrumentation by Provenance
           </h2>
         </div>
         <a href="/cv/" class="text-link mono-cite">View Curriculum Vitae →</a>
@@ -110,9 +116,9 @@ import {
       <table class="ledger-table">
         <thead>
           <tr>
-            <th style="width: 34%;">Category &amp; Source</th>
-            <th style="width: 34%;">Scope</th>
-            <th>Verified Tools &amp; Techniques</th>
+            <th style="width: 34%;">Category &amp; Provenance</th>
+            <th style="width: 32%;">Scope</th>
+            <th>Tools &amp; Techniques</th>
           </tr>
         </thead>
         <tbody>
@@ -121,6 +127,7 @@ import {
               <tr>
                 <td>
                   <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
+                  <div class="mono-cite">{group.provenanceStatus}</div>
                   <div class="mono-cite">{group.sourceNote}</div>
                 </td>
                 <td class="sans-note">{group.description}</td>

@@ -8,7 +8,6 @@ export interface Props {
 }
 
 const { project, showDiagram = true } = Astro.props;
-const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
 ---
 
 <article class="monograph-entry" data-category={project.category}>
@@ -16,7 +15,7 @@ const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
     <!-- Left Metadata Margin -->
     <div class="entry-meta-col">
       <div>
-        <span class:list={['status-tag', { 'status-tag-rubric': isOngoing }]}>
+        <span class="status-tag">
           {project.statusLabel}
         </span>
       </div>
@@ -49,7 +48,7 @@ const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
 
       <div class="entry-findings">
         <span class="sidenote-label">
-          {isOngoing ? 'Scope & Status Note' : 'Verified Outcomes'}
+          Verified Outcomes (files/cvsreal.pdf)
         </span>
         <ul>
           {project.outcomes.map((outcome) => <li>{outcome}</li>)}

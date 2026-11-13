@@ -12,7 +12,9 @@ const { items, compact = false } = Astro.props;
 <div class="dossier-ledger">
   {
     items.map((item) => {
-      const isAdHoc = item.statusType === 'Current Responsibility (Ad Hoc)';
+      const isHighlightRole =
+        item.statusType === 'Current Responsibility' ||
+        item.statusType === 'Unverified — Legacy Website Only (Pending Confirmation)';
       return (
         <article class="dossier-row" id={item.id}>
           <!-- Col 1: Dates, Organization, Location & Verification Status -->
@@ -21,7 +23,7 @@ const { items, compact = false } = Astro.props;
             <h3 class="dossier-org">{item.organization}</h3>
             <p class="dossier-loc">{item.location}</p>
             <div style="margin-top: 0.35rem;">
-              <span class:list={['status-tag', { 'status-tag-rubric': isAdHoc }]}>
+              <span class:list={['status-tag', { 'status-tag-rubric': isHighlightRole }]}>
                 {item.statusType}
               </span>
             </div>

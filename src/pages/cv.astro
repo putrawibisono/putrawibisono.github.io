@@ -10,22 +10,20 @@ import {
   teachingCourses,
 } from '../data/profile';
 
-const completedProjects = projectsList.filter(
-  (p) => p.statusLabel !== 'Ongoing & Exploratory Initiative'
-);
+const completedProjects = projectsList;
 ---
 
 <BaseLayout
   title="Curriculum Vitae — Putra Wibisono"
-  description="Complete academic and professional Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Ex-Stripe, Ex-Tesla, Acting President as needed at Family-Owned Agricultural Business)."
+  description="Complete academic and professional Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Ex-Tesla, Ex-Rivian, Business Operations & Strategy — Family-Owned Enterprise)."
 >
   <article class="cv-folio">
     <!-- Top Archival Action Bar (Hidden in Print) -->
     <div class="cv-action-bar no-print">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">VII. Curriculum Vitae</span>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">VI. Curriculum Vitae &amp; Provenance Record</span>
         <p class="sans-note" style="font-size: 0.8rem;">
-          Updated web edition with print formatting. (Note: the archived 2024 PDF download reflects records through Dec 2024.)
+          Distinguishes facts verified by the December 2024 CV PDF (<code>files/cvsreal.pdf</code>) from legacy website-only claims pending confirmation.
         </p>
       </div>
       <div class="cv-action-buttons">
@@ -33,7 +31,7 @@ const completedProjects = projectsList.filter(
           Print / Save Current CV as PDF
         </button>
         <a href="/files/cvsreal.pdf" target="_blank" rel="noopener noreferrer" class="folio-action">
-          Download Archived 2024 Resume (PDF) ↗
+          Download Verified Dec 2024 CV (PDF) ↗
         </a>
       </div>
     </div>
@@ -43,7 +41,7 @@ const completedProjects = projectsList.filter(
       <div>
         <h1 class="cv-name">{siteMetadata.name}</h1>
         <p class="cv-subtitle">
-          Data Engineer &amp; Materials Scientist (Ex-Stripe, Ex-Tesla) · Acting President (as needed), Family-Owned Agricultural Business
+          Data Engineer &amp; Materials Scientist (Ex-Tesla, Ex-Rivian) · Business Operations &amp; Strategy — Family-Owned Enterprise
         </p>
       </div>
       <div class="cv-contact-ledger">
@@ -151,20 +149,20 @@ const completedProjects = projectsList.filter(
       </div>
     </section>
 
-    <!-- IV. University Instruction -->
+    <!-- IV. Archival Teaching Files Note -->
     <section class="cv-section" aria-labelledby="cv-teaching">
-      <h2 id="cv-teaching" class="cv-section-title">IV. Academic Instruction</h2>
+      <h2 id="cv-teaching" class="cv-section-title">IV. Archival Teaching Files (Unverified — Modified Template Files)</h2>
       <div class="cv-entries">
         {teachingCourses.map((course) => (
           <div class="cv-row">
             <div class="cv-left">
-              <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{course.code}</div>
-              <div class="mono-cite">{course.institution}</div>
+              <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{course.code} (Unverified)</div>
+              <div class="mono-cite">{course.templateFilename}</div>
             </div>
             <div class="cv-right">
               <div class="cv-entry-header">
-                <strong>{course.title}</strong>
-                <span class="mono-cite">{course.department}</span>
+                <strong><a href="/teaching/" class="text-link">{course.title}</a></strong>
+                <span class="mono-cite">{course.provenanceStatus}</span>
               </div>
               <p class="sans-note" style="font-size: 0.82rem; margin-top: 0.15rem;">
                 {course.summary}
@@ -182,8 +180,9 @@ const completedProjects = projectsList.filter(
         <tbody>
           {skillGroups.map((group) => (
             <tr>
-              <td style="width: 34%;">
+              <td style="width: 36%;">
                 <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
+                <div class="mono-cite">{group.provenanceStatus}</div>
               </td>
               <td class="sans-note">
                 {group.skills.join(' · ')}

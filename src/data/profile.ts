@@ -7,9 +7,12 @@ export interface ExperienceItem {
   location: string;
   period: string;
   periodNote?: string;
-  statusType: 'Current Responsibility (Ad Hoc)' | 'Verified Past Role';
+  statusType:
+    | 'Current Responsibility'
+    | 'Verified — Dec 2024 CV (cvsreal.pdf)'
+    | 'Unverified — Legacy Website Only (Pending Confirmation)';
   summary: string;
-  highlights: { label: string; detail: string }[];
+  highlights: { label: string; detail: string; provenance?: 'Verified (cvsreal.pdf)' | 'Unverified (Legacy Website Only)' }[];
   technologies: string[];
 }
 
@@ -22,6 +25,7 @@ export interface EducationItem {
   location: string;
   graduationDate: string;
   honorsOrGpa?: string;
+  provenanceLabel: string;
   focusAreas: string[];
 }
 
@@ -33,18 +37,13 @@ export interface ProjectItem {
   category:
     | 'Data & Battery Systems'
     | 'Scientific Computing & Materials'
-    | 'Software Engineering'
-    | 'Agricultural Operations (In Progress)';
-  statusLabel: 'Completed Industry System' | 'Completed Research / Lab Study' | 'Completed Engineering Project' | 'Ongoing & Exploratory Initiative';
+    | 'Software Engineering';
+  statusLabel: 'Verified Industry System (cvsreal.pdf)' | 'Verified Engineering Project (cvsreal.pdf)';
   organizationOrContext: string;
   period: string;
   featured: boolean;
-  image?: string;
-  imageCaption?: string;
   diagramType:
-    | 'agritech-pipeline'
     | 'battery-telemetry'
-    | 'spectroscopy-bandgap'
     | 'lpcvd-reactor'
     | 'gitlet-dag'
     | 'signal-processing';
@@ -59,6 +58,7 @@ export interface ProjectItem {
 export interface SkillGroup {
   id: string;
   category: string;
+  provenanceStatus: 'Verified — Dec 2024 CV (cvsreal.pdf)' | 'Unverified — Legacy Website Only (Pending Confirmation)';
   sourceNote: string;
   description: string;
   skills: string[];
@@ -71,8 +71,10 @@ export interface TeachingCourse {
   institution: string;
   department: string;
   location: string;
+  provenanceStatus: 'Unverified — Modified AcademicPages Template File';
+  templateFilename: string;
   summary: string;
-  sourceNote?: string;
+  sourceNote: string;
   learningOutcomes: string[];
   toolsAndTopics: string[];
 }
@@ -80,13 +82,13 @@ export interface TeachingCourse {
 export const siteMetadata = {
   name: 'Putra Wibisono',
   monogram: 'PW',
-  title: 'Putra Wibisono — Data Engineer, Materials Scientist & Agricultural Operations',
-  roleHeadline: 'Data Engineer & Materials Scientist · Ex-Stripe, Ex-Tesla',
-  currentRoleTag: 'Acting President (as needed) — Family-Owned Agricultural Business',
+  title: 'Putra Wibisono — Data Engineer, Materials Scientist & Business Operations',
+  roleHeadline: 'Data Engineer & Materials Scientist · Ex-Tesla, Ex-Rivian',
+  currentRoleTag: 'Business Operations & Strategy — Family-Owned Enterprise',
   subheadline:
-    "My background spans data engineering, battery manufacturing, and materials science. I currently support operations and strategic initiatives at my family's agricultural business, taking on presidential responsibilities when needed.",
+    "My background spans data engineering, battery manufacturing, and materials science. I currently support business operations and strategic initiatives at my family's enterprise.",
   shortBio:
-    "Data engineering, battery manufacturing, and materials science (Ex-Stripe, Ex-Tesla, UC Berkeley M.Eng., UC San Diego B.S.). Supporting operations and strategic initiatives at my family's agricultural business.",
+    "Data engineering, battery manufacturing, and materials science (Ex-Tesla, Ex-Rivian, UC Berkeley M.Eng., UC San Diego B.S.). Business Operations & Strategy at a family-owned enterprise.",
   siteUrl: 'https://putrawibisono.com',
   githubPagesUrl: 'https://putrawibisono.github.io',
   email: 'putrawibisonos@gmail.com',
@@ -99,200 +101,184 @@ export const siteMetadata = {
 
 export const identityPillars = [
   {
-    label: 'Data & Battery Engineering',
-    primary: 'Ex-Stripe · Ex-Tesla · Ex-Rivian',
-    detail: 'Senior Data Engineer at Stripe; Sr. Data Engineer (P3) & Data Engineer (P2) at Tesla (FAST library, RAPID dashboard, 4680 cell recipes).',
+    label: 'Verified Industry Engineering (cvsreal.pdf)',
+    primary: 'Tesla (P3/P2) · Rivian · ATOM Science',
+    detail:
+      'Sr. Data Engineer (P3) & Data Engineer (P2) at Tesla (FAST library, RAPID dashboard, 4680 API recipe systems); Process Development Engineer at Rivian (6 deployed formation recipes).',
   },
   {
-    label: 'Current Agricultural Role',
-    primary: 'Acting President (as needed)',
-    detail: "Supporting operations, organic fertilizer demonstration plot trials, and data initiatives at my family's agricultural business.",
+    label: 'Current Role',
+    primary: 'Business Operations & Strategy — Family-Owned Enterprise',
+    detail:
+      "Supporting operations and strategic initiatives at my family's agricultural enterprise, alongside exploratory concepts in field trial evaluation and stakeholder reporting.",
   },
   {
-    label: 'Academic Training',
+    label: 'Verified Academic Training (cvsreal.pdf)',
     primary: 'UC Berkeley (M.Eng.) · UC San Diego (B.S.)',
-    detail: 'M.Eng. in Materials Science & Engineering + Data Science (3.92 GPA); B.S. in Chemical Engineering & CS Minor.',
+    detail:
+      'M.Eng. in Materials Science & Engineering conc. Data Science (3.92 Major GPA, June 2023); B.S. in Chemical Engineering, Minor in Computer Science (June 2021).',
   },
 ];
 
 export const biographyNarrative = {
-  lead: "My background spans data engineering, battery manufacturing, and materials science. I currently support operations and strategic initiatives at my family's agricultural business, taking on presidential responsibilities when needed.",
+  lead: "My background spans data engineering, battery manufacturing, and materials science. I currently support business operations and strategic initiatives at my family's agricultural enterprise.",
   paragraphs: [
-    'I began my career in data engineering, battery cell formation, and computational materials research. Across roles at Stripe, Tesla, ATOM Science, and Rivian, my work focused on making high-volume, noisy operational and experimental data clean, reliable, and actionable so engineering teams could make deterministic decisions.',
-    'At Stripe, I designed and managed scalable services, governed data pipelines, and centralized source-of-truth datasets for internal employee information under strict privacy and security controls. Previously at Tesla, I progressed from Data Engineer (P2) to Senior Data Engineer (P3), where I built the FAST (Formation Analytics Screening Toolbox) library, maintained the real-time RAPID telemetry dashboard for the Berlin and Austin Gigafactories, and developed API recipe synchronization and screening workflows for 4680 battery cells.',
-    "Today, I apply that engineering discipline to support my family's agricultural business. Stepping in as Acting President when needed, I assist with operational management, field-level fertilizer validation trials, and the development of practical data and reporting workflows for farmers and institutional partners.",
+    'My verified engineering record centers on battery manufacturing telemetry, cell formation protocols, and computational materials research. At Tesla (May 2023 – December 2024), I progressed from Data Engineer (P2) to Senior Data Engineer (P3), where I built the FAST (Formation Analytics Screening Toolbox) library, maintained the real-time RAPID telemetry dashboard for the Berlin and Austin Gigafactories, streamed Milmont facility sensor telemetry to AWS, and engineered API call-and-sync recipe workflows for 4680 battery cells.',
+    'Prior to Tesla, I served as a Data Science Intern at ATOM Science in San Francisco (September 2022 – May 2023) while completing my M.Eng. at UC Berkeley, applying transfer learning and active learning in Python to screen molecular databases for drug discovery. Earlier, as a Process Development Engineer in Formation at Rivian (September 2021 – September 2022), I developed 6 deployed formation recipes (4 development, 2 production) for the R1S, R2, and R3 programs—serving as the standard baseline from December 2021 to December 2022—and authored precharge Solid Electrolyte Interphase (SEI) anomaly detection protocols.',
+    "Today, I focus on Business Operations & Strategy at my family's enterprise. While legacy website drafts (_pages/about.md and _pages/cv.md) also mentioned an undated Senior Data Engineer role at Stripe and exploratory agricultural IoT/satellite concepts, this dossier explicitly distinguishes facts verified by my December 2024 CV (files/cvsreal.pdf) from legacy website-only claims pending independent confirmation.",
   ],
-  currentInitiativesTitle: 'Current Responsibilities & Ongoing Initiatives in Agriculture',
+  currentInitiativesTitle: 'Exploratory Agricultural Concepts (Unverified — Legacy Website _pages/about.md Only)',
   currentInitiativesSubtitle:
-    'Distinguishing active operational work, technical pipelines currently in development, and exploratory initiatives:',
+    'The following items appeared in legacy _pages/about.md without independent technical documentation in files/cvsreal.pdf. They are presented strictly as exploratory concepts or proposed initiatives rather than active software engineering deployments:',
   currentInitiatives: [
     {
-      status: 'Active Operations',
-      title: 'Business Operations & Demonstration Plot Trials',
+      status: 'Current Role',
+      title: 'Business Operations & Strategy — Family-Owned Enterprise',
       description:
-        "Stepping in as Acting President (as needed) to support management of the family's agricultural business, including running demonstration plot trials to validate organic fertilizers and measure crop productivity gains.",
+        "Supporting operational management, business coordination, and strategic planning at my family's enterprise (company name 'Agros Industry' inferred only from legacy domain agrosindustry.com; pending formal confirmation).",
     },
     {
-      status: 'In Development',
-      title: 'Field Condition IoT & Historical Satellite Baseline Analysis',
+      status: 'Exploratory / Proposed (Unverified)',
+      title: 'Organic Fertilizer Demonstration Plot Trials',
       description:
-        'Developing IoT data pipelines to track field conditions (soil pH, moisture, and nutrients), using historical satellite imaging as an initial baseline analysis.',
+        'Legacy website (_pages/about.md) referenced running demonstration plot trials to evaluate organic fertilizers and measure productivity gains (unverified by independent documentation; pending confirmation).',
     },
     {
-      status: 'In Development',
-      title: 'Transparent Partner & Government Reporting Tools',
+      status: 'Exploratory Concept (Not Active Dev)',
+      title: 'Field Condition IoT & Historical Satellite Baseline Concepts',
       description:
-        'Building reporting and analytics tools to generate clear, transparent agricultural documentation for government and industry partners.',
+        'Legacy website (_pages/about.md) described a concept for tracking soil conditions (pH, moisture, nutrients) using historical satellite imaging as an initial baseline. Classified as an exploratory concept rather than active engineering development.',
     },
     {
-      status: 'Exploratory / Proposed',
-      title: 'Farmer Training & Digital Monitoring Services',
+      status: 'Exploratory / Proposed (Unverified)',
+      title: 'Partner Reporting & Farmer Training Concepts',
       description:
-        'Exploring value-added services such as structured farmer training programs and accessible digital platforms for ongoing agricultural monitoring.',
+        'Legacy website (_pages/about.md) noted exploring transparent reporting for government/industry partners, farmer training, and digital monitoring concepts (pending independent verification).',
     },
   ],
   philosophyQuote:
-    'Applying the same data integrity and experimental rigor used in semiconductor and battery manufacturing to day-to-day agricultural operations.',
+    'Applying the data integrity and experimental rigor of semiconductor and battery manufacturing to operational strategy and physical-world systems.',
 };
 
 export const experienceList: ExperienceItem[] = [
   {
     id: 'family-agricultural-business',
-    role: 'Acting President (as needed)',
-    organization: 'Family-Owned Agricultural Business',
-    domainTag: 'Operations · Field Trials · Agricultural Data Initiatives',
-    location: 'Indonesia / Berkeley, CA',
+    role: 'Business Operations & Strategy',
+    organization: 'Family-Owned Enterprise',
+    domainTag: 'Business Operations · Strategic Initiatives',
+    location: 'Indonesia',
     period: 'Current',
     periodNote:
-      'Ad hoc executive and technical support role in a family-owned enterprise (not a founder role or formal statutory appointment). Legacy files referenced both "Agricultural Technologies" and the domain agrosindustry.com.',
-    statusType: 'Current Responsibility (Ad Hoc)',
+      'Public role description per user direction ("Business Operations & Strategy — Family-Owned Enterprise"). Legacy files referenced the email domain agrosindustry.com; formal corporate title and entity name remain pending independent documentation.',
+    statusType: 'Current Responsibility',
     summary:
-      "Supporting business operations, stakeholder representation, and technical modernization at my family's agricultural company, stepping into presidential responsibilities as needed.",
+      "Supporting business operations and strategic initiatives at my family's enterprise. Exploratory agricultural data and field-trial ideas mentioned on the legacy website are listed below as unverified concepts pending confirmation.",
     highlights: [
       {
-        label: 'Operational Representation',
+        label: 'Business Operations & Strategy',
         detail:
-          'Step in on an ad hoc basis to manage business operations, coordinate field teams, and represent the family business with institutional and industry stakeholders.',
+          "Support operational management, coordination, and strategic initiatives at my family's agricultural enterprise.",
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Demonstration Plot Trials (Active)',
+        label: 'Demonstration Plot Trials (Exploratory / Legacy Website Only)',
         detail:
-          'Run field demonstration plot trials to empirically evaluate organic fertilizers and measure productivity gains.',
+          'Legacy _pages/about.md mentioned running demonstration plot trials to validate organic fertilizers and measure productivity gains (unverified by independent documentation).',
+        provenance: 'Unverified (Legacy Website Only)',
       },
       {
-        label: 'IoT & Satellite Baseline Pipelines (In Development)',
+        label: 'IoT & Satellite Baseline Concept (Exploratory / Not Active Dev)',
         detail:
-          'Developing IoT pipelines to track soil field conditions (pH, moisture, nutrients), paired with historical satellite imaging for initial baseline analysis.',
+          'Legacy _pages/about.md mentioned an exploratory concept for tracking field conditions (pH, moisture, nutrients) with historical satellite imaging as initial analysis; not presented as active software development.',
+        provenance: 'Unverified (Legacy Website Only)',
       },
       {
-        label: 'Partner Reporting & Advisory Exploration (In Progress)',
+        label: 'Partner Reporting & Advisory Concepts (Exploratory / Legacy Website Only)',
         detail:
-          'Building transparent reporting tools for government and industry partners, while exploring farmer training and digital monitoring services.',
+          'Legacy _pages/about.md mentioned exploring partner reporting tools, farmer training, and digital monitoring platforms (unverified by independent documentation).',
+        provenance: 'Unverified (Legacy Website Only)',
       },
     ],
-    technologies: ['Python', 'SQL', 'Field Trial Analytics', 'IoT Telemetry (In Dev)', 'Satellite Baseline Analysis', 'PowerBI / Tableau'],
-  },
-  {
-    id: 'stripe',
-    role: 'Senior Data Engineer',
-    organization: 'Stripe',
-    domainTag: 'Enterprise Data Infrastructure · Governance & Privacy',
-    location: 'Remote',
-    period: 'Post-Tesla Tenure',
-    periodNote: 'Verified in legacy CV (_pages/cv.md); exact start/end months not listed in source document.',
-    statusType: 'Verified Past Role',
-    summary:
-      'Designed, developed, and managed scalable data services, governed pipelines, and centralized source-of-truth datasets for internal employee information.',
-    highlights: [
-      {
-        label: 'Scalable Data Services',
-        detail:
-          'Designed, developed, and managed scalable services, data pipelines, tools, and systems supporting internal employee information.',
-      },
-      {
-        label: 'Privacy & Security Controls',
-        detail:
-          'Implemented robust controls and strong security measures across pipelines to guarantee high data accuracy and strict privacy protection.',
-      },
-      {
-        label: 'Unified Source of Truth',
-        detail:
-          'Collaborated with cross-functional teams to build carefully scoped shared datasets, establishing a dependable, centralized organizational source of truth.',
-      },
-      {
-        label: 'Stakeholder Delivery',
-        detail:
-          'Delivered accurate, timely data pipelines in close collaboration with diverse stakeholders and subject-matter experts.',
-      },
-    ],
-    technologies: ['Python', 'SQL', 'Data Pipelines', 'Data Governance & Privacy', 'Centralized Source-of-Truth Systems'],
+    technologies: ['Business Operations', 'Strategic Planning', 'Exploratory Agricultural Concepts (Unverified)'],
   },
   {
     id: 'tesla',
     role: 'Sr. Data Engineer (P3) & Data Engineer (P2)',
-    secondaryRole: 'Also summarized as Data Scientist (Battery Formation & 4680 Cell Trials) in academic CV',
+    secondaryRole: 'Summarized as "Data Scientist" in unfinished legacy _pages/cv.md',
     organization: 'Tesla, Inc.',
     domainTag: 'EV Battery Manufacturing · 4680 Cell & Factory Telemetry',
     location: 'Fremont, CA (Supporting Berlin & Austin Gigafactories)',
     period: 'May 2023 – Dec 2024',
-    periodNote: 'Data Engineer (P2): May 2023 – Apr 2024 · Sr. Data Engineer (P3): Apr 2024 – Dec 2024 (Verified in 2024 Resume PDF)',
-    statusType: 'Verified Past Role',
+    periodNote:
+      'Verified by independent December 2024 CV PDF (files/cvsreal.pdf): Data Engineer (P2) from May 2023 – April 2024; promoted to Sr. Data Engineer (P3) from April 2024 – December 2024.',
+    statusType: 'Verified — Dec 2024 CV (cvsreal.pdf)',
     summary:
-      'Built battery formation screening libraries, real-time multi-gigafactory telemetry dashboards, Generation 4/5 battery simulation models, and 4680 cell recipe synchronization workflows.',
+      'Built battery formation screening libraries (FAST), real-time multi-gigafactory telemetry dashboards (RAPID), Generation 4/5 battery simulation models, and 4680 cell API recipe synchronization workflows.',
     highlights: [
       {
-        label: 'FAST Screening Library (P3)',
+        label: 'FAST Screening Library (P3 · Verified in cvsreal.pdf)',
         detail:
           'Developed the FAST (Formation Analytics Screening Toolbox) library used by data scientists to deep-dive into new development recipes during battery formation and reach deterministic pass/fail trial conclusions.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'RAPID Live Factory Dashboard (P3)',
+        label: 'RAPID Live Factory Dashboard (P3 · Verified in cvsreal.pdf)',
         detail:
-          'Developed and maintained the RAPID dashboard for Berlin and Austin Gigafactory sites, enabling process engineers to inspect real-time telemetry and make live production-line adjustments.',
+          'Developed and maintained the RAPID internal dashboard for Berlin and Austin Gigafactory sites, enabling process engineers to inspect real-time telemetry and make live production-line adjustments.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'EoL Defect Detection & Vendor Scoring (P3)',
+        label: 'EoL Defect Detection & Vendor Scoring (P3 · Verified in cvsreal.pdf)',
         detail:
-          'Developed and assisted automated early defect detection during End of Life (EoL) testing and audited formation metrics for machine errors, establishing vendor scoring parameters for business analytics teams.',
+          'Developed and assisted automated early defect detection during End of Line (EoL) testing and established vendor scoring parameters for business analytics teams.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: '4680C/D Recipes & API Sync Systems (P2)',
+        label: 'Milmont AWS Streams, Gen 4/5 ML Models & 4680 API Sync (P2 · Verified in cvsreal.pdf)',
         detail:
-          'Developed and validated 4680 Cybercell and Drycell recipes (4680C/D Build) for GFTX manufacturing, and engineered API call-and-sync recipe systems that increased R&D trial output for 4680 battery cells.',
+          'Implemented temperature, pH, and electrical current data streams for the Milmont facility into AWS; developed proprietary Generation 4 & 5 ML models simulating Model Y and Model 3 batteries across vendors; and engineered API call-and-sync recipe systems giving rise to 4680 battery cells.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Milmont AWS Streams & Gen 4/5 ML Models (P2)',
+        label: '4680C/D Build Cybercell & Drycell Recipes (Unverified — Legacy _pages/cv.md Only)',
         detail:
-          'Implemented continuous factory data streams (temperature, pH, electrical current) for the Milmont facility into AWS databases, and developed proprietary Generation 4 & 5 ML models simulating Model Y and Model 3 batteries across vendors.',
+          'Unfinished legacy webpage (_pages/cv.md) additionally listed: "Developed and validated 4680 Cybercell and Drycell recipes (4680C/D Build) for GFTX manufacturing." Flagged as website-only phrasing pending confirmation.',
+        provenance: 'Unverified (Legacy Website Only)',
       },
     ],
     technologies: ['Python', 'SQL', 'AWS', 'FAST Toolbox', 'RAPID Dashboard', 'Gen 4/5 ML Simulation', 'REST APIs'],
   },
   {
     id: 'atom-science',
-    role: 'Data Science Intern / Data Scientist',
-    organization: 'ATOM Science (ATOM Research)',
+    role: 'Data Science Intern',
+    secondaryRole: 'Listed as "Data Scientist — ATOM Research" in unfinished legacy _pages/cv.md',
+    organization: 'ATOM Science',
     domainTag: 'Computational Drug Discovery · Molecular Machine Learning',
     location: 'San Francisco, CA',
     period: 'Sep 2022 – May 2023',
-    statusType: 'Verified Past Role',
+    periodNote:
+      'Verified by independent December 2024 CV PDF (files/cvsreal.pdf). Unfinished legacy _pages/cv.md copied the exact same three bullets under the variant title "Data Scientist" and company name "ATOM Research".',
+    statusType: 'Verified — Dec 2024 CV (cvsreal.pdf)',
     summary:
-      'Curated drug discovery datasets and trained transfer-learning and active-learning models in Python to screen molecular candidates for wet-lab testing.',
+      'Curated drug discovery datasets and trained transfer-learning and active-learning models in Python to screen molecular candidates for wet-lab testing during UC Berkeley M.Eng. graduate studies.',
     highlights: [
       {
-        label: 'Molecular Property Prediction',
+        label: 'Molecular Property Prediction (Verified in cvsreal.pdf)',
         detail:
-          'Used Python to curate drug discovery datasets and build machine learning models predicting molecular properties.',
+          'Used Python to curate drug discovery-related datasets and build machine learning models to predict molecular properties.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Transfer & Active Learning',
+        label: 'Transfer & Active Learning (Verified in cvsreal.pdf)',
         detail:
-          'Explored transfer learning and active learning techniques to maximize predictive value across sparse chemical datasets.',
+          'Used ML models to explore transfer learning and active learning techniques in order to maximize the predictive information extracted from chemical datasets.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Wet-Lab Candidate Screening',
+        label: 'Wet-Lab Candidate Screening (Verified in cvsreal.pdf)',
         detail:
-          'Screened large databases of molecules to identify optimal candidates to advance into wet-lab experimental testing.',
+          'Screened large databases of molecules to identify the best candidates to move into wet-lab experimental testing.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
     ],
     technologies: ['Python', 'TensorFlow', 'Keras', 'NumPy', 'Pandas', 'Transfer Learning', 'Active Learning'],
@@ -304,56 +290,98 @@ export const experienceList: ExperienceItem[] = [
     domainTag: 'EV Battery Cell Formation · SEI Diagnostics',
     location: 'Irvine, CA',
     period: 'Sep 2021 – Sep 2022',
-    statusType: 'Verified Past Role',
+    periodNote: 'Verified by independent December 2024 CV PDF (files/cvsreal.pdf). Omitted from unfinished legacy _pages/cv.md.',
+    statusType: 'Verified — Dec 2024 CV (cvsreal.pdf)',
     summary:
       'Developed proprietary battery cell formation recipes for R1S, R2, and R3 vehicle programs and predictive Solid Electrolyte Interphase (SEI) anomaly detection protocols.',
     highlights: [
       {
-        label: 'R1S, R2 & R3 Formation Recipes',
+        label: 'R1S, R2 & R3 Formation Recipes (Verified in cvsreal.pdf)',
         detail:
           'Developed proprietary formation recipes for R1S, R2, and R3 models that achieved higher charging compatibility with Tesla’s Supercharger network.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Predictive SEI Anomaly Detection',
+        label: 'Predictive SEI Anomaly Detection (Verified in cvsreal.pdf)',
         detail:
           'Developed diagnostic protocols to detect Solid Electrolyte Interphase (SEI) formation anomalies during precharge steps.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Standard Production Deployment',
+        label: '6 Deployed Formation Recipes — 1-Year Standard (Verified in cvsreal.pdf)',
         detail:
-          'Deployed 6 recipes (4 development recipes and 2 production recipes) that served as the standard baseline recipe for one year from December 2021 to December 2022.',
+          'Deployed 6 recipes (4 development recipes and 2 production recipes) that served as the standard baseline recipe for 1 year from December 2021 to December 2022.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
     ],
     technologies: ['Battery Cell Formation', 'SEI Precharge Diagnostics', 'Electrochemical Testing', 'Python / MATLAB'],
   },
   {
     id: 'ucsd-nanoengineering',
-    role: 'Undergraduate Research Assistant',
-    organization: 'UC San Diego — Department of Nanoengineering (Battery Engineering)',
+    role: 'Research Assistant — Battery Engineering',
+    organization: 'UC San Diego — Department of Nanoengineering',
     domainTag: 'Electrochemical Energy Storage & Materials Characterization',
     location: 'San Diego, CA',
     period: 'Sep 2020 – Jun 2021',
-    statusType: 'Verified Past Role',
+    periodNote: 'Verified by independent December 2024 CV PDF (files/cvsreal.pdf).',
+    statusType: 'Verified — Dec 2024 CV (cvsreal.pdf)',
     summary:
       'Conducted coin-cell assembly, cathode active material synthesis, spectroscopic characterization (XRD, FTIR, NMR), and battery cell recycling research.',
     highlights: [
       {
-        label: 'Coin-Cell Assembly & Cycling',
+        label: 'Coin-Cell Assembly & Cycling (Verified in cvsreal.pdf)',
         detail:
           'Assembled coin cells in argon glove boxes and executed electrical testing through automated battery cyclers.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Cathode Synthesis & Spectroscopy',
+        label: 'Cathode Synthesis & Characterization (Verified in cvsreal.pdf)',
         detail:
           'Prepared and synthesized cathode active materials and performed physical characterization using XRD, FTIR, NMR, vacuum ovens, and ROTAP shakers.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
       {
-        label: 'Direct Recycling Teardown',
+        label: 'Direct Recycling Teardown (Verified in cvsreal.pdf)',
         detail:
           'Harvested and tore down spent cells (cathode, separator, and electrolytes) for battery recycling studies and documented experimental findings.',
+        provenance: 'Verified (cvsreal.pdf)',
       },
     ],
-    technologies: ['Coin Cell Assembly', 'Battery Cyclers', 'XRD', 'FTIR', 'NMR', 'Glove Box Operations'],
+    technologies: ['Coin Cell Assembly', 'Battery Cyclers', 'XRD', 'FTIR', 'NMR', 'Glove Box Operations', 'ROTAP Shaker'],
+  },
+  {
+    id: 'stripe',
+    role: 'Senior Data Engineer (Unverified — Legacy Website Only)',
+    organization: 'Stripe',
+    domainTag: 'Legacy Website Claim (_pages/cv.md & _pages/about.md) · Pending Confirmation',
+    location: 'Remote (Per _pages/cv.md)',
+    period: 'Dates Unspecified in Legacy Source',
+    periodNote:
+      'PROVENANCE FLAG: Appears only in unfinished legacy _pages/cv.md (commit 85cfcd9), _pages/about.md, and _pages/letters.md without employment dates. Absent from the December 2024 CV PDF (files/cvsreal.pdf), which documents full-time employment at Rivian (Sep 2021 – Sep 2022), UC Berkeley / ATOM Science (Sep 2022 – Jun 2023), and Tesla (May 2023 – Dec 2024). Labeled unverified until confirmed.',
+    statusType: 'Unverified — Legacy Website Only (Pending Confirmation)',
+    summary:
+      'Listed in legacy _pages/cv.md as designing, developing, and managing scalable data services and centralized source-of-truth datasets for internal employee information. Retained with an unverified provenance label pending user confirmation.',
+    highlights: [
+      {
+        label: 'Scalable Data Services (Legacy _pages/cv.md Only)',
+        detail:
+          'Listed in _pages/cv.md: "Design, develop, and manage scalable services, data pipelines, tools, and systems for internal employee information."',
+        provenance: 'Unverified (Legacy Website Only)',
+      },
+      {
+        label: 'Privacy & Security Controls (Legacy _pages/cv.md Only)',
+        detail:
+          'Listed in _pages/cv.md: "Implement robust controls and strong security measures across pipelines to guarantee high accuracy and strict privacy."',
+        provenance: 'Unverified (Legacy Website Only)',
+      },
+      {
+        label: 'Unified Source of Truth (Legacy _pages/cv.md Only)',
+        detail:
+          'Listed in _pages/cv.md: "Collaborate with cross-functional teams to build carefully scoped shared datasets, establishing a unified source of truth."',
+        provenance: 'Unverified (Legacy Website Only)',
+      },
+    ],
+    technologies: ['Unverified Legacy Claim (_pages/cv.md)', 'Pending Date & Documentation Confirmation'],
   },
 ];
 
@@ -367,6 +395,7 @@ export const educationList: EducationItem[] = [
     location: 'Berkeley, CA',
     graduationDate: 'June 2023',
     honorsOrGpa: 'Major GPA: 3.92',
+    provenanceLabel: 'Verified — Dec 2024 CV (cvsreal.pdf)',
     focusAreas: [
       'Data Science & Machine Learning for Physical Systems',
       'Semiconductor & Battery Energy Storage Materials',
@@ -381,10 +410,11 @@ export const educationList: EducationItem[] = [
     concentrationOrMinor: 'Minor in Computer Science',
     location: 'San Diego, CA',
     graduationDate: 'June 2021',
+    provenanceLabel: 'Verified — Dec 2024 CV (cvsreal.pdf)',
     focusAreas: [
       'Process Modeling & Multiphysics Simulation (COMSOL, Aspen, MATLAB)',
       'Data Structures, Algorithms & Object-Oriented Systems (C++, Java, Python)',
-      'Nanoengineering Battery Research & Undergraduate CSE Instruction',
+      'Nanoengineering Battery Research (Coin Cell Assembly, XRD, FTIR, NMR)',
     ],
   },
 ];
@@ -394,58 +424,55 @@ export const projectsList: ProjectItem[] = [
     slug: 'tesla-fast-rapid-battery-telemetry',
     index: '01',
     title: 'FAST Screening Library & RAPID Multi-Factory Telemetry',
-    subtitle: 'Deterministic battery formation analytics, real-time Gigafactory dashboards, and 4680 cell recipe systems at Tesla.',
+    subtitle: 'Deterministic battery formation analytics, real-time Gigafactory dashboards, and 4680 cell API recipe systems at Tesla.',
     category: 'Data & Battery Systems',
-    statusLabel: 'Completed Industry System',
-    organizationOrContext: 'Tesla, Inc. (Fremont · Austin GFTX · Berlin)',
+    statusLabel: 'Verified Industry System (cvsreal.pdf)',
+    organizationOrContext: 'Tesla, Inc. (Fremont · Austin · Berlin)',
     period: 'May 2023 – Dec 2024',
     featured: true,
     diagramType: 'battery-telemetry',
     summary:
-      'Production data engineering and analytical systems built at Tesla to evaluate new development recipes during battery formation, stream real-time factory telemetry, and detect End-of-Life (EoL) cell defects.',
+      'Production data engineering and analytical systems built at Tesla (verified in files/cvsreal.pdf) to evaluate new development recipes during battery formation, stream real-time factory telemetry to AWS, and detect End-of-Line (EoL) cell defects.',
     challenge:
       'Evaluating experimental battery formation recipes and managing live production lines across Fremont, Berlin, and Austin required deterministic screening tools, real-time telemetry visibility, and automated recipe synchronization.',
     architectureAndApproach: [
       'FAST (Formation Analytics Screening Toolbox): Developed a Python library enabling data scientists to deep-dive into new development recipes during formation and reach deterministic conclusions on trial success.',
-      'RAPID Real-Time Dashboard: Developed and maintained live dashboards for Berlin and Austin Gigafactory sites so process engineers could monitor real-time data and adjust production lines.',
-      '4680C/D Recipe Validation & API Sync: Developed and validated 4680 Cybercell and Drycell recipes (4680C/D Build) for GFTX manufacturing, plus API call-and-sync recipe systems for trial and testing batteries.',
+      'RAPID Real-Time Dashboard: Developed and maintained live internal dashboards for Berlin and Austin Gigafactory sites so process engineers could monitor real-time data and adjust production lines.',
+      '4680 API Call-and-Sync Recipe Systems: Engineered API call-and-sync recipe systems for trial and testing batteries, resulting in higher R&D output giving rise to 4680 battery cells.',
       'Milmont AWS Streams, EoL Defect Detection & Gen 4/5 Models: Implemented temperature, pH, and current data streams for the Milmont factory into AWS; built proprietary Generation 4 & 5 ML models simulating Model Y and Model 3 batteries across vendors; and assisted automated early defect detection during EoL testing.',
     ],
     outcomes: [
-      'Enabled deterministic pass/fail trial conclusions for battery formation development recipes via the FAST library.',
-      'Increased R&D trial output giving rise to 4680 Battery cells through API call-and-sync recipe management.',
-      'Established quantitative vendor scoring parameters for business analytics teams via automated EoL defect detection.',
+      'Enabled deterministic pass/fail trial conclusions for battery formation development recipes via the FAST library (Verified in cvsreal.pdf).',
+      'Increased R&D trial output giving rise to 4680 Battery cells through API call-and-sync recipe management (Verified in cvsreal.pdf).',
+      'Established quantitative vendor scoring parameters for business analytics teams via automated EoL defect detection (Verified in cvsreal.pdf).',
     ],
     technologies: ['Python', 'SQL', 'AWS', 'FAST Toolbox', 'RAPID Dashboard', 'Gen 4/5 ML Models', 'REST APIs'],
   },
   {
-    slug: 'uv-vis-semiconductor-spectroscopy',
+    slug: 'rivian-formation-sei-protocols',
     index: '02',
-    title: 'Semiconductor Thin-Film Band Gap Analysis via UV-Vis Spectroscopy',
-    subtitle: 'Dual-spectrometer optical absorption workflow for measuring electronic band gaps in semiconductor thin films.',
-    category: 'Scientific Computing & Materials',
-    statusLabel: 'Completed Research / Lab Study',
-    organizationOrContext: 'Materials Science & Engineering Laboratory',
-    period: 'Academic & Laboratory Research',
+    title: 'EV Battery Formation Recipes & SEI Precharge Anomaly Diagnostics',
+    subtitle: 'Six deployed formation recipes for R1S, R2, and R3 battery cells with enhanced Tesla Supercharger compatibility at Rivian.',
+    category: 'Data & Battery Systems',
+    statusLabel: 'Verified Industry System (cvsreal.pdf)',
+    organizationOrContext: 'Rivian (Irvine, CA)',
+    period: 'Sep 2021 – Sep 2022',
     featured: true,
-    image: '/images/portfolio1.jpg',
-    imageCaption:
-      'Authentic laboratory workstation featuring the Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer and optical reference standards.',
-    diagramType: 'spectroscopy-bandgap',
+    diagramType: 'battery-telemetry',
     summary:
-      'Experimental and data-reduction workflow combining optical measurements from two UV-Vis spectrometers to determine the electronic band gaps of semiconductor thin films.',
+      'Electrochemical process development and precharge diagnostic protocols engineered at Rivian (verified in files/cvsreal.pdf) for R1S, R2, and R3 battery programs.',
     challenge:
-      'Measuring the band gap of semiconductor thin films across wide spectral regimes requires reconciling measurements from two UV-Vis spectrometers and extracting optical absorption edges accurately.',
+      'Optimizing lithium-ion cell formation requires controlling Solid Electrolyte Interphase (SEI) nucleation during precharge while maximizing fast-charging compatibility across vehicle platforms.',
     architectureAndApproach: [
-      'Dual-Spectrometer Optical Acquisition: Collected ultraviolet, visible, and near-infrared spectral measurements across thin-film samples using laboratory instrumentation including the Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer.',
-      'Cross-Instrument Data Reduction: Reconciled baseline transmittance and reflectance data from the two spectrometers to construct continuous absorption spectra.',
-      'Band-Gap Determination: Evaluated optical absorption coefficients as a function of photon energy to extract thin-film semiconductor band gaps.',
+      'R1S, R2 & R3 Recipe Engineering: Developed proprietary formation recipes for R1S, R2, and R3 models with higher compatibility with Tesla’s Supercharger network.',
+      'SEI Precharge Anomaly Protocols: Developed predictive protocols to detect Solid Electrolyte Interphase (SEI) formation anomalies during precharge steps.',
+      'Production & Development Standardization: Deployed 6 formation recipes (4 development recipes and 2 production recipes) into manufacturing workflows.',
     ],
     outcomes: [
-      'Measured semiconductor thin-film band gaps by integrating data across two UV-Vis spectrometers.',
-      'Documented with original laboratory workstation photography from the experimental setup.',
+      '6 deployed formation recipes (4 development, 2 production) served as the standard baseline recipe for 1 year from December 2021 to December 2022 (Verified in cvsreal.pdf).',
+      'Improved fast-charging compatibility with Tesla’s Supercharger network across R1S, R2, and R3 cell builds (Verified in cvsreal.pdf).',
     ],
-    technologies: ['UV-Vis-NIR Spectroscopy', 'Shimadzu SolidSpec-3700', 'Semiconductor Thin Films', 'Python / MATLAB'],
+    technologies: ['Battery Cell Formation', 'SEI Precharge Diagnostics', 'R1S / R2 / R3 Programs', 'Electrochemical Testing'],
   },
   {
     slug: 'lpcvd-wafer-reactor-modeling',
@@ -453,13 +480,13 @@ export const projectsList: ProjectItem[] = [
     title: 'LPCVD Silicon Wafer Reactor Uniformity Modeling',
     subtitle: 'Coupled fluid dynamics, heat/mass transfer simulation, and 2^k factorial Design of Experiments in COMSOL & MATLAB.',
     category: 'Scientific Computing & Materials',
-    statusLabel: 'Completed Engineering Project',
+    statusLabel: 'Verified Engineering Project (cvsreal.pdf)',
     organizationOrContext: 'UC San Diego Chemical Engineering',
     period: 'Mar 2021 – Jun 2021',
     featured: true,
     diagramType: 'lpcvd-reactor',
     summary:
-      'Computational modeling and experimental design of a Low Pressure Chemical Vapor Deposition (LPCVD) boat reactor that accomplished nearly 100% silicon wafer deposition uniformity.',
+      'Computational modeling and experimental design of a Low Pressure Chemical Vapor Deposition (LPCVD) boat reactor that accomplished nearly 100% silicon wafer deposition uniformity (verified in files/cvsreal.pdf).',
     challenge:
       'Achieving uniform silicon deposition across wafers inside an LPCVD boat reactor requires balancing coupled fluid dynamics, heat transfer, and mass transfer parameters.',
     architectureAndApproach: [
@@ -468,25 +495,25 @@ export const projectsList: ProjectItem[] = [
       '2D & 3D Wafer Uniformity Rendering: Rendered 2D and 3D wafer uniformity models in MATLAB to interpret experimental parameters in terms of deposition uniformity.',
     ],
     outcomes: [
-      'Developed a boat reactor configuration that accomplished nearly 100% uniformity for silicon wafers in COMSOL.',
-      'Identified key process sensitivity parameters through 2^k Design of Experiments and 2D/3D MATLAB visualization.',
+      'Developed a boat reactor configuration that accomplished nearly 100% uniformity for silicon wafers in COMSOL (Verified in cvsreal.pdf).',
+      'Identified key process sensitivity parameters through 2^k Design of Experiments and 2D/3D MATLAB visualization (Verified in cvsreal.pdf).',
     ],
     technologies: ['COMSOL Multiphysics', 'MATLAB', '2^k Design of Experiments', 'Fluid Dynamics', 'Heat & Mass Transfer'],
-    codeAvailabilityNote: 'Please email for view-only code and simulation reports of individual academic projects.',
+    codeAvailabilityNote: 'Please email for view-only code and simulation reports of individual academic projects (per files/cvsreal.pdf).',
   },
   {
     slug: 'gitlet-version-control-engine',
     index: '04',
     title: 'Gitlet — Distributed Version Control System in Java',
-    subtitle: 'Content-addressable persistence, O(n) branching data structures, and merge resolution.',
+    subtitle: 'Content-addressable persistence, O(n) branching data structures, and historical commit restoration.',
     category: 'Software Engineering',
-    statusLabel: 'Completed Engineering Project',
+    statusLabel: 'Verified Engineering Project (cvsreal.pdf)',
     organizationOrContext: 'Computer Science Systems Project',
     period: 'July 2022',
-    featured: false,
+    featured: true,
     diagramType: 'gitlet-dag',
     summary:
-      'A Java implementation imitating core Git version-control functionality through abstraction, persistent file serialization, and O(n) complexity branching.',
+      'A Java implementation imitating core Git version-control functionality through abstraction, persistent file serialization, and O(n) complexity branching (verified in files/cvsreal.pdf).',
     challenge:
       'Replicating Git functionality from scratch in Java requires designing efficient persistence mechanisms and graph data structures that support fast branching and historical file restoration.',
     architectureAndApproach: [
@@ -495,11 +522,11 @@ export const projectsList: ProjectItem[] = [
       'Deterministic File Persistence: Engineered file persistence enabling users to revert files to older versions from specific historical commits.',
     ],
     outcomes: [
-      'Successfully implemented core Git commands, branching, and persistent historical state restoration in Java.',
+      'Successfully implemented core Git commands, O(n) branching, and persistent historical state restoration in Java (Verified in cvsreal.pdf).',
       'View-only source code available upon direct email request.',
     ],
     technologies: ['Java', 'Data Structures', 'O(n) Branching', 'Persistent Serialization', 'CLI Abstraction'],
-    codeAvailabilityNote: 'Please email for view-only code of individual projects.',
+    codeAvailabilityNote: 'Please email for view-only code of individual projects (per files/cvsreal.pdf).',
   },
   {
     slug: 'signal-and-image-processing-systems',
@@ -507,13 +534,13 @@ export const projectsList: ProjectItem[] = [
     title: 'Acoustic Spatiotemporal Output & Digital Image Processing',
     subtitle: 'Arduino G-Code motorized speaker scanning, PWM analog conversion, and MATLAB digital video characterization.',
     category: 'Scientific Computing & Materials',
-    statusLabel: 'Completed Research / Lab Study',
+    statusLabel: 'Verified Engineering Project (cvsreal.pdf)',
     organizationOrContext: 'MATLAB Instrumentation & Signal Processing Labs',
     period: 'Feb 2020 – Apr 2020',
     featured: false,
     diagramType: 'signal-processing',
     summary:
-      'Two quantitative MATLAB hardware-in-the-loop studies: characterizing the spatiotemporal acoustic output of a speaker using Arduino G-Code motion control (Feb 2020) and quantitative digital video/image signal analysis (Apr 2020).',
+      'Two quantitative MATLAB hardware-in-the-loop studies verified in files/cvsreal.pdf: characterizing the spatiotemporal acoustic output of a speaker using Arduino G-Code motion control (Feb 2020) and quantitative digital video/image signal analysis (Apr 2020).',
     challenge:
       'Accurately characterizing acoustic and optical signals requires synchronized hardware positioning, time-domain noise reduction, digital-to-analog PWM filtering, and analysis of resolution and sampling limits.',
     architectureAndApproach: [
@@ -522,91 +549,90 @@ export const projectsList: ProjectItem[] = [
       'Quantitative Digital Image Processing (Apr 2020): Applied digital video camera measurement techniques in MATLAB to evaluate how amplitude, spatial resolution, and sampling rate affect digital imaging.',
     ],
     outcomes: [
-      'Characterized spatiotemporal speaker output with enhanced signal-to-noise ratio via time-domain averaging.',
-      'Evaluated digital imaging resolution and sampling constraints and demonstrated PWM + low-pass digital-to-analog conversion in MATLAB.',
+      'Characterized spatiotemporal speaker output with enhanced signal-to-noise ratio via time-domain averaging (Verified in cvsreal.pdf).',
+      'Evaluated digital imaging resolution and sampling constraints and demonstrated PWM + low-pass digital-to-analog conversion in MATLAB (Verified in cvsreal.pdf).',
     ],
     technologies: ['MATLAB', 'Arduino', 'G-Code Motion Control', 'PWM & Low-Pass Filtering', 'Digital Image Processing'],
-    codeAvailabilityNote: 'Please email for view-only code of individual projects.',
-  },
-  {
-    slug: 'agritech-iot-satellite-intelligence',
-    index: '06',
-    title: 'Agricultural Field Trials, IoT Telemetry & Reporting Initiatives',
-    subtitle: "Ongoing operational trials and technical pipelines in development at my family's agricultural business.",
-    category: 'Agricultural Operations (In Progress)',
-    statusLabel: 'Ongoing & Exploratory Initiative',
-    organizationOrContext: 'Family-Owned Agricultural Business (Acting President, as needed)',
-    period: 'Current (In Progress)',
-    featured: true,
-    diagramType: 'agritech-pipeline',
-    summary:
-      "A set of active field trials, in-development telemetry pipelines, and exploratory digital initiatives supporting operations at my family's agricultural business.",
-    challenge:
-      'Improving fertilizer adoption and crop productivity requires pairing practical field demonstration trials with baseline spatial analysis, soil tracking, and clear reporting for stakeholders.',
-    architectureAndApproach: [
-      'Active Operational Work — Demonstration Plot Trials: Running demonstration plot trials to validate organic fertilizers and measure crop productivity gains in the field.',
-      'In Development — IoT Field Pipelines & Satellite Baseline: Developing IoT pipelines to track field conditions (pH, moisture, nutrients), using historical satellite imaging as an initial baseline analysis.',
-      'In Development — Stakeholder Reporting Tools: Building tools to generate transparent reporting for government and industry partners.',
-      'Exploratory / Proposed — Farmer Training & Digital Platforms: Exploring value-added services including farmer training programs and digital platforms for agricultural monitoring.',
-    ],
-    outcomes: [
-      'Note on Project Status: These initiatives represent current operational work, tools under active development, and exploratory programs—not a completed commercial software product.',
-    ],
-    technologies: ['Python', 'SQL', 'Organic Fertilizer Field Trials', 'IoT Telemetry (In Dev)', 'Historical Satellite Baseline', 'Partner Reporting'],
+    codeAvailabilityNote: 'Please email for view-only code of individual projects (per files/cvsreal.pdf).',
   },
 ];
 
 export const additionalEngineeringProjects = [
-  { name: 'Molecular Property Prediction (Active & Transfer Learning)', domain: 'Python · TensorFlow/Keras', context: 'ATOM Science (Sep 2022 – May 2023)' },
-  { name: 'Catalytic Bed Reactor', domain: 'Chemical Engineering', context: 'UC San Diego Project Work' },
-  { name: 'Hydrogen on Demand', domain: 'Chemical Engineering', context: 'UC San Diego Project Work' },
-  { name: 'Ideal Gas Simulation', domain: 'MATLAB', context: 'UC San Diego Project Work' },
-  { name: 'Ant vs. Doodlebug', domain: 'C++', context: 'UC San Diego Project Work' },
-  { name: 'Employee Paycheck & Deques', domain: 'C++ / Java', context: 'UC San Diego Project Work' },
-  { name: '2048 Game Implementation', domain: 'Java', context: 'UC San Diego Project Work' },
+  { name: 'Molecular Property Prediction (Active & Transfer Learning)', domain: 'Python · TensorFlow/Keras', context: 'ATOM Science (Sep 2022 – May 2023 · Verified in cvsreal.pdf)' },
+  { name: 'Catalytic Bed Reactor', domain: 'Chemical Engineering', context: 'UC San Diego Project Work (Verified in cvsreal.pdf)' },
+  { name: 'Hydrogen on Demand', domain: 'Chemical Engineering', context: 'UC San Diego Project Work (Verified in cvsreal.pdf)' },
+  { name: 'Ideal Gas Simulation', domain: 'MATLAB', context: 'UC San Diego Project Work (Verified in cvsreal.pdf)' },
+  { name: 'Ant vs. Doodlebug', domain: 'C++', context: 'UC San Diego Project Work (Verified in cvsreal.pdf)' },
+  { name: 'Employee Paycheck & Deques', domain: 'C++ / Java', context: 'UC San Diego Project Work (Verified in cvsreal.pdf)' },
+  { name: '2048 Game Implementation', domain: 'Java', context: 'UC San Diego Project Work (Verified in cvsreal.pdf)' },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    id: 'data-engineering',
-    category: 'Languages, Data Engineering & Platforms',
-    sourceNote: 'Documented in About Me (_pages/about.md) & 2024 Resume',
-    description: 'Core languages and distributed data tools used across production data engineering and backend services.',
-    skills: ['Python', 'SQL', 'PySpark', 'Flask / FastAPI', 'PostgreSQL', 'Kafka', 'Hadoop', 'Airflow'],
+    id: 'verified-core-stack',
+    category: 'Proficient Languages, Data Science & Cloud (Verified)',
+    provenanceStatus: 'Verified — Dec 2024 CV (cvsreal.pdf)',
+    sourceNote: 'Verified in files/cvsreal.pdf (Core Skills & Tesla P2/P3 Experience)',
+    description: 'Core programming languages, scientific computing libraries, machine learning frameworks, and cloud databases documented in the December 2024 CV PDF.',
+    skills: ['Python (NumPy, Pandas, Matplotlib.pyplot)', 'SQL', 'TensorFlow & Keras', 'AWS', 'C++', 'Java'],
   },
   {
-    id: 'cloud-analytics',
-    category: 'Cloud, Machine Learning & Visualization',
-    sourceNote: 'Documented in About Me (_pages/about.md) & 2024 Resume',
-    description: 'Cloud infrastructure, scientific Python libraries, deep learning frameworks, and business intelligence tools.',
-    skills: ['AWS', 'GCP', 'Docker', 'Kubernetes', 'NumPy & Pandas', 'Matplotlib', 'TensorFlow & Keras', 'PowerBI & Tableau'],
+    id: 'verified-simulation-systems',
+    category: 'Engineering Simulation & Web Foundations (Verified)',
+    provenanceStatus: 'Verified — Dec 2024 CV (cvsreal.pdf)',
+    sourceNote: 'Verified in files/cvsreal.pdf (Core Skills — Proficient & Intermediate)',
+    description: 'Multiphysics simulation, chemical process modeling, and intermediate systems/web languages documented in the December 2024 CV PDF.',
+    skills: ['MATLAB', 'COMSOL Multiphysics', 'Aspen', 'C (Intermediate)', 'HTML / CSS / JavaScript (Intermediate)'],
   },
   {
-    id: 'scientific-systems',
-    category: 'Scientific Computing, Simulation & Compiled Languages',
-    sourceNote: 'Documented in 2024 Resume (Core Skills)',
-    description: 'Multiphysics engineering simulation, chemical process modeling, and compiled systems languages.',
-    skills: ['MATLAB', 'COMSOL Multiphysics', 'Aspen', 'C++', 'Java', 'C / HTML / CSS / JavaScript'],
+    id: 'verified-experimental-lab',
+    category: 'Battery Formation & Materials Characterization (Verified)',
+    provenanceStatus: 'Verified — Dec 2024 CV (cvsreal.pdf)',
+    sourceNote: 'Verified in files/cvsreal.pdf (Tesla, Rivian & UCSD Nanoengineering)',
+    description: 'Electrochemical cell formation protocols and physical/chemical materials characterization instrumentation documented in the December 2024 CV PDF.',
+    skills: [
+      'Battery Cyclers & Coin Cell Assembly',
+      '4680 & R1S/R2/R3 Formation Protocols',
+      'SEI Precharge Anomaly Diagnostics',
+      'XRD, FTIR & NMR Characterization',
+      'Glove Box, Vacuum Oven & ROTAP Shaker',
+      'Cell Harvesting & Recycling Teardown',
+    ],
   },
   {
-    id: 'experimental-lab',
-    category: 'Battery Formation & Materials Characterization',
-    sourceNote: 'Documented in 2024 Resume (Tesla, Rivian & UCSD Nanoengineering)',
-    description: 'Electrochemical cell formation protocols and physical/chemical materials characterization techniques.',
-    skills: ['Battery Cyclers & Coin Cell Assembly', '4680 & SEI Formation Protocols', 'UV-Vis-NIR Spectroscopy', 'XRD, FTIR & NMR', 'Glove Box & Vacuum Oven', 'ROTAP Sieving & Cell Teardown'],
+    id: 'unverified-legacy-web-stack',
+    category: 'Additional Data & Cloud Tools (Unverified — Legacy Website Only)',
+    provenanceStatus: 'Unverified — Legacy Website Only (Pending Confirmation)',
+    sourceNote: 'Listed only in legacy _pages/about.md & _pages/letters.md; not in files/cvsreal.pdf',
+    description: 'Additional distributed data, container, and BI tools listed on the legacy Jekyll website that do not appear in the December 2024 CV PDF. Labeled unverified until confirmed.',
+    skills: [
+      'PySpark (Unverified)',
+      'Flask / FastAPI (Unverified)',
+      'PostgreSQL (Unverified)',
+      'Kafka (Unverified)',
+      'Hadoop (Unverified)',
+      'Airflow (Unverified)',
+      'GCP (Unverified)',
+      'Docker & Kubernetes (Unverified)',
+      'PowerBI & Tableau (Unverified)',
+    ],
   },
 ];
 
 export const teachingCourses: TeachingCourse[] = [
   {
     code: 'CSE 8A',
-    title: 'Introduction to Programming in Python',
-    type: 'Undergraduate Course',
+    title: 'Introduction to Programming in Python (CSE 8A)',
+    type: 'Modified AcademicPages Template File — Unverified',
     institution: 'University of California, San Diego',
     department: 'Department of Computer Science and Engineering (CSE)',
     location: 'San Diego, CA',
+    provenanceStatus: 'Unverified — Modified AcademicPages Template File',
+    templateFilename: '_teaching/2014-spring-teaching-1.md',
     summary:
-      'Undergraduate computer science course introducing algorithmic formulation, Python programming, data structures, memory models, and program debugging.',
+      'PROVENANCE WARNING: This entry originates from _teaching/2014-spring-teaching-1.md, an inherited AcademicPages template file that retains its 2014 template filename, commented-out 2014-01-01 date, and bottom placeholder headings ("Heading 1 / Sample text"). It is not corroborated by files/cvsreal.pdf and must not be treated as verified UCSD teaching experience unless confirmed.',
+    sourceNote:
+      'Git diff (e354740..c74b02d) shows that standard UCSD CSE 8A catalog learning outcomes were pasted into the upstream template file 2014-spring-teaching-1.md while leaving "Heading 1 / Sample text" intact at the bottom.',
     learningOutcomes: [
       'Read a computational problem and formulate an algorithm to solve that problem.',
       'Describe the functionality of a program that you or someone else has written.',
@@ -616,53 +642,50 @@ export const teachingCourses: TeachingCourse[] = [
       'Debug and test Python programs that you or someone else has written.',
       'Describe ways in which computer science plays a role in society and in other scientific disciplines.',
     ],
-    toolsAndTopics: ['Python', 'Algorithmic Formulation', 'Memory Models', 'Lists, Tuples & Dictionaries', 'Debugging & Testing'],
+    toolsAndTopics: ['Modified Template File (2014-spring-teaching-1.md)', 'Absent from Dec 2024 CV PDF', 'Pending Confirmation'],
   },
   {
     code: 'CSE 20',
-    title: 'Undergraduate Computer Science Course (CSE 20)',
-    type: 'Undergraduate Course',
+    title: 'Discrete Mathematics (CSE 20)',
+    type: 'Modified AcademicPages Template File — Unverified',
     institution: 'University of California, San Diego',
     department: 'Department of Computer Science and Engineering (CSE)',
     location: 'San Diego, CA',
+    provenanceStatus: 'Unverified — Modified AcademicPages Template File',
+    templateFilename: '_teaching/2015-spring-teaching-2.md',
     summary:
-      'Undergraduate course in the Department of Computer Science and Engineering at UC San Diego.',
+      'PROVENANCE WARNING: This entry originates from _teaching/2015-spring-teaching-2.md, an inherited AcademicPages template file whose body still reads "This is a description of a teaching experience. You can use markdown like any other post." followed by the test string "Adding some edits from H2O PC". It is not corroborated by files/cvsreal.pdf and must not be treated as verified UCSD teaching experience.',
     sourceNote:
-      'Archival Note: The legacy repository record (_teaching/2015-spring-teaching-2.md) lists the course title (CSE 20), department, and San Diego location, but contains placeholder body text rather than a full syllabus.',
+      'Git diff (58e1ddb..cc87dc6) shows only the YAML title ("CSE 20"), venue ("Departement of Computer Science and Engineering"), and a 5-word test line ("Adding some edits from H2O PC") were changed from the upstream template.',
     learningOutcomes: [],
-    toolsAndTopics: ['UC San Diego CSE', 'Undergraduate Instruction'],
+    toolsAndTopics: ['Modified Template File (2015-spring-teaching-2.md)', 'Template Placeholder Body', 'Absent from Dec 2024 CV PDF'],
   },
 ];
 
 export const recommendationLetterPolicy = {
   title: 'Recommendation Letters',
-  lead: "I provide recommendation letters for individuals I have worked with directly as colleagues, students, or collaborators. If you have worked with me at Stripe, Tesla, in agricultural projects, or as a student in my classes, I am happy to support your next career step.",
+  lead: 'I provide recommendation letters for individuals I have worked with directly as colleagues, research collaborators, or mentees. A strong recommendation letter requires that I know your work firsthand and can speak credibly to your technical contributions.',
   philosophy:
-    'A strong recommendation letter requires that I know your work well and can speak credibly to your skills and accomplishments.',
+    'Note: The legacy webpage (_pages/letters.md) also referenced writing letters for former colleagues at Stripe, agricultural technology ventures, and students in classes. Items supported only by the legacy website remain labeled unverified pending confirmation.',
   eligibleGroups: [
     {
-      group: 'Former Colleagues',
-      detail: 'Colleagues from Stripe, Tesla, Rivian, ATOM Science, or agricultural projects.',
+      group: 'Former Engineering & Research Colleagues (Verified Roles)',
+      detail: 'Colleagues from Tesla, Rivian, ATOM Science, or UC Berkeley / UC San Diego research teams.',
     },
     {
-      group: 'Students',
-      detail: 'Students who have taken my classes or participated in my teaching programs at UC San Diego.',
+      group: 'Business & Operational Collaborators',
+      detail: 'Collaborators from Business Operations & Strategy at our family-owned enterprise.',
     },
     {
-      group: 'Collaborators',
-      detail: 'Collaborators on data engineering, agricultural technology, or research projects.',
-    },
-    {
-      group: 'Field Trial Team Members',
-      detail: 'Team members from agricultural demonstration plots and field trials.',
+      group: 'Legacy Website Scope (_pages/letters.md — Pending Confirmation)',
+      detail: 'Legacy _pages/letters.md additionally listed colleagues from Stripe, agricultural field trial teams, and students; retained with an unverified provenance note.',
     },
   ],
   credibleAreas: [
-    'Data engineering and pipeline development (Python, SQL, PySpark, Kafka, Airflow)',
-    'Cloud platforms and infrastructure (AWS, GCP, Docker, Kubernetes)',
-    'Agricultural technology and IoT systems',
-    'Data analytics and visualization',
-    'Technical leadership and mentorship',
+    'Data engineering, battery telemetry & analytics (Python, SQL, AWS, FAST, RAPID — Verified in cvsreal.pdf)',
+    'Battery cell formation & materials characterization (4680, R1S/R2/R3, SEI diagnostics, XRD, FTIR, NMR — Verified in cvsreal.pdf)',
+    'Machine learning & scientific simulation (TensorFlow, Keras, MATLAB, COMSOL, Aspen — Verified in cvsreal.pdf)',
+    'Additional distributed data & cloud stacks listed in legacy _pages/letters.md (PySpark, Kafka, Airflow, GCP, Docker, Kubernetes — Unverified / Website-Only)',
   ],
   requiredMaterials: [
     {
@@ -678,7 +701,7 @@ export const recommendationLetterPolicy = {
     {
       step: '03',
       title: 'Our Connection & Timeframe',
-      detail: 'How we worked together and the timeframe of our collaboration or course.',
+      detail: 'How we worked together and the timeframe of our collaboration.',
     },
     {
       step: '04',
