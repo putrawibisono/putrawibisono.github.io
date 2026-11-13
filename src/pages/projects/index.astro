@@ -12,24 +12,24 @@ const categories = [
 ---
 
 <BaseLayout
-  title="Verified Engineering Projects — Putra Wibisono"
-  description="Completed industry and university engineering projects verified by Putra Wibisono's December 2024 CV PDF (Tesla FAST & RAPID, Rivian R1S/R2/R3 formation recipes, COMSOL LPCVD reactor modeling, Java Gitlet, and MATLAB acoustic/image signal analysis)."
+  title="Projects & Research — Putra Wibisono"
+  description="Industry and academic engineering projects by Putra Wibisono (Tesla FAST & RAPID battery telemetry, Rivian R1S/R2/R3 formation recipes, COMSOL LPCVD reactor modeling, Java Gitlet, and MATLAB acoustic/image signal analysis)."
 >
   <article>
     <header style="margin-bottom: 2.25rem;">
-      <span class="rubric-mark">IV. Verified Technical Studies (files/cvsreal.pdf)</span>
+      <span class="rubric-mark">IV. Projects &amp; Research</span>
       <h1 class="monograph-title">
-        Completed <em>Engineering</em> Projects.
+        Engineering <em>Projects</em> &amp; Technical Systems.
       </h1>
       <p class="sans-note" style="max-width: 68ch; margin-top: 0.75rem;">
-        Every project featured on this page is independently corroborated by the December 2024 CV PDF (<code>files/cvsreal.pdf</code>). Template-modified placeholder files and exploratory agricultural concepts from the legacy website are excluded from this completed-project index and documented in the provenance note below.
+        Selected systems, simulations, and engineering projects from my industry work at Tesla and Rivian and my academic studies at UC Berkeley and UC San Diego.
       </p>
     </header>
 
     <!-- Filter Toolbar -->
     <section class="ledger-section" style="margin-top: 1.5rem;" aria-label="Project directory">
       <div class="filter-bar" role="toolbar" aria-label="Filter projects by domain">
-        <span class="mono-cite" style="margin-right: 0.4rem;">Filter by Domain:</span>
+        <span class="mono-cite" style="margin-right: 0.4rem;">Filter by Area:</span>
         {
           categories.map((cat, idx) => (
             <button
@@ -44,11 +44,11 @@ const categories = [
         }
       </div>
 
-      <!-- Verified Completed Engineering & Research Projects -->
+      <!-- Projects List -->
       <div id="completed-projects-group" style="margin-top: 1.75rem;">
         <div class="ledger-header" style="margin-bottom: 0.5rem;">
-          <h2 class="section-heading">Verified Completed Industry &amp; Academic Systems</h2>
-          <span class="mono-cite">5 Works Verified in files/cvsreal.pdf (2020 – 2024)</span>
+          <h2 class="section-heading">Featured Industry &amp; Academic Projects</h2>
+          <span class="mono-cite">5 Projects (2020 – 2024)</span>
         </div>
         {
           projectsList.map((project) => (
@@ -65,10 +65,10 @@ const categories = [
       <div class="ledger-header">
         <div>
           <h2 id="additional-studies-heading" class="section-heading">
-            Additional Documented Coursework &amp; Simulation Projects
+            Additional Coursework &amp; Simulation Projects
           </h2>
         </div>
-        <span class="mono-cite">Verified in files/cvsreal.pdf (Page 2)</span>
+        <span class="mono-cite">Chemical Engineering, MATLAB, C++ &amp; Java</span>
       </div>
 
       <table class="ledger-table">
@@ -76,7 +76,7 @@ const categories = [
           <tr>
             <th style="width: 46%;">Project Title</th>
             <th style="width: 24%;">Discipline / Language</th>
-            <th>Provenance &amp; Context</th>
+            <th>Context</th>
           </tr>
         </thead>
         <tbody>
@@ -93,19 +93,6 @@ const categories = [
           }
         </tbody>
       </table>
-    </section>
-
-    <!-- Content Provenance Exclusion Note -->
-    <section class="ledger-section" aria-labelledby="provenance-exclusion-heading">
-      <div class="provenance-box">
-        <span class="sidenote-label" id="provenance-exclusion-heading">
-          Content Provenance Note — Excluded Template &amp; Exploratory Items
-        </span>
-        <p class="sans-note" style="margin-top: 0.4rem;">
-          <strong>1. Modified Template Portfolio File (<code>_portfolio/portfolio-1.md</code>):</strong> The legacy file <code>_portfolio/portfolio-1.md</code> (titled <em>"Absorption spectroscopy"</em>) was edited directly inside an upstream AcademicPages demonstration file while retaining verbatim template placeholder body text (<em>"This is an item in your portfolio..."</em>) and was subsequently commented out of site navigation in commit <code>9046f7b</code>. Because it has no corroboration in <code>files/cvsreal.pdf</code>, it is excluded from verified projects.<br />
-          <strong>2. Exploratory Agricultural Concepts (<code>_pages/about.md</code>):</strong> High-level ideas mentioned in legacy <code>_pages/about.md</code> (field IoT tracking, historical satellite baseline analysis, organic fertilizer demonstration plots, and partner reporting) are not presented as active or completed engineering systems; see <a href="/about/" class="text-link">Biography &amp; Education</a> for their classification as unverified exploratory concepts.
-        </p>
-      </div>
     </section>
   </article>
 </BaseLayout>
@@ -169,12 +156,5 @@ const categories = [
     color: var(--rubric);
     border-bottom-color: var(--rubric);
     font-weight: 500;
-  }
-
-  .provenance-box {
-    background: var(--paper-tint);
-    border: 1px solid var(--rule);
-    border-left: 2px solid var(--rubric);
-    padding: 1.15rem 1.35rem;
   }
 </style>

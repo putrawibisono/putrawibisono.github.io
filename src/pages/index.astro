@@ -17,12 +17,11 @@ const featuredProjects = projectsList.filter((p) => p.featured);
   title={siteMetadata.title}
   description={siteMetadata.subheadline}
 >
-  <!-- 3-Second Identity Summary Banner -->
-  <section class="identity-banner" aria-label="Professional Identity Summary">
+  <!-- Identity Summary Banner -->
+  <section class="identity-banner" aria-label="Professional Summary">
     <div class="identity-banner-top">
       <div class="identity-name-line">
         <span class="identity-primary-role">{siteMetadata.roleHeadline}</span>
-        <span class="mono-cite">·</span>
         <span class="sans-note" style="color: var(--rubric); font-weight: 500;">
           {siteMetadata.currentRoleTag}
         </span>
@@ -43,10 +42,10 @@ const featuredProjects = projectsList.filter((p) => p.featured);
     </div>
   </section>
 
-  <!-- Section 1: Biographical Essay + Marginalia -->
+  <!-- Section 1: About Me + Marginalia -->
   <div class="reading-with-margin">
     <div class="main-reading-col">
-      <span class="rubric-mark">I. Biographical Overview</span>
+      <span class="rubric-mark">I. About Me</span>
       <h1 class="monograph-title">
         Data engineering, <em>materials science</em>, and business operations.
       </h1>
@@ -60,10 +59,10 @@ const featuredProjects = projectsList.filter((p) => p.featured);
 
       <div style="margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
         <a href="/experience/" class="folio-action folio-action-rubric">
-          Inspect Work Experience →
+          Work Experience →
         </a>
         <a href="/projects/" class="folio-action">
-          Verified Engineering Projects →
+          Engineering Projects →
         </a>
         <a href="/cv/" class="folio-action">
           Curriculum Vitae
@@ -71,32 +70,32 @@ const featuredProjects = projectsList.filter((p) => p.featured);
       </div>
     </div>
 
-    <!-- Right Margin Column: Provenance Ledger & Quick Notes -->
-    <aside class="margin-column" aria-label="Provenance notes and quick references">
+    <!-- Right Margin Column: Quick Notes -->
+    <aside class="margin-column" aria-label="Quick notes and contact">
       <div class="sidenote-block">
-        <span class="sidenote-label">Provenance &amp; Verification Standard</span>
+        <span class="sidenote-label">Technical Focus</span>
         <p>
-          This portfolio distinguishes records corroborated by independent documentation (<a href="/files/cvsreal.pdf" target="_blank" rel="noopener noreferrer" class="text-link">December 2024 CV PDF ↗</a>) from claims appearing only in legacy Jekyll website drafts, which remain labeled <strong>Unverified</strong> pending confirmation.
+          Building reliable data pipelines, analytical screening tools, and simulation models for battery manufacturing, materials research, and physical-world operations.
         </p>
       </div>
 
       <div class="sidenote-block">
         <span class="sidenote-label">Reference Letters</span>
         <p>
-          Former engineering colleagues and research collaborators may review the protocol for <a href="/letters/" class="text-link">recommendation letters →</a>
+          Former engineering colleagues, research collaborators, and mentees can review what to send when requesting a <a href="/letters/" class="text-link">recommendation letter →</a>
         </p>
       </div>
 
       <div class="sidenote-block">
         <span class="sidenote-label">Direct Contact</span>
         <p>
-          Reach out directly via <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a> or view <a href="/contact/" class="text-link">contact details →</a>
+          Reach out directly at <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a> or view <a href="/contact/" class="text-link">contact details →</a>
         </p>
       </div>
     </aside>
   </div>
 
-  <!-- Tinted Callout: Current Role & Exploratory Concepts -->
+  <!-- Callout: Current Role & Agricultural Interests -->
   <section class="initiatives-callout" aria-labelledby="agri-initiatives-heading">
     <span class="rubric-mark" style="margin-bottom: 0.2rem;">
       {siteMetadata.currentRoleTag}
@@ -132,16 +131,16 @@ const featuredProjects = projectsList.filter((p) => p.featured);
     </div>
   </section>
 
-  <!-- Section 2: Chronological Experience Summary -->
+  <!-- Section 2: Experience Summary -->
   <section class="ledger-section" aria-labelledby="home-career-heading">
     <div class="ledger-header">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">II. Career Record</span>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">II. Work Experience</span>
         <h2 id="home-career-heading" class="section-heading">
-          Professional &amp; Research Appointments
+          Industry &amp; Research Roles
         </h2>
       </div>
-      <a href="/experience/" class="text-link mono-cite">Full Experience Dossier →</a>
+      <a href="/experience/" class="text-link mono-cite">Full Work Experience →</a>
     </div>
 
     <table class="ledger-table">
@@ -149,8 +148,8 @@ const featuredProjects = projectsList.filter((p) => p.featured);
         <tr>
           <th style="width: 19%;">Period</th>
           <th style="width: 25%;">Organization</th>
-          <th style="width: 28%;">Role &amp; Provenance</th>
-          <th>Primary Scope</th>
+          <th style="width: 26%;">Role</th>
+          <th>Overview</th>
         </tr>
       </thead>
       <tbody>
@@ -166,7 +165,7 @@ const featuredProjects = projectsList.filter((p) => p.featured);
               </td>
               <td>
                 <div style="color: var(--ink); font-weight: 500;">{exp.role}</div>
-                <div class="mono-cite">{exp.statusType}</div>
+                <div class="mono-cite">{exp.roleCategory}</div>
               </td>
               <td style="color: var(--ink-secondary);">{exp.summary}</td>
             </tr>
@@ -176,16 +175,16 @@ const featuredProjects = projectsList.filter((p) => p.featured);
     </table>
   </section>
 
-  <!-- Section 3: Selected Verified Engineering & Research Projects -->
+  <!-- Section 3: Selected Engineering & Research Projects -->
   <section class="ledger-section" aria-labelledby="home-projects-heading">
     <div class="ledger-header">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">III. Verified Technical Works (files/cvsreal.pdf)</span>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">III. Selected Work</span>
         <h2 id="home-projects-heading" class="section-heading">
-          Selected Engineering &amp; Research Studies
+          Selected Engineering &amp; Research Projects
         </h2>
       </div>
-      <a href="/projects/" class="text-link mono-cite">All 5 Verified Projects →</a>
+      <a href="/projects/" class="text-link mono-cite">All 5 Projects →</a>
     </div>
 
     <div>
@@ -193,11 +192,11 @@ const featuredProjects = projectsList.filter((p) => p.featured);
     </div>
   </section>
 
-  <!-- Section 4: Technical Stack & Laboratory Instrumentation -->
+  <!-- Section 4: Technical Skills -->
   <section class="ledger-section" aria-labelledby="home-skills-heading">
     <div class="ledger-header">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">IV. Technical Capabilities</span>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">IV. Technical Skills</span>
         <h2 id="home-skills-heading" class="section-heading">
           Software Stack &amp; Laboratory Instrumentation
         </h2>
@@ -208,8 +207,8 @@ const featuredProjects = projectsList.filter((p) => p.featured);
     <table class="ledger-table">
       <thead>
         <tr>
-          <th style="width: 36%;">Domain &amp; Provenance</th>
-          <th>Documented Languages, Platforms &amp; Instruments</th>
+          <th style="width: 36%;">Area</th>
+          <th>Languages, Tools &amp; Instruments</th>
         </tr>
       </thead>
       <tbody>
@@ -218,7 +217,6 @@ const featuredProjects = projectsList.filter((p) => p.featured);
             <tr>
               <td>
                 <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
-                <div class="mono-cite">{group.provenanceStatus}</div>
               </td>
               <td style="color: var(--ink-secondary);">
                 {group.skills.join(' · ')}

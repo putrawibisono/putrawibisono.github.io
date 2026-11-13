@@ -7,36 +7,30 @@ import {
   projectsList,
   additionalEngineeringProjects,
   skillGroups,
-  teachingCourses,
 } from '../data/profile';
-
-const completedProjects = projectsList;
 ---
 
 <BaseLayout
   title="Curriculum Vitae — Putra Wibisono"
-  description="Complete academic and professional Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Ex-Tesla, Ex-Rivian, Business Operations & Strategy — Family-Owned Enterprise)."
+  description="Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Ex-Tesla, Ex-Rivian, Business Operations & Strategy — Family-Owned Enterprise)."
 >
   <article class="cv-folio">
-    <!-- Top Archival Action Bar (Hidden in Print) -->
+    <!-- Top Action Bar (Hidden in Print) -->
     <div class="cv-action-bar no-print">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">VI. Curriculum Vitae &amp; Provenance Record</span>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">VI. Curriculum Vitae</span>
         <p class="sans-note" style="font-size: 0.8rem;">
-          Distinguishes facts verified by the December 2024 CV PDF (<code>files/cvsreal.pdf</code>) from legacy website-only claims pending confirmation.
+          Web edition formatted for screen reading and direct browser printing.
         </p>
       </div>
       <div class="cv-action-buttons">
         <button type="button" id="print-cv-btn" class="folio-action folio-action-rubric">
-          Print / Save Current CV as PDF
+          Print / Save as PDF
         </button>
-        <a href="/files/cvsreal.pdf" target="_blank" rel="noopener noreferrer" class="folio-action">
-          Download Verified Dec 2024 CV (PDF) ↗
-        </a>
       </div>
     </div>
 
-    <!-- Classical Monograph CV Masthead -->
+    <!-- CV Masthead -->
     <header class="cv-masthead">
       <div>
         <h1 class="cv-name">{siteMetadata.name}</h1>
@@ -77,16 +71,16 @@ const completedProjects = projectsList;
       </div>
     </section>
 
-    <!-- II. Professional & Research Experience -->
+    <!-- II. Work & Research Experience -->
     <section class="cv-section" aria-labelledby="cv-exp">
-      <h2 id="cv-exp" class="cv-section-title">II. Professional Experience, Field Stewardship &amp; Research</h2>
+      <h2 id="cv-exp" class="cv-section-title">II. Work &amp; Research Experience</h2>
       <div class="cv-entries">
         {experienceList.map((exp) => (
           <div class="cv-row">
             <div class="cv-left">
               <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{exp.period}</div>
               <div class="mono-cite">{exp.location}</div>
-              <div class="mono-cite" style="margin-top: 0.15rem;">{exp.statusType}</div>
+              <div class="mono-cite" style="margin-top: 0.15rem;">{exp.roleCategory}</div>
             </div>
             <div class="cv-right">
               <div class="cv-entry-header">
@@ -111,11 +105,11 @@ const completedProjects = projectsList;
       </div>
     </section>
 
-    <!-- III. Completed Technical Studies & Engineering Projects -->
+    <!-- III. Engineering & Research Projects -->
     <section class="cv-section" aria-labelledby="cv-proj">
-      <h2 id="cv-proj" class="cv-section-title">III. Completed Engineering &amp; Research Studies</h2>
+      <h2 id="cv-proj" class="cv-section-title">III. Engineering &amp; Research Projects</h2>
       <div class="cv-entries">
-        {completedProjects.map((proj) => (
+        {projectsList.map((proj) => (
           <div class="cv-row">
             <div class="cv-left">
               <div class="mono-cite">{proj.period}</div>
@@ -132,7 +126,7 @@ const completedProjects = projectsList;
                 {proj.summary}
               </p>
               <div class="mono-cite" style="margin-top: 0.25rem;">
-                Methods: {proj.technologies.join(' · ')}
+                Tools: {proj.technologies.join(' · ')}
               </div>
             </div>
           </div>
@@ -141,7 +135,7 @@ const completedProjects = projectsList;
 
       <div style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px dotted var(--rule-dotted);">
         <span class="mono-cite" style="color: var(--rubric); display: block; margin-bottom: 0.35rem;">
-          Additional Documented Coursework &amp; Simulation Projects:
+          Additional Coursework &amp; Simulation Projects:
         </span>
         <p class="sans-note" style="font-size: 0.8rem;">
           {additionalEngineeringProjects.map((p) => `${p.name} (${p.domain})`).join(' · ')}
@@ -149,40 +143,15 @@ const completedProjects = projectsList;
       </div>
     </section>
 
-    <!-- IV. Archival Teaching Files Note -->
-    <section class="cv-section" aria-labelledby="cv-teaching">
-      <h2 id="cv-teaching" class="cv-section-title">IV. Archival Teaching Files (Unverified — Modified Template Files)</h2>
-      <div class="cv-entries">
-        {teachingCourses.map((course) => (
-          <div class="cv-row">
-            <div class="cv-left">
-              <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{course.code} (Unverified)</div>
-              <div class="mono-cite">{course.templateFilename}</div>
-            </div>
-            <div class="cv-right">
-              <div class="cv-entry-header">
-                <strong><a href="/teaching/" class="text-link">{course.title}</a></strong>
-                <span class="mono-cite">{course.provenanceStatus}</span>
-              </div>
-              <p class="sans-note" style="font-size: 0.82rem; margin-top: 0.15rem;">
-                {course.summary}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- V. Technical Concordance -->
+    <!-- IV. Technical Skills & Laboratory Instrumentation -->
     <section class="cv-section" aria-labelledby="cv-skills">
-      <h2 id="cv-skills" class="cv-section-title">V. Technical Stack &amp; Laboratory Instrumentation</h2>
+      <h2 id="cv-skills" class="cv-section-title">IV. Technical Skills &amp; Laboratory Instrumentation</h2>
       <table class="ledger-table">
         <tbody>
           {skillGroups.map((group) => (
             <tr>
               <td style="width: 36%;">
                 <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
-                <div class="mono-cite">{group.provenanceStatus}</div>
               </td>
               <td class="sans-note">
                 {group.skills.join(' · ')}
@@ -252,14 +221,16 @@ const completedProjects = projectsList;
   .cv-contact-ledger {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    line-height: 1.65;
-    color: var(--ink-secondary);
-    text-align: left;
+    color: var(--ink-muted);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
-  @media (min-width: 760px) {
+  @media (max-width: 720px) {
     .cv-contact-ledger {
-      text-align: right;
+      text-align: left;
     }
   }
 
@@ -269,31 +240,37 @@ const completedProjects = projectsList;
 
   .cv-section-title {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-style: italic;
-    font-size: 1.28rem;
-    color: var(--rubric);
-    padding-bottom: 0.4rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--ink);
+    padding-bottom: 0.45rem;
     border-bottom: 1px solid var(--rule-strong);
-    margin-bottom: 1.1rem;
+    margin-bottom: 1rem;
   }
 
   .cv-entries {
     display: flex;
     flex-direction: column;
-    gap: 1.45rem;
+    gap: 1.35rem;
   }
 
   .cv-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 0.35rem;
+    gap: 0.45rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule);
   }
 
-  @media (min-width: 720px) {
+  .cv-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  @media (min-width: 740px) {
     .cv-row {
-      grid-template-columns: 195px minmax(0, 1fr);
-      gap: 1.75rem;
+      grid-template-columns: 185px minmax(0, 1fr);
+      gap: 1.5rem;
     }
   }
 
@@ -303,23 +280,23 @@ const completedProjects = projectsList;
     justify-content: space-between;
     align-items: baseline;
     gap: 0.5rem;
-    font-family: var(--font-serif);
-    font-size: 1.08rem;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
     color: var(--ink);
   }
 
   .cv-org {
-    font-family: var(--font-sans);
-    font-size: 0.84rem;
-    font-weight: 600;
-    color: var(--ink-secondary);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--rubric);
   }
 
   .cv-degree {
-    font-family: var(--font-serif);
-    font-size: 0.98rem;
-    color: var(--ink);
-    margin-top: 0.1rem;
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    color: var(--ink-secondary);
+    margin-top: 0.15rem;
   }
 
   .cv-bullets {
@@ -327,21 +304,16 @@ const completedProjects = projectsList;
     margin-top: 0.45rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink-secondary);
   }
 
   .cv-bullets li {
     position: relative;
     padding-left: 1rem;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    line-height: 1.56;
-    color: var(--ink-secondary);
-  }
-
-  .cv-bullets li strong {
-    color: var(--ink);
-    font-weight: 600;
   }
 
   .cv-bullets li::before {
@@ -349,5 +321,10 @@ const completedProjects = projectsList;
     position: absolute;
     left: 0;
     color: var(--rubric);
+  }
+
+  .cv-bullets strong {
+    color: var(--ink);
+    font-weight: 600;
   }
 </style>

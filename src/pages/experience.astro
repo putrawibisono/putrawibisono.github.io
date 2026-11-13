@@ -5,25 +5,24 @@ import { experienceList, educationList } from '../data/profile';
 ---
 
 <BaseLayout
-  title="Work & Research Experience — Putra Wibisono"
-  description="Chronological record of Putra Wibisono's verified engineering and research roles at Tesla, ATOM Science, Rivian, and UC San Diego Nanoengineering, alongside Business Operations & Strategy at a family-owned enterprise."
+  title="Work Experience — Putra Wibisono"
+  description="Chronological record of Putra Wibisono's engineering and research work at Tesla, ATOM Science, Rivian, and UC San Diego Nanoengineering, alongside Business Operations & Strategy at a family-owned enterprise."
 >
   <article>
-    <!-- Distinct Experience Page Header + Quick Chronological Index Table -->
     <header style="margin-bottom: 2.25rem;">
-      <span class="rubric-mark">III. Professional &amp; Research Record</span>
+      <span class="rubric-mark">III. Work Experience</span>
       <h1 class="monograph-title">
-        Work Experience &amp; <em>Provenance Dossier</em>.
+        Engineering, <em>Research</em> &amp; Operations.
       </h1>
       <p class="sans-note" style="max-width: 68ch; margin-top: 0.75rem;">
-        Chronological record of engineering and research appointments verified by the December 2024 CV PDF (<code>files/cvsreal.pdf</code>)—spanning Tesla, ATOM Science, Rivian, and UC San Diego Nanoengineering—alongside current <strong>Business Operations &amp; Strategy — Family-Owned Enterprise</strong> and clearly flagged legacy website-only claims pending confirmation.
+        Chronological overview of my work in electric-vehicle battery manufacturing, data engineering, computational drug discovery, and materials research, alongside my current role in Business Operations &amp; Strategy at our family-owned enterprise.
       </p>
     </header>
 
-    <!-- At-a-Glance Scannable Jump Index -->
+    <!-- At-a-Glance Jump Index -->
     <section class="career-quick-index" aria-label="At-a-glance career jump index">
       <div class="quick-index-header">
-        <span class="sidenote-label">Quick Navigation Index (2020 – Present)</span>
+        <span class="sidenote-label">Roles (2020 – Present)</span>
         <a href="/cv/" class="text-link mono-cite">Open Printable CV →</a>
       </div>
       <div class="quick-index-grid">
@@ -39,23 +38,23 @@ import { experienceList, educationList } from '../data/profile';
       </div>
     </section>
 
-    <!-- Full Scannable Dossier -->
+    <!-- Full Experience Timeline -->
     <section style="margin-top: 2.75rem;" aria-labelledby="detailed-record-heading">
       <div class="ledger-header">
         <h2 id="detailed-record-heading" class="section-heading">
-          Detailed Responsibilities &amp; Source Provenance
+          Roles &amp; Key Contributions
         </h2>
-        <span class="mono-cite">Verified (files/cvsreal.pdf) vs. Unverified (Legacy Website Only)</span>
+        <span class="mono-cite">2020 – Present</span>
       </div>
 
       <ExperienceTimeline items={experienceList} compact={false} />
     </section>
 
-    <!-- Academic Summary Footer Table -->
+    <!-- Education Summary Footer Table -->
     <section class="ledger-section" aria-labelledby="exp-edu-heading">
       <div class="ledger-header">
-        <h2 id="exp-edu-heading" class="section-heading">Academic Degrees (Verified in files/cvsreal.pdf)</h2>
-        <a href="/about/" class="text-link mono-cite">Full Biography &amp; Coursework →</a>
+        <h2 id="exp-edu-heading" class="section-heading">Education</h2>
+        <a href="/about/" class="text-link mono-cite">More on My Background →</a>
       </div>
 
       <table class="ledger-table">

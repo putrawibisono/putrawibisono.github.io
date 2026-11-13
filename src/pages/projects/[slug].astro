@@ -73,10 +73,10 @@ const { project, prevProject, nextProject } = Astro.props;
           </ol>
         </section>
 
-        <!-- Section 3: Verified Outcomes -->
+        <!-- Section 3: Key Results -->
         <section class="monograph-subsection">
           <h2 class="section-heading">
-            Verified Outcomes (files/cvsreal.pdf)
+            Key Results
           </h2>
           <ul class="outcomes-list">
             {project.outcomes.map((outcome) => (
@@ -91,12 +91,12 @@ const { project, prevProject, nextProject } = Astro.props;
       <!-- Right Marginalia Metadata -->
       <aside class="margin-column" aria-label="Project metadata">
         <div class="sidenote-block">
-          <span class="sidenote-label">Status</span>
+          <span class="sidenote-label">Type</span>
           <p><strong style="color: var(--ink);">{project.statusLabel}</strong></p>
         </div>
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Discipline</span>
+          <span class="sidenote-label">Area</span>
           <p>{project.category}</p>
         </div>
 

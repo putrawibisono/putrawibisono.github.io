@@ -48,7 +48,7 @@ const { project, showDiagram = true } = Astro.props;
 
       <div class="entry-findings">
         <span class="sidenote-label">
-          Verified Outcomes (files/cvsreal.pdf)
+          Key Results
         </span>
         <ul>
           {project.outcomes.map((outcome) => <li>{outcome}</li>)}
@@ -57,7 +57,7 @@ const { project, showDiagram = true } = Astro.props;
 
       <div class="entry-footer-link">
         <a href={`/projects/${project.slug}/`} class="text-link">
-          Inspect Technical Details →
+          Read Project Details →
         </a>
       </div>
     </div>
