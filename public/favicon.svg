@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Putra Wibisono Monograph Mark">
-  <rect width="64" height="64" fill="#F6F3EC"/>
-  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#181614" stroke-width="1.5"/>
-  <line x1="4" y1="14" x2="60" y2="14" stroke="#9E331E" stroke-width="1"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="25" font-weight="400" fill="#181614">PW</text>
+  <rect width="64" height="64" fill="#F4F7F6"/>
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#151B1F" stroke-width="1.5"/>
+  <line x1="4" y1="14" x2="60" y2="14" stroke="#19585C" stroke-width="1.5"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="25" font-weight="400" fill="#151B1F">PW</text>
 </svg>

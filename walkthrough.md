@@ -2,91 +2,60 @@
 
 ## 1. Summary of Changes
 
-1. **Natural, First-Person Engineering Copy Across All Public Pages:**
-   - Replaced overly formal or bureaucratic headings and labels with natural, direct professional English:
-     - `"Biographical Overview"` → **`"About Me"`** (`/`)
-     - `"Professional Narrative"` → **`"My Background"`** (`/about/`)
-     - `"Verified Stack"` → **`"Technical Skills"`** (`/about/` and `/`)
-     - `"Verified Laboratory Background"` → **`"Laboratory Experience"`** (`/about/`)
-     - `"My verified engineering record"` → **`"My engineering experience"`** (`/` and `/about/`)
-   - Removed all public-facing source-verification badges and audit terminology (`"Verified — Dec 2024 CV"`, `"(CVSREAL.PDF)"`, `"Unverified — Legacy Website Only"`, `"Provenance & Verification Standard"`, `"Pending Confirmation"`) from every page template and data file.
-2. **Removed All Public References & Downloads for the Outdated December 2024 CV PDF:**
-   - Removed `public/files/cvsreal.pdf` from the deployable `public/` directory so that zero `.pdf` files are emitted into `dist/` during production builds.
-   - Preserved the archival copy outside the deployable directory at `legacy-v1/files/cvsreal.pdf`.
-   - Removed all download buttons, links, and text descriptions referencing the December 2024 CV PDF while retaining the web-based, print-formatted Curriculum Vitae page at `/cv/` (and `/resume/`).
-3. **Refined Role Description & Content Scope:**
-   - Standardized the current role description across all pages, metadata, and OpenGraph cards to **`Business Operations & Strategy — Family-Owned Enterprise`** and contact email to **`putrawibisonos@gmail.com`**.
-   - Excluded AcademicPages template demonstration files (`_teaching/2014-spring-teaching-1.md`, `_teaching/2015-spring-teaching-2.md`, `_portfolio/portfolio-1.md`, `public/images/portfolio1.jpg`) from the public build while keeping their archival copies intact in `legacy-v1/`.
+1. **Four-Palette Editorial Color System Redesign (Eliminating Anthropic/Claude Aesthetic):**
+   - Replaced the previous warm-cream (`#F6F3EC`), charcoal (`#181614`), and terracotta-orange (`#9E331E`) scheme with a complete, multi-palette semantic token system in `src/styles/global.css` supporting both **Light Mode** and **Dark Mode** across four distinct color architectures:
+     - **Option A — Midnight Ink & Glacier Blue (`data-palette="a"`):** `#F5F7FA` / `#111827` surfaces, `#1E293B` dark secondary surface, `#1E4DB7` (Light) & `#A8C7F0` (Dark) accents, `#E8EDF5` dark typography.
+     - **Option B — Forest Ink & Sage (`data-palette="b"`):** `#F4F6F0` / `#111B17` surfaces, `#22362B` dark secondary surface, `#1F573A` (Light) & `#A9CFB2` (Dark) accents, `#DCE8DD` dark typography.
+     - **Option C — Deep Plum & Lavender (`data-palette="c"`):** `#F7F5FA` / `#1B1827` surfaces, `#302941` dark secondary surface, `#53358E` (Light) & `#C5B3F4` (Dark) accents, `#E6DEFA` dark typography.
+     - **Option D — Graphite & Mineral Teal (`data-palette="d"` — Default & Recommended):** `#F4F7F6` / `#151B1F` surfaces, `#26383E` dark secondary surface, `#19585C` (Light) & `#92C8C7` (Dark) accents, `#D7EBE9` dark typography.
+   - Updated `public/favicon.svg` and `public/og-card.svg` to eliminate all remnants of `#F6F3EC` and `#9E331E`.
+2. **Interactive Color Preview Route (`/design-preview/`):**
+   - Created `src/pages/design-preview.astro` allowing instant live switching among **Options A, B, C, and D** and between **Light Mode** and **Dark Mode**, with live semantic token swatches, a WCAG 2.1 contrast table, and live specimens of typography, Roman-numeral navigation, links/buttons, `ProjectCard` + `SystemDiagram` SVG schematics, `ExperienceTimeline` entries, marginal notes, and borders/dividers.
+   - Configured `astro.config.mjs` so `/design-preview/` is active in development (`http://localhost:4321/design-preview/`), excluded from `sitemap-index.xml`, and automatically removed from `dist/` during production builds unless `INCLUDE_DESIGN_PREVIEW=true` is set.
+3. **Natural First-Person Engineering Copy & Provenance Cleanup (Preserved):**
+   - Retained all natural-language headings (`I. About Me`, `My Background`, `Technical Skills`, `Laboratory Experience`, `My engineering experience`), zero public source-verification badges, zero `.pdf` files in `dist/`, and standardized role/contact metadata (`Business Operations & Strategy — Family-Owned Enterprise`, `putrawibisonos@gmail.com`).
 
 ---
 
 ## 2. Design Decisions
 
-* **The Personal Monograph & Field Dossier Aesthetic:** Retained the classical editorial layout featuring a persistent left running spine (`270px` on desktop) and a main reading folio with asymmetric right-hand marginalia (`1fr + 240px`), set on warm uncoated cotton paper (`#F6F3EC`) and charcoal vellum (`#141311`) in dark mode with terracotta rubrication (`#9E331E` / `#D96B4E`).
-* **Typography:** Paired `Newsreader` (optical-size editorial serif for headlines, lead paragraphs, and drop caps), `Instrument Sans` (body tables and UI labels), and `IBM Plex Mono` (dates, indices, and technical metadata).
-* **Micro-Typographic Polish:** Adjusted the left spine role line and mobile identity banner so role labels wrap cleanly without orphan punctuation on narrow (`390px`) viewports.
+* **Why Option D (Graphite & Mineral Teal) Is Set as the Default Recommendation:** Graphite & Mineral Teal (`#151B1F` / `#F4F7F6` / `#19585C` / `#92C8C7`) immediately removes any visual similarity to Claude/Anthropic while evoking precision laboratory instrumentation, electrochemical cells, and technical field notebooks—bridging Tesla data engineering, Rivian battery formation, UC Berkeley/UCSD materials science, and agricultural business operations.
+* **Independent Light & Dark Mode Token Engineering:** Because pastel accents (`#A8C7F0`, `#A9CFB2`, `#C5B3F4`, `#92C8C7`) have high luminance (`L ≈ 0.52–0.58`), they serve directly as primary `--rubric` accents in Dark Mode (`9.22:1`–`10.27:1` contrast) and as `--accent-pastel` in Light Mode alongside deep companion shades (`#1E4DB7`, `#1F573A`, `#53358E`, `#19585C`) that achieve `6.99:1`–`8.55:1` contrast on Light-mode paper.
 
 ---
 
 ## 3. Files Modified
 
-* `src/data/profile.ts` — Rewrote biographical paragraphs, role categories, project summaries, and skill groups in natural first-person engineering prose; removed all verification/provenance labels and outdated CV references.
-* `src/layouts/BaseLayout.astro` — Updated navigation directory (`I. Overview` through `VII. Contact`), JSON-LD structured data, and left spine role formatting.
-* `src/components/ExperienceTimeline.astro` — Replaced verification badges with natural role categories (`Current Role`, `Data Engineering`, `Data Science`, `Process Development`, `Academic Research`).
-* `src/components/ProjectCard.astro` — Replaced `"Verified Outcomes (files/cvsreal.pdf)"` with `"Key Results"` and `"Read Project Details →"`.
-* `src/pages/index.astro` — Updated section headings (`I. About Me`, `II. Work Experience`, `III. Selected Work`, `IV. Technical Skills`), marginalia notes, and mobile banner wrapping.
-* `src/pages/about.astro` — Updated headings (`Education`, `My Background`, `Technical Skills`, `Laboratory Experience`) and role summary box.
-* `src/pages/experience.astro` — Updated page heading (`Engineering, Research & Operations`) and section headings (`Roles & Key Contributions`, `Education`).
-* `src/pages/projects/index.astro` & `src/pages/projects/[slug].astro` — Streamlined project index and detail pages around the 5 completed industry and academic engineering works.
-* `src/pages/cv.astro` — Removed the outdated 2024 PDF download button and verification labels; retained the print-ready web CV (`Print / Save as PDF`).
-* `src/pages/letters.astro` & `src/pages/contact.astro` — Simplified headings and copy into natural, direct language.
-* `src/pages/teaching.astro`, `public/files/cvsreal.pdf`, `public/images/portfolio1.jpg` — Removed from the deployable build (`public/` and `src/pages/`) while preserving archival copies in `legacy-v1/`.
+* `src/styles/global.css` — Replaced terracotta/cream tokens with 4 complete Light & Dark palette token sets (`data-palette="a|b|c|d"`) and added `/design-preview/` styles.
+* `src/layouts/BaseLayout.astro` — Added zero-flash initialization and URL query parameter persistence (`?palette=a|b|c|d&theme=light|dark`) for both palette and surface mode.
+* `src/pages/design-preview.astro` — Created interactive color system preview route with live palette switcher, token swatches, contrast matrix, and live component specimens.
+* `astro.config.mjs` — Excluded `/design-preview` from sitemap and added build hook removing `dist/design-preview/` from production builds unless `INCLUDE_DESIGN_PREVIEW=true`.
+* `public/favicon.svg` & `public/og-card.svg` — Updated static SVG colors to Graphite & Mineral Teal.
+* `color_palette_review.md` — Created comprehensive standalone palette review report for ChatGPT evaluation.
 
 ---
 
 ## 4. Browser Screenshots & File Paths
 
-All screenshots were captured from a live headless Chromium browser (`1440px` desktop and `390x844` mobile) rendering the production `dist/` build:
+All screenshots were captured from headless Chrome (`1440px` desktop and `390x844` mobile) and are stored in `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\`:
 
-| Page & Viewport | Screenshot File Path |
+| Page / Palette & Viewport | Screenshot Filename |
 | :--- | :--- |
-| Homepage (`/`) — Desktop Light (`1440x1180`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_home_desktop.png` |
-| Homepage (`/`) — Desktop Full Page (`1440x3200`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_home_full.png` |
-| Homepage (`/`) — Desktop Dark Mode (`1440x1180`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_home_dark.png` |
-| Homepage (`/`) — Mobile (`390x844`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_home_mobile.png` |
-| Homepage (`/`) — Mobile Menu Expanded (`390x844`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_home_mobile_toc.png` |
-| About & Education (`/about/`) — Desktop (`1440x1200`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_about_desktop.png` |
-| Work Experience (`/experience/`) — Desktop (`1440x1350`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_experience_desktop.png` |
-| Work Experience (`/experience/`) — Mobile (`390x920`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_experience_mobile.png` |
-| Projects & Research (`/projects/`) — Desktop (`1440x1350`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_projects_desktop.png` |
-| Project Detail (`/projects/tesla-fast-rapid-battery-telemetry/`) — Desktop (`1440x1350`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_monograph_detail.png` |
-| Reference Letters (`/letters/`) — Desktop (`1440x1250`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_letters_desktop.png` |
-| Curriculum Vitae (`/cv/`) — Desktop (`1440x1350`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_cv_desktop.png` |
-| Contact (`/contact/`) — Desktop (`1440x1150`) | `C:\Users\Putra Wibisono\.gemini\antigravity\brain\700f7bde-29f9-46fb-98b5-4709223eeab7\screenshots\after_contact_desktop.png` |
+| Option A — Midnight Ink & Glacier Blue (Light, `1440x1180`) | `palette_a_light.png` |
+| Option A — Midnight Ink & Glacier Blue (Dark, `1440x1180`) | `palette_a_dark.png` |
+| Option B — Forest Ink & Sage (Light, `1440x1180`) | `palette_b_light.png` |
+| Option B — Forest Ink & Sage (Dark, `1440x1180`) | `palette_b_dark.png` |
+| Option C — Deep Plum & Lavender (Light, `1440x1180`) | `palette_c_light.png` |
+| Option C — Deep Plum & Lavender (Dark, `1440x1180`) | `palette_c_dark.png` |
+| Option D — Graphite & Mineral Teal (Light, `1440x1180`) | `palette_d_light.png` / `after_home_desktop.png` |
+| Option D — Graphite & Mineral Teal (Dark, `1440x1180`) | `palette_d_dark.png` / `after_home_dark.png` |
+| `/design-preview/` Laboratory Route (Light, `1440x1480`) | `design_preview_light.png` |
+| `/design-preview/` Laboratory Route (Dark, `1440x1480`) | `design_preview_dark.png` |
+| Full Site Routes (`about`, `experience`, `projects`, `letters`, `cv`, `contact`, mobile) | `after_home_full.png`, `after_home_mobile.png`, `after_home_mobile_toc.png`, `after_about_desktop.png`, `after_experience_desktop.png`, `after_experience_mobile.png`, `after_projects_desktop.png`, `after_monograph_detail.png`, `after_letters_desktop.png`, `after_cv_desktop.png`, `after_contact_desktop.png` |
 
 ---
 
-## 5. Desktop, Mobile & Build Testing
+## 5. Accessibility & Build Verification
 
-* **Astro Static Build (`npm run build`):** Completed in `1.01s` with `0` errors and `14` static HTML routes generated (`dist/`).
-* **Automated HTML & Asset Verification:**
-  * Confirmed `0` `.pdf` files exist anywhere in `dist/`.
-  * Confirmed `0` occurrences of banned audit/verification labels (`Verified`, `Unverified`, `cvsreal`, `2024 CV`, `2024 Resume`, `Provenance`, `Pending Confirmation`, `Professional Narrative`, `Biographical Overview`, `Acting President`, `Cofounder`, `president@agrosindustry.com`) across all generated HTML and SVG files.
-  * Confirmed all required human headings (`I. About Me`, `My Background`, `Technical Skills`, `Laboratory Experience`, `My engineering experience`) are present in the built HTML.
-* **Desktop & Mobile Viewport Inspection:** Verified at `1440px` desktop (Light & Dark modes) and `390x844` mobile (default & expanded `Menu (I)` drawer).
-
----
-
-## 6. Outstanding Issues & Open Questions
-
-1. **Undated Legacy Website Items Currently Omitted:** The undated `Senior Data Engineer` entry at `Stripe` (from unfinished legacy `_pages/cv.md`), the legacy `_pages/about.md` tool names (`PySpark, FastAPI, PostgreSQL, Kafka, Hadoop, Airflow, GCP, Docker, Kubernetes, PowerBI, Tableau`), and the modified AcademicPages teaching files (`CSE 8A` / `CSE 20`) are currently omitted from public pages so the site contains neither unverified claims nor bureaucratic `"Unverified"` warning badges. Any confirmed items with dates can be added back cleanly.
-2. **Family Enterprise Legal Name:** Currently displayed generically as `Family-Owned Enterprise` (`Business Operations & Strategy — Family-Owned Enterprise`).
-
----
-
-## 7. Git Branch & Commit Information
-
-* **Repository Path:** `C:\Users\Putra Wibisono\Documents\putrawibisono\putrawibisono.github.io`
-* **Active Development Branch:** `redesign/v2`
-* **Latest Commit on `redesign/v2`:** `166852b` (`content(copy): refine website language, remove verification labels and old CV PDF, add ChatGPT review report`)
-* **Production Branch (`master`):** Untouched at `896826b` (nothing has been pushed or deployed to GitHub).
+* **88-Pair WCAG 2.1 Contrast Verification (`verify_palettes.mjs`):** All 88 text and interactive token pairs across Options A, B, C, and D (Light & Dark modes) pass **WCAG AA (`>= 4.5:1`)**, with primary and secondary typography exceeding **WCAG AAA (`9.5:1` to `16.5:1`)**.
+* **Production Build (`npm run build`):** Completed in `1.07s` with `0` errors; verified `dist/design-preview` is automatically excluded from the production `dist/` directory (`Test-Path dist\design-preview` = `False`).

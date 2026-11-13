@@ -1,0 +1,565 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import { projectsList, experienceList } from '../data/profile';
+
+const sampleProject = projectsList[0];
+const sampleExperiences = experienceList.slice(0, 2);
+
+const paletteSpecs = [
+  {
+    id: 'a',
+    code: 'Option A',
+    name: 'Midnight Ink & Glacier Blue',
+    character: 'Architectural technical blueprint — crisp slate ink, cool cotton paper, cobalt/glacier blue accents.',
+    dots: ['#111827', '#1E293B', '#A8C7F0', '#1E4DB7', '#F5F7FA'],
+    light: {
+      paper: '#F5F7FA',
+      paperTint: '#E9EEF5',
+      paperDeep: '#DCE4F0',
+      ink: '#111827',
+      inkSecondary: '#2D3A4F',
+      inkMuted: '#4A5B75',
+      rubric: '#1E4DB7',
+      rubricHover: '#15388A',
+      accentPastel: '#A8C7F0',
+      rule: '#CBD5E1',
+      ruleDotted: '#94A3B8',
+      ruleStrong: '#111827',
+    },
+    dark: {
+      paper: '#111827',
+      paperTint: '#1E293B',
+      paperDeep: '#28354B',
+      ink: '#E8EDF5',
+      inkSecondary: '#C3D0E3',
+      inkMuted: '#93A6C2',
+      rubric: '#A8C7F0',
+      rubricHover: '#C5DCF8',
+      accentPastel: '#A8C7F0',
+      rule: '#2E3D54',
+      ruleDotted: '#425675',
+      ruleStrong: '#E8EDF5',
+    },
+    contrasts: [
+      { pair: 'Primary Text (--ink on --paper)', light: '16.53 : 1 (AAA)', dark: '15.09 : 1 (AAA)' },
+      { pair: 'Primary Text on Elevated Surface (--ink on --paper-tint)', light: '15.22 : 1 (AAA)', dark: '12.44 : 1 (AAA)' },
+      { pair: 'Secondary Text (--ink-secondary on --paper)', light: '10.69 : 1 (AAA)', dark: '11.36 : 1 (AAA)' },
+      { pair: 'Muted Metadata (--ink-muted on --paper)', light: '6.43 : 1 (AA)', dark: '7.16 : 1 (AAA)' },
+      { pair: 'Muted Metadata on Surface (--ink-muted on --paper-tint)', light: '5.92 : 1 (AA)', dark: '5.90 : 1 (AA)' },
+      { pair: 'Primary Accent / Rubric (--rubric on --paper)', light: '6.99 : 1 (AA)', dark: '10.22 : 1 (AAA)' },
+      { pair: 'Primary Accent on Surface (--rubric on --paper-tint)', light: '6.43 : 1 (AA)', dark: '8.42 : 1 (AAA)' },
+      { pair: 'Interactive Hover (--rubric-hover on --paper)', light: '9.96 : 1 (AAA)', dark: '12.64 : 1 (AAA)' },
+    ],
+  },
+  {
+    id: 'b',
+    code: 'Option B',
+    name: 'Forest Ink & Sage',
+    character: 'Botanical & field monograph — deep pine ink, herbal linen paper, and organic sage highlights.',
+    dots: ['#111B17', '#22362B', '#A9CFB2', '#1F573A', '#F4F6F0'],
+    light: {
+      paper: '#F4F6F0',
+      paperTint: '#E7ECE2',
+      paperDeep: '#DAE2D3',
+      ink: '#111B17',
+      inkSecondary: '#2A3D34',
+      inkMuted: '#475E52',
+      rubric: '#1F573A',
+      rubricHover: '#153F29',
+      accentPastel: '#A9CFB2',
+      rule: '#C8D3C2',
+      ruleDotted: '#93A58E',
+      ruleStrong: '#111B17',
+    },
+    dark: {
+      paper: '#111B17',
+      paperTint: '#22362B',
+      paperDeep: '#2C4537',
+      ink: '#DCE8DD',
+      inkSecondary: '#BBD0BE',
+      inkMuted: '#8FA994',
+      rubric: '#A9CFB2',
+      rubricHover: '#C4E2CB',
+      accentPastel: '#A9CFB2',
+      rule: '#2F493B',
+      ruleDotted: '#436653',
+      ruleStrong: '#DCE8DD',
+    },
+    contrasts: [
+      { pair: 'Primary Text (--ink on --paper)', light: '16.17 : 1 (AAA)', dark: '13.94 : 1 (AAA)' },
+      { pair: 'Primary Text on Elevated Surface (--ink on --paper-tint)', light: '14.66 : 1 (AAA)', dark: '10.20 : 1 (AAA)' },
+      { pair: 'Secondary Text (--ink-secondary on --paper)', light: '10.62 : 1 (AAA)', dark: '10.80 : 1 (AAA)' },
+      { pair: 'Muted Metadata (--ink-muted on --paper)', light: '6.45 : 1 (AA)', dark: '6.93 : 1 (AA)' },
+      { pair: 'Muted Metadata on Surface (--ink-muted on --paper-tint)', light: '5.85 : 1 (AA)', dark: '5.07 : 1 (AA)' },
+      { pair: 'Primary Accent / Rubric (--rubric on --paper)', light: '7.77 : 1 (AAA)', dark: '10.27 : 1 (AAA)' },
+      { pair: 'Primary Accent on Surface (--rubric on --paper-tint)', light: '7.05 : 1 (AAA)', dark: '7.52 : 1 (AAA)' },
+      { pair: 'Interactive Hover (--rubric-hover on --paper)', light: '10.87 : 1 (AAA)', dark: '12.65 : 1 (AAA)' },
+    ],
+  },
+  {
+    id: 'c',
+    code: 'Option C',
+    name: 'Deep Plum & Lavender',
+    character: 'Editorial & literary dossier — nocturnal aubergine ink, soft violet-tinted paper, and lavender accents.',
+    dots: ['#1B1827', '#302941', '#C5B3F4', '#53358E', '#F7F5FA'],
+    light: {
+      paper: '#F7F5FA',
+      paperTint: '#EDE8F5',
+      paperDeep: '#E0D8EE',
+      ink: '#1B1827',
+      inkSecondary: '#38314E',
+      inkMuted: '#584E75',
+      rubric: '#53358E',
+      rubricHover: '#3D256B',
+      accentPastel: '#C5B3F4',
+      rule: '#D3CAE3',
+      ruleDotted: '#A194B8',
+      ruleStrong: '#1B1827',
+    },
+    dark: {
+      paper: '#1B1827',
+      paperTint: '#302941',
+      paperDeep: '#3D3452',
+      ink: '#E6DEFA',
+      inkSecondary: '#C9BDE8',
+      inkMuted: '#A194C4',
+      rubric: '#C5B3F4',
+      rubricHover: '#DDD1FA',
+      accentPastel: '#C5B3F4',
+      rule: '#413857',
+      ruleDotted: '#5A4E78',
+      ruleStrong: '#E6DEFA',
+    },
+    contrasts: [
+      { pair: 'Primary Text (--ink on --paper)', light: '16.08 : 1 (AAA)', dark: '13.42 : 1 (AAA)' },
+      { pair: 'Primary Text on Elevated Surface (--ink on --paper-tint)', light: '14.47 : 1 (AAA)', dark: '10.66 : 1 (AAA)' },
+      { pair: 'Secondary Text (--ink-secondary on --paper)', light: '11.29 : 1 (AAA)', dark: '9.89 : 1 (AAA)' },
+      { pair: 'Muted Metadata (--ink-muted on --paper)', light: '7.02 : 1 (AAA)', dark: '6.26 : 1 (AA)' },
+      { pair: 'Muted Metadata on Surface (--ink-muted on --paper-tint)', light: '6.32 : 1 (AA)', dark: '4.97 : 1 (AA)' },
+      { pair: 'Primary Accent / Rubric (--rubric on --paper)', light: '8.55 : 1 (AAA)', dark: '9.22 : 1 (AAA)' },
+      { pair: 'Primary Accent on Surface (--rubric on --paper-tint)', light: '7.70 : 1 (AAA)', dark: '7.33 : 1 (AAA)' },
+      { pair: 'Interactive Hover (--rubric-hover on --paper)', light: '11.58 : 1 (AAA)', dark: '12.08 : 1 (AAA)' },
+    ],
+  },
+  {
+    id: 'd',
+    code: 'Option D (Recommended)',
+    name: 'Graphite & Mineral Teal',
+    character: 'Laboratory instrument & engineering monograph — dense graphite ink, mineral paper, and verdigris/teal accents.',
+    dots: ['#151B1F', '#26383E', '#92C8C7', '#19585C', '#F4F7F6'],
+    light: {
+      paper: '#F4F7F6',
+      paperTint: '#E5EDEB',
+      paperDeep: '#D5E2DF',
+      ink: '#151B1F',
+      inkSecondary: '#2C3D42',
+      inkMuted: '#475D63',
+      rubric: '#19585C',
+      rubricHover: '#103E42',
+      accentPastel: '#92C8C7',
+      rule: '#C4D4D1',
+      ruleDotted: '#8DA5A1',
+      ruleStrong: '#151B1F',
+    },
+    dark: {
+      paper: '#151B1F',
+      paperTint: '#26383E',
+      paperDeep: '#31474F',
+      ink: '#D7EBE9',
+      inkSecondary: '#B4D2CF',
+      inkMuted: '#88AEA9',
+      rubric: '#92C8C7',
+      rubricHover: '#B4DDDD',
+      accentPastel: '#92C8C7',
+      rule: '#344C54',
+      ruleDotted: '#4A6A75',
+      ruleStrong: '#D7EBE9',
+    },
+    contrasts: [
+      { pair: 'Primary Text (--ink on --paper)', light: '16.12 : 1 (AAA)', dark: '14.03 : 1 (AAA)' },
+      { pair: 'Primary Text on Elevated Surface (--ink on --paper-tint)', light: '14.60 : 1 (AAA)', dark: '9.87 : 1 (AAA)' },
+      { pair: 'Secondary Text (--ink-secondary on --paper)', light: '10.51 : 1 (AAA)', dark: '10.81 : 1 (AAA)' },
+      { pair: 'Muted Metadata (--ink-muted on --paper)', light: '6.46 : 1 (AA)', dark: '7.18 : 1 (AAA)' },
+      { pair: 'Muted Metadata on Surface (--ink-muted on --paper-tint)', light: '5.85 : 1 (AA)', dark: '5.05 : 1 (AA)' },
+      { pair: 'Primary Accent / Rubric (--rubric on --paper)', light: '7.52 : 1 (AAA)', dark: '9.36 : 1 (AAA)' },
+      { pair: 'Primary Accent on Surface (--rubric on --paper-tint)', light: '6.81 : 1 (AA)', dark: '6.58 : 1 (AA)' },
+      { pair: 'Interactive Hover (--rubric-hover on --paper)', light: '10.89 : 1 (AAA)', dark: '11.86 : 1 (AAA)' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Color System Preview — Putra Wibisono"
+  description="Interactive color system laboratory comparing four editorial palettes across Light and Dark modes."
+  canonicalPath="/design-preview/"
+  noindex={true}
+>
+  <!-- Interactive Sticky Palette & Mode Switcher -->
+  <section class="palette-control-dock" aria-label="Interactive Color Palette Switcher">
+    <div class="palette-dock-header">
+      <div>
+        <span class="palette-dock-title">Color System Preview Laboratory</span>
+        <span class="palette-dock-active" id="active-palette-indicator" style="margin-left: 0.75rem;">
+          Active: Option D — Graphite &amp; Mineral Teal (Light Mode)
+        </span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <button type="button" class="folio-action" data-mode-set="light" id="btn-mode-light">
+          Light Paper Surface
+        </button>
+        <button type="button" class="folio-action" data-mode-set="dark" id="btn-mode-dark">
+          Dark Ink Surface
+        </button>
+        <a href="/" class="folio-action folio-action-rubric" id="preview-home-link">
+          Inspect Homepage in Active Palette &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="palette-buttons-grid" role="group" aria-label="Choose Color Palette">
+      {
+        paletteSpecs.map((p) => (
+          <button
+            type="button"
+            class="palette-option-btn"
+            data-palette-select={p.id}
+            aria-pressed={p.id === 'd' ? 'true' : 'false'}
+          >
+            <span class="palette-option-code">{p.code}</span>
+            <span class="palette-option-name">{p.name}</span>
+            <span class="palette-mini-dots" aria-hidden="true">
+              {p.dots.map((hex) => (
+                <span class="palette-dot" style={`background-color: ${hex};`} />
+              ))}
+            </span>
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Page Header -->
+  <div class="reading-with-margin">
+    <div class="main-reading-col">
+      <span class="rubric-mark">Editorial Color Exploration &middot; Non-Indexed Review Route</span>
+      <h1 class="monograph-title">
+        Four color architectures for a <em>technical monograph</em>.
+      </h1>
+      <div class="essay-prose" style="margin-top: 1.5rem;">
+        <p class="essay-lead dropcap">
+          Each palette below replaces the previous warm-cream and terracotta scheme with an independently engineered
+          Light and Dark semantic token system. Select any option above to test live typography, navigation, links,
+          buttons, SVG technical diagrams, experience entries, marginal notes, and dividers across the entire site.
+        </p>
+      </div>
+    </div>
+    <aside class="margin-column" aria-label="Preview persistence notes">
+      <div class="sidenote-block">
+        <span class="sidenote-label">URL &amp; Storage Persistence</span>
+        <p>
+          Your selected palette and mode persist in <code>localStorage</code> and via URL query parameters (e.g.,
+          <code>/?palette=a&amp;theme=dark</code>).
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Section 1: Active Palette Token Swatches & Contrast Table -->
+  <section class="ledger-section" id="token-inspector">
+    <div class="ledger-header">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">I. Color Tokens</span>
+        <h2 class="section-heading">Semantic Token Architecture &amp; WCAG Contrast</h2>
+      </div>
+      <span class="mono-cite">All pairs verified &ge; 4.5:1 (WCAG AA/AAA)</span>
+    </div>
+
+    {
+      paletteSpecs.map((p) => (
+        <div
+          class="palette-detail-panel"
+          data-palette-panel={p.id}
+          style={p.id === 'd' ? '' : 'display: none;'}
+        >
+          <p class="sans-note" style="margin-bottom: 1rem;">
+            <strong>{p.code} — {p.name}:</strong> {p.character}
+          </p>
+
+          <div class="swatch-grid">
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--paper); color: var(--ink);">
+                <span>Surface</span>
+                <span>--paper</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--paper</span>
+                <span class="swatch-role">Primary reading background</span>
+                <span class="swatch-hex">Light {p.light.paper} · Dark {p.dark.paper}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--paper-tint); color: var(--ink);">
+                <span>Elevated</span>
+                <span>--paper-tint</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--paper-tint</span>
+                <span class="swatch-role">Secondary surface &amp; schematics</span>
+                <span class="swatch-hex">Light {p.light.paperTint} · Dark {p.dark.paperTint}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--ink); color: var(--paper);">
+                <span>Primary Ink</span>
+                <span>--ink</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--ink</span>
+                <span class="swatch-role">Headings &amp; body typography</span>
+                <span class="swatch-hex">Light {p.light.ink} · Dark {p.dark.ink}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--ink-secondary); color: var(--paper);">
+                <span>Secondary</span>
+                <span>--ink-secondary</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--ink-secondary</span>
+                <span class="swatch-role">Supporting prose &amp; bullets</span>
+                <span class="swatch-hex">Light {p.light.inkSecondary} · Dark {p.dark.inkSecondary}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--ink-muted); color: var(--paper);">
+                <span>Muted</span>
+                <span>--ink-muted</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--ink-muted</span>
+                <span class="swatch-role">Citations, dates &amp; marginalia</span>
+                <span class="swatch-hex">Light {p.light.inkMuted} · Dark {p.dark.inkMuted}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--rubric); color: var(--paper);">
+                <span>Rubric</span>
+                <span>--rubric</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--rubric</span>
+                <span class="swatch-role">Links, rubrics &amp; active nodes</span>
+                <span class="swatch-hex">Light {p.light.rubric} · Dark {p.dark.rubric}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--accent-pastel); color: #111827;">
+                <span>Pastel</span>
+                <span>--accent-pastel</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--accent-pastel</span>
+                <span class="swatch-role">Starting pastel accent tone</span>
+                <span class="swatch-hex">{p.dark.accentPastel}</span>
+              </div>
+            </div>
+
+            <div class="swatch-card">
+              <div class="swatch-chip" style="background: var(--rule); color: var(--ink);">
+                <span>Rule</span>
+                <span>--rule</span>
+              </div>
+              <div class="swatch-meta">
+                <span class="swatch-token">--rule / --rule-dotted</span>
+                <span class="swatch-role">Hairline borders &amp; leaders</span>
+                <span class="swatch-hex">Light {p.light.rule} · Dark {p.dark.rule}</span>
+              </div>
+            </div>
+          </div>
+
+          <table class="contrast-matrix-table" aria-label={`WCAG Contrast Ratios for ${p.name}`}>
+            <thead>
+              <tr>
+                <th>Semantic Token Pair</th>
+                <th>Light Mode Ratio</th>
+                <th>Dark Mode Ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              {p.contrasts.map((c) => (
+                <tr>
+                  <td>{c.pair}</td>
+                  <td style="font-family: var(--font-mono); color: var(--rubric);">{c.light}</td>
+                  <td style="font-family: var(--font-mono); color: var(--rubric);">{c.dark}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Section 2: Interactive Controls, Links, Badges & Dividers -->
+  <section class="ledger-section" id="interactive-specimens">
+    <div class="ledger-header">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">II. UI Elements</span>
+        <h2 class="section-heading">Links, Buttons, Status Badges &amp; Dividers</h2>
+      </div>
+      <span class="mono-cite">Interactive States &amp; Focus Indicators</span>
+    </div>
+
+    <div class="reading-with-margin">
+      <div class="main-reading-col essay-prose">
+        <p>
+          Body copy uses <a href="#interactive-specimens" class="text-link">editorial underlined links</a> that shift to
+          <code>--rubric-hover</code> with a 2px underline on hover. Keyboard navigation triggers a high-contrast 2px
+          <code>--focus-ring</code> outline with a 3px offset.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.35rem;">
+          <button type="button" class="folio-action folio-action-rubric">
+            Primary Rubric Action &rarr;
+          </button>
+          <button type="button" class="folio-action">
+            Secondary Framed Action
+          </button>
+          <span class="status-tag status-tag-rubric">Production System</span>
+          <span class="status-tag">Archival Record</span>
+        </div>
+
+        <div style="margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem;">
+          <div style="border-top: 2px solid var(--rule-strong); padding-top: 0.35rem;">
+            <span class="mono-cite">2px Solid Structural Frame Rule (--rule-strong)</span>
+          </div>
+          <div style="border-top: 1px solid var(--rule); padding-top: 0.35rem;">
+            <span class="mono-cite">1px Solid Hairline Section Divider (--rule)</span>
+          </div>
+          <div style="border-top: 1px dotted var(--rule-dotted); padding-top: 0.35rem;">
+            <span class="mono-cite">1px Dotted Directory &amp; Stack Leader (--rule-dotted)</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="margin-column" aria-label="Marginal note specimen">
+        <div class="sidenote-block">
+          <span class="sidenote-label">Marginal Note Specimen</span>
+          <p>
+            Marginalia blocks use a <code>1px solid var(--rule)</code> left border on desktop and <code>--rubric</code>
+            monospace labels above <code>--ink-muted</code> commentary.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Section 3: Project Card & SVG Technical Schematic Specimen -->
+  <section class="ledger-section" id="project-specimen">
+    <div class="ledger-header">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">III. Technical Monograph</span>
+        <h2 class="section-heading">Project Card &amp; SVG Schematic Specimen</h2>
+      </div>
+      <span class="mono-cite">Live CSS Variable Binding Inside Inline SVG</span>
+    </div>
+    <ProjectCard project={sampleProject} index={0} />
+  </section>
+
+  <!-- Section 4: Experience Timeline Specimen -->
+  <section class="ledger-section" id="experience-specimen">
+    <div class="ledger-header">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">IV. Chronological Dossier</span>
+        <h2 class="section-heading">Experience Record Specimen</h2>
+      </div>
+      <span class="mono-cite">Chronological Dossier Entries</span>
+    </div>
+    <ExperienceTimeline items={sampleExperiences} />
+  </section>
+
+  <script is:inline>
+    (function () {
+      var names = {
+        a: 'Option A — Midnight Ink & Glacier Blue',
+        b: 'Option B — Forest Ink & Sage',
+        c: 'Option C — Deep Plum & Lavender',
+        d: 'Option D — Graphite & Mineral Teal',
+      };
+
+      function syncPreviewUI() {
+        var pal = document.documentElement.getAttribute('data-palette') || 'd';
+        var theme = document.documentElement.getAttribute('data-theme') || 'light';
+
+        var indicator = document.getElementById('active-palette-indicator');
+        if (indicator) {
+          indicator.textContent =
+            'Active: ' + (names[pal] || names.d) + ' (' + (theme === 'dark' ? 'Dark Mode' : 'Light Mode') + ')';
+        }
+
+        var buttons = document.querySelectorAll('[data-palette-select]');
+        buttons.forEach(function (btn) {
+          var id = btn.getAttribute('data-palette-select');
+          btn.setAttribute('aria-pressed', id === pal ? 'true' : 'false');
+        });
+
+        var panels = document.querySelectorAll('[data-palette-panel]');
+        panels.forEach(function (panel) {
+          var id = panel.getAttribute('data-palette-panel');
+          panel.style.display = id === pal ? '' : 'none';
+        });
+
+        var lightBtn = document.getElementById('btn-mode-light');
+        var darkBtn = document.getElementById('btn-mode-dark');
+        if (lightBtn && darkBtn) {
+          if (theme === 'light') {
+            lightBtn.classList.add('folio-action-rubric');
+            darkBtn.classList.remove('folio-action-rubric');
+          } else {
+            darkBtn.classList.add('folio-action-rubric');
+            lightBtn.classList.remove('folio-action-rubric');
+          }
+        }
+
+        var homeLink = document.getElementById('preview-home-link');
+        if (homeLink) {
+          homeLink.setAttribute('href', '/?palette=' + pal + '&theme=' + theme);
+        }
+      }
+
+      document.querySelectorAll('[data-palette-select]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var nextPal = btn.getAttribute('data-palette-select') || 'd';
+          document.documentElement.setAttribute('data-palette', nextPal);
+          try {
+            localStorage.setItem('pw-monograph-palette', nextPal);
+          } catch (e) {}
+          syncPreviewUI();
+        });
+      });
+
+      document.querySelectorAll('[data-mode-set]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var nextMode = btn.getAttribute('data-mode-set') || 'light';
+          document.documentElement.setAttribute('data-theme', nextMode);
+          try {
+            localStorage.setItem('pw-monograph-theme', nextMode);
+          } catch (e) {}
+          syncPreviewUI();
+        });
+      });
+
+      window.addEventListener('pw:color-change', syncPreviewUI);
+      syncPreviewUI();
+    })();
+  </script>
+</BaseLayout>

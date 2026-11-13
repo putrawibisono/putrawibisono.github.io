@@ -7,6 +7,7 @@ export interface Props {
   description?: string;
   canonicalPath?: string;
   ogType?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   description = siteMetadata.subheadline,
   canonicalPath = Astro.url.pathname,
   ogType = 'website',
+  noindex = false,
 } = Astro.props;
 
 const fullTitle = title === siteMetadata.title ? title : `${title}`;
@@ -55,13 +57,14 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-palette="d">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={siteMetadata.name} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -90,18 +93,42 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Theme Initialization (Default to Uncoated Cotton Paper Light) -->
+    <!-- Theme & Palette Initialization (Default to Option D — Graphite & Mineral Teal, Light Paper) -->
     <script is:inline>
       (function () {
+        var validThemes = { light: true, dark: true };
+        var validPalettes = { a: true, b: true, c: true, d: true };
         try {
-          var saved = localStorage.getItem('pw-monograph-theme');
-          if (saved === 'dark' || saved === 'light') {
-            document.documentElement.setAttribute('data-theme', saved);
-          } else {
-            document.documentElement.setAttribute('data-theme', 'light');
+          var params = new URLSearchParams(window.location.search);
+          var urlTheme = (params.get('theme') || '').toLowerCase();
+          var urlPalette = (params.get('palette') || '').toLowerCase();
+
+          var savedTheme = localStorage.getItem('pw-monograph-theme');
+          var savedPalette = localStorage.getItem('pw-monograph-palette');
+
+          var finalTheme = validThemes[urlTheme]
+            ? urlTheme
+            : validThemes[savedTheme]
+              ? savedTheme
+              : 'light';
+          var finalPalette = validPalettes[urlPalette]
+            ? urlPalette
+            : validPalettes[savedPalette]
+              ? savedPalette
+              : 'd';
+
+          document.documentElement.setAttribute('data-theme', finalTheme);
+          document.documentElement.setAttribute('data-palette', finalPalette);
+
+          if (validThemes[urlTheme]) {
+            localStorage.setItem('pw-monograph-theme', urlTheme);
+          }
+          if (validPalettes[urlPalette]) {
+            localStorage.setItem('pw-monograph-palette', urlPalette);
           }
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.setAttribute('data-palette', 'd');
         }
       })();
     </script>
@@ -251,6 +278,7 @@ const jsonLd = {
             try {
               localStorage.setItem('pw-monograph-theme', next);
             } catch (e) {}
+            window.dispatchEvent(new CustomEvent('pw:color-change'));
           });
         });
 

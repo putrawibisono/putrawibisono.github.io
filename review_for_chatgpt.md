@@ -35,9 +35,12 @@ The creative direction—**The Personal Monograph & Field Dossier**—draws insp
   - **Display & Editorial Prose:** `Newsreader` (optical-size serif with italics and drop caps).
   - **Scannable Tables, Bullet Lists & UI:** `Instrument Sans`.
   - **Dates, Indexing & Technical Metadata:** `IBM Plex Mono`.
-* **Color Palette:**
-  - **Light Mode (Default — Uncoated Cotton Paper):** `#F6F3EC` primary surface, `#EFECE2` tinted callout surface, `#181614` carbon ink, `#9E331E` terracotta rubric accent, `#2B4C3F` mineral slate secondary accent, and `#D4CEC0` hairline rules.
-  - **Dark Mode (Charcoal Vellum):** `#141311` background, `#1C1A17` elevated surface, `#EAE5DC` parchment text, `#D96B4E` warm ochre-terracotta accent, and `#2E2B26` hairline rules.
+* **Color Palette System (4 Complete Light & Dark Options — See `color_palette_review.md`):**
+  - Replaced the previous warm-cream (`#F6F3EC`) and terracotta (`#9E331E`) scheme with four complete, WCAG AA/AAA-verified Light and Dark semantic token systems switchable live via `/design-preview/` or `?palette=a|b|c|d&theme=light|dark`:
+    - **Option A — Midnight Ink & Glacier Blue (`data-palette="a"`):** Light `#F5F7FA` paper / `#111827` ink / `#1E4DB7` cobalt accent; Dark `#111827` surface / `#1E293B` elevated / `#E8EDF5` ink / `#A8C7F0` glacier blue accent.
+    - **Option B — Forest Ink & Sage (`data-palette="b"`):** Light `#F4F6F0` paper / `#111B17` ink / `#1F573A` pine accent; Dark `#111B17` surface / `#22362B` elevated / `#DCE8DD` ink / `#A9CFB2` sage accent.
+    - **Option C — Deep Plum & Lavender (`data-palette="c"`):** Light `#F7F5FA` paper / `#1B1827` ink / `#53358E` plum accent; Dark `#1B1827` surface / `#302941` elevated / `#E6DEFA` ink / `#C5B3F4` lavender accent.
+    - **Option D — Graphite & Mineral Teal (`data-palette="d"` — Default & Recommended):** Light `#F4F7F6` mineral paper / `#151B1F` graphite ink / `#19585C` mineral teal accent; Dark `#151B1F` surface / `#26383E` elevated / `#D7EBE9` ink / `#92C8C7` mineral teal accent.
 * **Key Interactions:**
   - Persistent Light/Dark surface toggle (`localStorage`).
   - Client-side domain filter buttons on `/projects/` (`All Entries`, `Data & Battery Systems`, `Scientific Computing & Materials`, `Software Engineering`).

@@ -1,43 +1,188 @@
 /* ==========================================================================
    Putra Wibisono — "The Personal Monograph & Field Dossier"
    Refined Editorial & Archival Typography System
+   Four-Palette Semantic Color Architecture (Light & Dark Modes)
    ========================================================================== */
 
+/* Default Palette (Option D — Graphite & Mineral Teal) & Option D Explicit */
 :root,
-[data-theme='light'] {
-  --paper: #f6f3ec;
-  --paper-tint: #eee9de;
-  --paper-deep: #e3ddd0;
+[data-theme='light'],
+[data-palette='d'][data-theme='light'] {
+  --paper: #f4f7f6;
+  --paper-tint: #e5edeb;
+  --paper-deep: #d5e2df;
 
-  --ink: #181614;
-  --ink-secondary: #3f3a34;
-  --ink-muted: #6b6359;
+  --ink: #151b1f;
+  --ink-secondary: #2c3d42;
+  --ink-muted: #475d63;
 
-  --rubric: #9e331e;
-  --rubric-soft: rgba(158, 51, 30, 0.08);
+  --rubric: #19585c;
+  --rubric-hover: #103e42;
+  --accent-pastel: #92c8c7;
+  --rubric-soft: rgba(25, 88, 92, 0.09);
 
-  --rule: #d4cec0;
-  --rule-dotted: #b8b0a0;
-  --rule-strong: #181614;
+  --rule: #c4d4d1;
+  --rule-dotted: #8da5a1;
+  --rule-strong: #151b1f;
+  --focus-ring: #19585c;
 
   color-scheme: light;
 }
 
-[data-theme='dark'] {
-  --paper: #151412;
-  --paper-tint: #1e1c19;
-  --paper-deep: #272420;
+[data-theme='dark'],
+[data-palette='d'][data-theme='dark'] {
+  --paper: #151b1f;
+  --paper-tint: #26383e;
+  --paper-deep: #31474f;
 
-  --ink: #ece6da;
-  --ink-secondary: #bfb7ab;
-  --ink-muted: #8c8478;
+  --ink: #d7ebe9;
+  --ink-secondary: #b4d2cf;
+  --ink-muted: #88aea9;
 
-  --rubric: #df6440;
-  --rubric-soft: rgba(223, 100, 64, 0.14);
+  --rubric: #92c8c7;
+  --rubric-hover: #b4dddd;
+  --accent-pastel: #92c8c7;
+  --rubric-soft: rgba(146, 200, 199, 0.14);
 
-  --rule: #2f2c27;
-  --rule-dotted: #46413a;
-  --rule-strong: #ece6da;
+  --rule: #344c54;
+  --rule-dotted: #4a6a75;
+  --rule-strong: #d7ebe9;
+  --focus-ring: #92c8c7;
+
+  color-scheme: dark;
+}
+
+/* Option A — Midnight Ink & Glacier Blue */
+[data-palette='a'][data-theme='light'] {
+  --paper: #f5f7fa;
+  --paper-tint: #e9eef5;
+  --paper-deep: #dce4f0;
+
+  --ink: #111827;
+  --ink-secondary: #2d3a4f;
+  --ink-muted: #4a5b75;
+
+  --rubric: #1e4db7;
+  --rubric-hover: #15388a;
+  --accent-pastel: #a8c7f0;
+  --rubric-soft: rgba(30, 77, 183, 0.09);
+
+  --rule: #cbd5e1;
+  --rule-dotted: #94a3b8;
+  --rule-strong: #111827;
+  --focus-ring: #1e4db7;
+
+  color-scheme: light;
+}
+
+[data-palette='a'][data-theme='dark'] {
+  --paper: #111827;
+  --paper-tint: #1e293b;
+  --paper-deep: #28354b;
+
+  --ink: #e8edf5;
+  --ink-secondary: #c3d0e3;
+  --ink-muted: #93a6c2;
+
+  --rubric: #a8c7f0;
+  --rubric-hover: #c5dcf8;
+  --accent-pastel: #a8c7f0;
+  --rubric-soft: rgba(168, 199, 240, 0.14);
+
+  --rule: #2e3d54;
+  --rule-dotted: #425675;
+  --rule-strong: #e8edf5;
+  --focus-ring: #a8c7f0;
+
+  color-scheme: dark;
+}
+
+/* Option B — Forest Ink & Sage */
+[data-palette='b'][data-theme='light'] {
+  --paper: #f4f6f0;
+  --paper-tint: #e7ece2;
+  --paper-deep: #dae2d3;
+
+  --ink: #111b17;
+  --ink-secondary: #2a3d34;
+  --ink-muted: #475e52;
+
+  --rubric: #1f573a;
+  --rubric-hover: #153f29;
+  --accent-pastel: #a9cfb2;
+  --rubric-soft: rgba(31, 87, 58, 0.09);
+
+  --rule: #c8d3c2;
+  --rule-dotted: #93a58e;
+  --rule-strong: #111b17;
+  --focus-ring: #1f573a;
+
+  color-scheme: light;
+}
+
+[data-palette='b'][data-theme='dark'] {
+  --paper: #111b17;
+  --paper-tint: #22362b;
+  --paper-deep: #2c4537;
+
+  --ink: #dce8dd;
+  --ink-secondary: #bbd0be;
+  --ink-muted: #8fa994;
+
+  --rubric: #a9cfb2;
+  --rubric-hover: #c4e2cb;
+  --accent-pastel: #a9cfb2;
+  --rubric-soft: rgba(169, 207, 178, 0.14);
+
+  --rule: #2f493b;
+  --rule-dotted: #436653;
+  --rule-strong: #dce8dd;
+  --focus-ring: #a9cfb2;
+
+  color-scheme: dark;
+}
+
+/* Option C — Deep Plum & Lavender */
+[data-palette='c'][data-theme='light'] {
+  --paper: #f7f5fa;
+  --paper-tint: #ede8f5;
+  --paper-deep: #e0d8ee;
+
+  --ink: #1b1827;
+  --ink-secondary: #38314e;
+  --ink-muted: #584e75;
+
+  --rubric: #53358e;
+  --rubric-hover: #3d256b;
+  --accent-pastel: #c5b3f4;
+  --rubric-soft: rgba(83, 53, 142, 0.09);
+
+  --rule: #d3cae3;
+  --rule-dotted: #a194b8;
+  --rule-strong: #1b1827;
+  --focus-ring: #53358e;
+
+  color-scheme: light;
+}
+
+[data-palette='c'][data-theme='dark'] {
+  --paper: #1b1827;
+  --paper-tint: #302941;
+  --paper-deep: #3d3452;
+
+  --ink: #e6defa;
+  --ink-secondary: #c9bde8;
+  --ink-muted: #a194c4;
+
+  --rubric: #c5b3f4;
+  --rubric-hover: #ddd1fa;
+  --accent-pastel: #c5b3f4;
+  --rubric-soft: rgba(197, 179, 244, 0.14);
+
+  --rule: #413857;
+  --rule-dotted: #5a4e78;
+  --rule-strong: #e6defa;
+  --focus-ring: #c5b3f4;
 
   color-scheme: dark;
 }
@@ -106,7 +251,7 @@ svg {
 
 /* Focus Accessibility */
 :focus-visible {
-  outline: 2px solid var(--rubric);
+  outline: 2px solid var(--focus-ring, var(--rubric));
   outline-offset: 3px;
 }
 
@@ -498,7 +643,8 @@ svg {
 }
 
 .text-link:hover {
-  color: var(--rubric);
+  color: var(--rubric-hover, var(--rubric));
+  text-decoration-color: var(--rubric-hover, var(--rubric));
   text-decoration-thickness: 2px;
 }
 
@@ -1141,6 +1287,190 @@ svg {
   color: var(--ink-muted);
   padding-top: 0.45rem;
   border-top: 1px dotted var(--rule-dotted);
+}
+
+/* ==========================================================================
+   Color System Laboratory (/design-preview/)
+   ========================================================================== */
+
+.palette-control-dock {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 80;
+  background: var(--paper-tint);
+  border: 1.5px solid var(--rule-strong);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.palette-dock-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0.9rem;
+}
+
+.palette-dock-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.palette-dock-active {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--rubric);
+}
+
+.palette-buttons-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.65rem;
+}
+
+@media (min-width: 680px) {
+  .palette-buttons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1120px) {
+  .palette-buttons-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.palette-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.42rem;
+  padding: 0.65rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+
+.palette-option-btn:hover {
+  border-color: var(--rubric);
+}
+
+.palette-option-btn[aria-pressed='true'] {
+  border: 1.5px solid var(--rubric);
+  background: var(--rubric-soft);
+}
+
+.palette-option-code {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rubric);
+}
+
+.palette-option-name {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.palette-mini-dots {
+  display: flex;
+  gap: 0.32rem;
+  margin-top: 0.15rem;
+}
+
+.palette-dot {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  display: inline-block;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.15rem;
+}
+
+.swatch-card {
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+
+.swatch-chip {
+  height: 54px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0.35rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+}
+
+.swatch-meta {
+  padding: 0.6rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.swatch-token {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.swatch-role {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: var(--ink-secondary);
+}
+
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--ink-muted);
+}
+
+.contrast-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.contrast-matrix-table th,
+.contrast-matrix-table td {
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+
+.contrast-matrix-table th {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  background: var(--paper-tint);
 }
 
 @media (prefers-reduced-motion: reduce) {
