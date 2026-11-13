@@ -1,116 +1,145 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ExperienceTimeline from '../components/ExperienceTimeline.astro';
-import { experienceList, educationList, skillGroups } from '../data/profile';
+import { experienceList, educationList } from '../data/profile';
 ---
 
 <BaseLayout
-  title="III. Work & Research Dossier — Putra Wibisono"
-  description="Chronological engineering and research record across Agros Industry, Stripe, Tesla, ATOM Science, Rivian, and UC San Diego."
+  title="Work & Research Experience — Putra Wibisono"
+  description="Scannable chronological record of Putra Wibisono's work at Stripe, Tesla, ATOM Science, Rivian, UC San Diego Nanoengineering, and his family's agricultural business."
 >
   <article>
-    <div class="reading-with-margin">
-      <div class="main-reading-col">
-        <span class="rubric-mark">§ III. Chronological Record · Fol. 03</span>
-        <h1 class="monograph-title">
-          Work &amp; <em>Research Dossier</em>.
-        </h1>
+    <!-- Distinct Experience Page Header + Quick Chronological Index Table -->
+    <header style="margin-bottom: 2.25rem;">
+      <span class="rubric-mark">III. Professional &amp; Research Record</span>
+      <h1 class="monograph-title">
+        Work Experience &amp; <em>Field Stewardship</em>.
+      </h1>
+      <p class="sans-note" style="max-width: 68ch; margin-top: 0.75rem;">
+        Chronological record of verified engineering and research appointments across enterprise data infrastructure, electric-vehicle battery manufacturing, computational drug discovery, and current ad hoc operational stewardship at my family's agricultural business.
+      </p>
+    </header>
 
-        <div class="essay-prose" style="margin-top: 1.5rem;">
-          <p class="dropcap">
-            Over the past five years, my engineering work has moved progressively closer to the boundary where digital software systems meet physical chemistry and agronomy. From coin-cell assembly inside argon glove boxes at UC San Diego and Solid Electrolyte Interphase (SEI) formation protocols at Rivian, to multi-gigafactory 4680 battery telemetry at Tesla and high-reliability enterprise data platforms at Stripe, each post has demanded deterministic pipelines built over noisy, real-world measurements.
-          </p>
-          <p>
-            The ledger below documents all six verified appointments in reverse chronological order, together with primary technical deliverables, instrumentation, and software methods.
-          </p>
-        </div>
+    <!-- At-a-Glance Scannable Jump Index -->
+    <section class="career-quick-index" aria-label="At-a-glance career jump index">
+      <div class="quick-index-header">
+        <span class="sidenote-label">Quick Navigation Index (2020 – Present)</span>
+        <a href="/cv/" class="text-link mono-cite">Open Printable CV →</a>
       </div>
+      <div class="quick-index-grid">
+        {
+          experienceList.map((exp) => (
+            <a href={`#${exp.id}`} class="quick-index-item">
+              <span class="mono-cite" style="color: var(--rubric);">{exp.period}</span>
+              <strong class="quick-index-org">{exp.organization}</strong>
+              <span class="quick-index-role">{exp.role}</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
 
-      <aside class="margin-column" aria-label="Dossier index and verification notes">
-        <div class="sidenote-block">
-          <span class="sidenote-label">Dossier Scope · 2020–Present</span>
-          <p>
-            Six primary appointments spanning precision agriculture, financial infrastructure, electric vehicle cell manufacturing, computational drug discovery, and nanoengineering research.
-          </p>
-        </div>
-
-        <div class="sidenote-block">
-          <span class="sidenote-label">Archival Note on Dates</span>
-          <p>
-            Where exact calendar months were omitted in source records (such as the post-Tesla tenure at Stripe), entries are explicitly annotated rather than estimated.
-          </p>
-        </div>
-
-        <div class="sidenote-block">
-          <span class="sidenote-label">Curriculum Vitae</span>
-          <p>
-            For a condensed print layout or the archived 2024 engineering resume PDF, consult <a href="/cv/" class="text-link">§ VII. Curriculum Vitae →</a>
-          </p>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Chronological Appointments Ledger -->
-    <section class="ledger-section" aria-labelledby="appointments-heading">
+    <!-- Full Scannable Dossier -->
+    <section style="margin-top: 2.75rem;" aria-labelledby="detailed-record-heading">
       <div class="ledger-header">
-        <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Part I · Appointments</span>
-          <h2 id="appointments-heading" class="section-heading">Professional &amp; Research Positions</h2>
-        </div>
-        <span class="mono-cite">6 Verified Entries · Reverse Chronological</span>
+        <h2 id="detailed-record-heading" class="section-heading">
+          Detailed Responsibilities &amp; Verified Deliverables
+        </h2>
+        <span class="mono-cite">Distinguishing Verified Past Roles &amp; Current Ad Hoc Stewardship</span>
       </div>
 
       <ExperienceTimeline items={experienceList} compact={false} />
     </section>
 
-    <!-- Academic Degrees & Technical Concordance -->
-    <section class="ledger-section" aria-labelledby="education-concordance-heading">
+    <!-- Academic Summary Footer Table -->
+    <section class="ledger-section" aria-labelledby="exp-edu-heading">
       <div class="ledger-header">
-        <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Part II · Academic &amp; Technical Index</span>
-          <h2 id="education-concordance-heading" class="section-heading">University Degrees &amp; Domain Concordance</h2>
-        </div>
-        <a href="/projects/" class="text-link mono-cite">Inspect Technical Monographs →</a>
+        <h2 id="exp-edu-heading" class="section-heading">Academic Degrees</h2>
+        <a href="/about/" class="text-link mono-cite">Full Biography &amp; Coursework →</a>
       </div>
 
       <table class="ledger-table">
         <thead>
           <tr>
-            <th style="width: 22%;">Date / Code</th>
-            <th style="width: 34%;">Institution or Domain</th>
-            <th>Credential, Focus &amp; Primary Instruments</th>
+            <th style="width: 20%;">Graduation</th>
+            <th style="width: 32%;">University</th>
+            <th>Degree &amp; Concentration</th>
           </tr>
         </thead>
         <tbody>
-          {educationList.map((edu) => (
-            <tr>
-              <td class="mono-cite" style="color: var(--rubric);">{edu.graduationDate}</td>
-              <td>
-                <strong style="color: var(--ink); font-weight: 600;">{edu.institution}</strong>
-                <div class="mono-cite">{edu.location}</div>
-              </td>
-              <td>
-                <div style="color: var(--ink); font-weight: 500;">{edu.degree}</div>
-                <div class="sans-note" style="margin-top: 0.15rem;">
-                  {edu.concentrationOrMinor}
-                  {edu.honorsOrGpa ? ` · ${edu.honorsOrGpa}` : ''}
-                </div>
-              </td>
-            </tr>
-          ))}
-          {skillGroups.map((group) => (
-            <tr>
-              <td class="mono-cite">{group.code}</td>
-              <td>
-                <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
-              </td>
-              <td>
-                <span class="sans-note">{group.skills.map((s) => s.name).join(' · ')}</span>
-              </td>
-            </tr>
-          ))}
+          {
+            educationList.map((edu) => (
+              <tr>
+                <td class="mono-cite" style="color: var(--rubric);">{edu.graduationDate}</td>
+                <td>
+                  <strong style="color: var(--ink); font-weight: 600;">{edu.institution}</strong>
+                  <div class="mono-cite">{edu.location}</div>
+                </td>
+                <td>
+                  <div style="color: var(--ink); font-weight: 500;">{edu.degree}</div>
+                  <div class="sans-note">
+                    {edu.concentrationOrMinor}
+                    {edu.honorsOrGpa ? ` · ${edu.honorsOrGpa}` : ''}
+                  </div>
+                </td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </section>
   </article>
 </BaseLayout>
+
+<style>
+  .career-quick-index {
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--rule-strong);
+    padding: 1.15rem 1.35rem;
+  }
+
+  .quick-index-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.95rem;
+  }
+
+  .quick-index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 0.9rem 1.25rem;
+  }
+
+  .quick-index-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    padding-right: 0.5rem;
+    border-left: 2px solid var(--rule);
+    padding-left: 0.65rem;
+    transition: border-color 140ms ease;
+  }
+
+  .quick-index-item:hover {
+    border-left-color: var(--rubric);
+  }
+
+  .quick-index-org {
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .quick-index-role {
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    color: var(--ink-secondary);
+  }
+</style>

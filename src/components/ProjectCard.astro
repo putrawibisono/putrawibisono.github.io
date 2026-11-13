@@ -8,19 +8,24 @@ export interface Props {
 }
 
 const { project, showDiagram = true } = Astro.props;
+const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
 ---
 
 <article class="monograph-entry" data-category={project.category}>
   <div class="monograph-entry-grid">
     <!-- Left Metadata Margin -->
     <div class="entry-meta-col">
-      <span class="entry-num">Monograph No. {project.index}</span>
-      <p class="entry-cat">{project.category}</p>
+      <div>
+        <span class:list={['status-tag', { 'status-tag-rubric': isOngoing }]}>
+          {project.statusLabel}
+        </span>
+      </div>
+      <p class="entry-cat" style="margin-top: 0.45rem;">{project.category}</p>
       <p class="mono-cite">{project.organizationOrContext}</p>
       <p class="mono-cite">{project.period}</p>
 
       <div class="entry-tools-block">
-        <span class="sidenote-label">Methods &amp; Apparatus</span>
+        <span class="sidenote-label">Tools &amp; Methods</span>
         <p class="entry-tools-text">{project.technologies.join(' · ')}</p>
       </div>
     </div>
@@ -43,147 +48,19 @@ const { project, showDiagram = true } = Astro.props;
       }
 
       <div class="entry-findings">
-        <span class="sidenote-label">Documented Outcomes</span>
+        <span class="sidenote-label">
+          {isOngoing ? 'Scope & Status Note' : 'Verified Outcomes'}
+        </span>
         <ul>
-          {project.outcomes.slice(0, 2).map((outcome) => <li>{outcome}</li>)}
+          {project.outcomes.map((outcome) => <li>{outcome}</li>)}
         </ul>
       </div>
 
       <div class="entry-footer-link">
         <a href={`/projects/${project.slug}/`} class="text-link">
-          Read Complete Case Study (Monograph No. {project.index}) →
+          Inspect Technical Details →
         </a>
       </div>
     </div>
   </div>
 </article>
-
-<style>
-  .monograph-entry {
-    padding: 2.35rem 0;
-    border-top: 1px solid var(--rule);
-  }
-
-  .monograph-entry:first-child {
-    border-top: 1px solid var(--rule-strong);
-  }
-
-  .monograph-entry-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (min-width: 820px) {
-    .monograph-entry-grid {
-      grid-template-columns: 210px minmax(0, 1fr);
-      gap: 2.75rem;
-    }
-  }
-
-  .entry-meta-col {
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .entry-num {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--rubric);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .entry-cat {
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 0.2rem;
-  }
-
-  .entry-tools-block {
-    margin-top: 0.9rem;
-    padding-top: 0.75rem;
-    border-top: 1px dotted var(--rule-dotted);
-  }
-
-  .entry-tools-text {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    line-height: 1.55;
-    color: var(--ink-secondary);
-    margin-top: 0.25rem;
-  }
-
-  .entry-body-col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    max-width: 68ch;
-  }
-
-  .entry-title {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(1.45rem, 2.3vw, 1.85rem);
-    line-height: 1.18;
-    color: var(--ink);
-  }
-
-  .entry-title a:hover {
-    color: var(--rubric);
-  }
-
-  .entry-subtitle {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--ink-secondary);
-  }
-
-  .entry-summary {
-    font-size: 0.96rem;
-    color: var(--ink);
-    line-height: 1.66;
-  }
-
-  .entry-figure-wrap {
-    margin: 0.45rem 0;
-  }
-
-  .entry-findings {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--ink-secondary);
-  }
-
-  .entry-findings ul {
-    list-style: none;
-    margin-top: 0.35rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .entry-findings li {
-    position: relative;
-    padding-left: 1rem;
-    line-height: 1.5;
-  }
-
-  .entry-findings li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--rubric);
-  }
-
-  .entry-footer-link {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding-top: 0.25rem;
-  }
-</style>

@@ -4,48 +4,27 @@ import { teachingCourses } from '../data/profile';
 ---
 
 <BaseLayout
-  title="V. Academic Instruction — Putra Wibisono"
-  description="Undergraduate computer science instruction at UC San Diego (CSE 8A: Introduction to Programming in Python and CSE 20: Discrete Mathematics)."
+  title="Academic Instruction (UC San Diego CSE) — Putra Wibisono"
+  description="Undergraduate computer science teaching record at UC San Diego (CSE 8A and CSE 20)."
 >
   <article>
-    <div class="reading-with-margin">
-      <div class="main-reading-col">
-        <span class="rubric-mark">§ V. Academic Instruction · Fol. 05</span>
-        <h1 class="monograph-title">
-          University <em>Teaching</em> &amp; Course Syllabi.
-        </h1>
+    <header style="border-bottom: 1.5px solid var(--rule-strong); padding-bottom: 1.5rem; margin-bottom: 2.25rem;">
+      <span class="rubric-mark">V. Academic Instruction</span>
+      <h1 class="monograph-title">
+        University <em>Teaching</em> at UC San Diego.
+      </h1>
+      <p class="sans-note" style="max-width: 66ch; margin-top: 0.75rem;">
+        Alongside chemical engineering studies and nanoengineering battery research at the University of California, San Diego, I contributed to undergraduate instruction in the Department of Computer Science and Engineering (CSE).
+      </p>
+    </header>
 
-        <div class="essay-prose" style="margin-top: 1.5rem;">
-          <p class="dropcap">
-            Alongside undergraduate chemical engineering coursework and nanoengineering battery research at the University of California, San Diego, I contributed to instruction in the Department of Computer Science and Engineering (CSE). Teaching introductory programming and discrete mathematics reinforced a conviction that carries throughout my engineering work: complex computational invariants should be explainable from first principles.
-          </p>
-        </div>
-      </div>
-
-      <aside class="margin-column" aria-label="Instructional notes">
-        <div class="sidenote-block">
-          <span class="sidenote-label">Departmental Affiliation</span>
-          <p>
-            Department of Computer Science and Engineering (CSE), University of California, San Diego · La Jolla, CA.
-          </p>
-        </div>
-
-        <div class="sidenote-block">
-          <span class="sidenote-label">Student Recommendations</span>
-          <p>
-            Former students from CSE 8A or CSE 20 applying to graduate programs, research fellowships, or software engineering roles may consult <a href="/letters/" class="text-link">§ VI. Recommendation Letters →</a>
-          </p>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Course Syllabi Ledger -->
+    <!-- Course Records -->
     {teachingCourses.map((course, idx) => (
-      <section class="ledger-section" aria-labelledby={`course-${idx}-heading`}>
+      <section class:list={[{ 'ledger-section': idx > 0 }]} aria-labelledby={`course-${idx}-heading`}>
         <div class="ledger-header">
           <div>
             <span class="rubric-mark" style="margin-bottom: 0.2rem;">
-              Course Record 0{idx + 1} · {course.code} ({course.type})
+              {course.code} · {course.type}
             </span>
             <h2 id={`course-${idx}-heading`} class="section-heading">
               {course.code}: {course.title}
@@ -60,27 +39,44 @@ import { teachingCourses } from '../data/profile';
               {course.summary}
             </p>
 
-            <span class="sidenote-label" style="display: block; margin-bottom: 0.65rem;">
-              Documented Course Learning Outcomes
-            </span>
-            <ol class="syllabus-outcomes">
-              {course.learningOutcomes.map((outcome, oIdx) => (
-                <li>
-                  <span class="mono-cite" style="color: var(--rubric);">0{oIdx + 1}.</span>
-                  <span class="sans-note" style="color: var(--ink); font-size: 0.85rem;">{outcome}</span>
-                </li>
-              ))}
-            </ol>
+            {course.learningOutcomes.length > 0 && (
+              <>
+                <span class="sidenote-label" style="display: block; margin-bottom: 0.65rem;">
+                  Documented Course Learning Outcomes
+                </span>
+                <ol class="syllabus-outcomes">
+                  {course.learningOutcomes.map((outcome, oIdx) => (
+                    <li>
+                      <span class="mono-cite" style="color: var(--rubric);">0{oIdx + 1}.</span>
+                      <span class="sans-note" style="color: var(--ink); font-size: 0.85rem;">{outcome}</span>
+                    </li>
+                  ))}
+                </ol>
+              </>
+            )}
+
+            {course.sourceNote && (
+              <div class="source-note-box">
+                <span class="sidenote-label">Archival Source Note</span>
+                <p class="sans-note" style="margin-top: 0.25rem;">{course.sourceNote}</p>
+              </div>
+            )}
           </div>
 
           <aside class="margin-column">
             <div class="sidenote-block">
-              <span class="sidenote-label">Course Designation</span>
-              <p><strong style="color: var(--ink);">{course.code}</strong> · {course.type}</p>
+              <span class="sidenote-label">Department</span>
+              <p>{course.department}, {course.location}</p>
             </div>
             <div class="sidenote-block">
-              <span class="sidenote-label">Core Curriculum &amp; Tools</span>
+              <span class="sidenote-label">Topics</span>
               <p>{course.toolsAndTopics.join(' · ')}</p>
+            </div>
+            <div class="sidenote-block">
+              <span class="sidenote-label">Student Reference Letters</span>
+              <p>
+                Former students requesting graduate school or employment references may review the <a href="/letters/" class="text-link">Reference Letter Protocol →</a>
+              </p>
             </div>
           </aside>
         </div>
@@ -105,5 +101,11 @@ import { teachingCourses } from '../data/profile';
     align-items: baseline;
     padding-bottom: 0.7rem;
     border-bottom: 1px dotted var(--rule-dotted);
+  }
+
+  .source-note-box {
+    background: var(--paper-tint);
+    border-left: 2px solid var(--rubric);
+    padding: 0.95rem 1.15rem;
   }
 </style>

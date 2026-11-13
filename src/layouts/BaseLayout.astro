@@ -16,19 +16,19 @@ const {
   ogType = 'website',
 } = Astro.props;
 
-const fullTitle = title === siteMetadata.title ? title : `${title} — ${siteMetadata.name}`;
+const fullTitle = title === siteMetadata.title ? title : `${title}`;
 const canonicalUrl = new URL(canonicalPath, siteMetadata.siteUrl).toString();
 const ogImageUrl = new URL('/og-card.svg', siteMetadata.siteUrl).toString();
 
 const tocEntries = [
-  { href: '/', roman: 'I.', label: 'Biographical Note', folio: '01' },
-  { href: '/about/', roman: 'II.', label: 'Essay & Education', folio: '02' },
-  { href: '/experience/', roman: 'III.', label: 'Work & Field Record', folio: '03' },
-  { href: '/projects/', roman: 'IV.', label: 'Engineering Monographs', folio: '04' },
-  { href: '/teaching/', roman: 'V.', label: 'UCSD CSE Instruction', folio: '05' },
-  { href: '/letters/', roman: 'VI.', label: 'Recommendation Letters', folio: '06' },
-  { href: '/cv/', roman: 'VII.', label: 'Curriculum Vitae', folio: '07' },
-  { href: '/contact/', roman: 'VIII.', label: 'Correspondence', folio: '08' },
+  { href: '/', roman: 'I.', label: 'Overview' },
+  { href: '/about/', roman: 'II.', label: 'Biography & Education' },
+  { href: '/experience/', roman: 'III.', label: 'Work Experience' },
+  { href: '/projects/', roman: 'IV.', label: 'Projects & Research' },
+  { href: '/teaching/', roman: 'V.', label: 'Teaching (UCSD)' },
+  { href: '/letters/', roman: 'VI.', label: 'Reference Letters' },
+  { href: '/cv/', roman: 'VII.', label: 'Curriculum Vitae' },
+  { href: '/contact/', roman: 'VIII.', label: 'Contact' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -43,7 +43,8 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: siteMetadata.name,
-  jobTitle: 'Cofounder of Agricultural Technologies & Senior Data Engineer',
+  jobTitle: 'Data Engineer & Materials Scientist; Acting President (as needed), Family-Owned Agricultural Business',
+  description: siteMetadata.subheadline,
   url: siteMetadata.siteUrl,
   email: `mailto:${siteMetadata.email}`,
   alumniOf: [
@@ -107,9 +108,9 @@ const jsonLd = {
     </script>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to main reading column</a>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Mobile & Tablet Top Folio Bar -->
+    <!-- Mobile & Tablet Top Bar -->
     <header class="mobile-folio-bar">
       <div class="mobile-folio-top">
         <a href="/" class="mobile-author-name">{siteMetadata.name}</a>
@@ -118,10 +119,10 @@ const jsonLd = {
             type="button"
             class="theme-switch-btn"
             data-theme-toggle
-            aria-label="Switch reading paper tone"
+            aria-label="Switch reading surface tone"
           >
-            <span class="mode-label-light">Vellum (Dark)</span>
-            <span class="mode-label-dark">Paper (Light)</span>
+            <span class="mode-label-light">Dark Mode</span>
+            <span class="mode-label-dark">Light Mode</span>
           </button>
           <button
             type="button"
@@ -130,12 +131,12 @@ const jsonLd = {
             aria-expanded="false"
             aria-controls="mobile-toc-sheet"
           >
-            Contents ({activeEntry.folio})
+            Menu ({activeEntry.roman.replace('.', '')})
           </button>
         </div>
       </div>
 
-      <nav id="mobile-toc-sheet" class="mobile-toc-sheet" hidden aria-label="Mobile Table of Contents">
+      <nav id="mobile-toc-sheet" class="mobile-toc-sheet" hidden aria-label="Mobile Navigation">
         <ol class="toc-list">
           {
             tocEntries.map((item) => (
@@ -144,29 +145,41 @@ const jsonLd = {
                   <span class="toc-title">
                     <span class="toc-roman">{item.roman}</span> {item.label}
                   </span>
-                  <span class="toc-folio">{item.folio}</span>
                 </a>
               </li>
             ))
           }
         </ol>
+        <div class="mobile-toc-footer">
+          <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a>
+          <span>·</span>
+          <a href={siteMetadata.githubUrl} target="_blank" rel="noopener noreferrer" class="text-link">
+            github.com/{siteMetadata.githubUsername} ↗
+          </a>
+        </div>
       </nav>
     </header>
 
-    <!-- Primary Monograph Frame -->
+    <!-- Primary Editorial Frame -->
     <div class="monograph-wrapper">
       <div class="monograph-frame">
-        <!-- Left Running Spine (Table of Contents & Colophon) -->
-        <aside class="monograph-spine" aria-label="Author Index and Table of Contents">
+        <!-- Left Running Spine -->
+        <aside class="monograph-spine" aria-label="Author Identity and Site Navigation">
           <div class="spine-sticky">
             <div class="spine-identity">
               <a href="/" class="spine-author">{siteMetadata.name}</a>
-              <p class="spine-credentials">M.Eng. UC Berkeley &middot; B.S. UCSD</p>
-              <p class="spine-Subrole">Ex-Stripe &middot; Ex-Tesla &middot; Agros Industry</p>
+              <p class="spine-role-primary">Data Engineer &amp; Materials Scientist</p>
+              <p class="spine-Subrole">Ex-Stripe &middot; Ex-Tesla &middot; Ex-Rivian</p>
+              <p class="spine-Subrole" style="margin-top: 0.3rem;">
+                Acting President (as needed),<br />Family-Owned Agricultural Business
+              </p>
+              <p class="spine-credentials" style="margin-top: 0.45rem;">
+                M.Eng. UC Berkeley &middot; B.S. UCSD
+              </p>
             </div>
 
-            <nav class="spine-nav" aria-label="Table of Contents">
-              <p class="spine-rubric">Contents</p>
+            <nav class="spine-nav" aria-label="Primary Navigation">
+              <p class="spine-rubric">Directory</p>
               <ol class="toc-list">
                 {
                   tocEntries.map((item) => (
@@ -175,7 +188,6 @@ const jsonLd = {
                         <span class="toc-title">
                           <span class="toc-roman">{item.roman}</span> {item.label}
                         </span>
-                        <span class="toc-folio">{item.folio}</span>
                       </a>
                     </li>
                   ))
@@ -184,11 +196,11 @@ const jsonLd = {
             </nav>
 
             <div class="spine-correspondence">
-              <p class="spine-rubric">Correspondence</p>
-              <p class="spine-mono-line">
+              <p class="spine-rubric">Contact</p>
+              <p class="spine-contact-line">
                 <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a>
               </p>
-              <p class="spine-mono-line" style="margin-top: 0.25rem;">
+              <p class="spine-contact-line" style="margin-top: 0.35rem;">
                 <a href={siteMetadata.githubUrl} target="_blank" rel="noopener noreferrer" class="text-link">
                   github.com/{siteMetadata.githubUsername} ↗
                 </a>
@@ -196,15 +208,14 @@ const jsonLd = {
             </div>
 
             <div class="spine-reading-mode">
-              <p class="spine-rubric">Reading Surface</p>
               <button
                 type="button"
                 class="theme-switch-btn"
                 data-theme-toggle
                 aria-label="Toggle between Cotton Paper (Light) and Charcoal Vellum (Dark)"
               >
-                <span class="mode-label-light">Switch to Charcoal Vellum</span>
-                <span class="mode-label-dark">Switch to Cotton Paper</span>
+                <span class="mode-label-light">Switch to Dark Surface</span>
+                <span class="mode-label-dark">Switch to Light Paper</span>
               </button>
             </div>
           </div>
@@ -217,10 +228,12 @@ const jsonLd = {
           <footer class="monograph-colophon">
             <div class="colophon-row">
               <span>
-                &copy; {new Date().getFullYear()} {siteMetadata.name}. Set in <em>Newsreader</em>, <em>Instrument Sans</em> &amp; <em>IBM Plex Mono</em>.
+                &copy; {new Date().getFullYear()} {siteMetadata.name} &middot; <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a>
               </span>
               <span class="mono-cite">
-                Folio {activeEntry.folio} &middot; <a href="https://putrawibisono.com" class="text-link">putrawibisono.com</a>
+                <a href={siteMetadata.githubUrl} target="_blank" rel="noopener noreferrer" class="text-link">GitHub ({siteMetadata.githubUsername})</a>
+                &middot;
+                <a href="https://putrawibisono.com" class="text-link">putrawibisono.com</a>
               </span>
             </div>
           </footer>
@@ -259,4 +272,3 @@ const jsonLd = {
     </script>
   </body>
 </html>
-

@@ -3,172 +3,234 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import {
   siteMetadata,
+  identityPillars,
   biographyNarrative,
   experienceList,
   projectsList,
   skillGroups,
 } from '../data/profile';
 
-const selectedMonographs = projectsList.slice(0, 3);
+const completedFeaturedProjects = projectsList.filter(
+  (p) => p.featured && p.statusLabel !== 'Ongoing & Exploratory Initiative'
+);
 ---
 
-<BaseLayout title={siteMetadata.title} description={siteMetadata.subheadline} canonicalPath="/">
-  <!-- Top Monograph Essay + Right Marginalia Column -->
-  <div class="reading-with-margin">
-    <div class="essay-prose">
-      <span class="rubric-mark">§ I — PERSONAL BIOGRAPHY &amp; FIELD NOTES</span>
-      <h1 class="monograph-title" style="margin-bottom: 1.75rem;">
-        From high-volume data pipelines in California to <em>soil and satellite</em> systems in agriculture.
-      </h1>
-
-      <p class="dropcap">
-        I am Putra Wibisono—a former Senior Data Engineer turned agricultural technology founder. I began my career building data infrastructure and physical process models across financial systems, electric vehicle battery manufacturing, and computational drug discovery at <strong>Stripe</strong>, <strong>Tesla</strong>, <strong>ATOM Science</strong>, and <strong>Rivian</strong>. Across each of those environments, my work centered on a single problem: making noisy, high-volume measurements clean, reliable, and actionable so engineers and decision-makers could move with confidence.
-      </p>
-
-      <p>
-        Today, I am channeling that technical foundation into agriculture. Working at the intersection of distributed data systems and soil science, I help farmers, agronomists, and institutional partners adopt evidence-based fertilizer strategies, monitor crop yields, and restore long-term soil health.
-      </p>
-
-      <!-- Four Current Agricultural Initiatives as Numbered Paragraphs (Not Cards) -->
-      <div class="field-notes-block">
-        <div class="ledger-header">
-          <h2 class="section-heading">Current Field &amp; Engineering Work in Agriculture</h2>
-          <span class="mono-cite">Agros Industry</span>
-        </div>
-
-        <ol class="numbered-initiatives">
-          {
-            biographyNarrative.currentInitiatives.map((item, idx) => (
-              <li>
-                <span class="init-num">0{idx + 1}.</span>
-                <div>
-                  <strong>{item.title}.</strong> {item.description}
-                </div>
-              </li>
-            ))
-          }
-        </ol>
+<BaseLayout
+  title={siteMetadata.title}
+  description={siteMetadata.subheadline}
+>
+  <!-- 3-Second Identity Summary Banner -->
+  <section class="identity-banner" aria-label="Professional Identity Summary">
+    <div class="identity-banner-top">
+      <div class="identity-name-line">
+        <span class="identity-primary-role">{siteMetadata.roleHeadline}</span>
+        <span class="mono-cite">·</span>
+        <span class="sans-note" style="color: var(--rubric); font-weight: 500;">
+          {siteMetadata.currentRoleTag}
+        </span>
       </div>
-
-      <!-- § II. Chronological Record of Work (Hairline Ledger Table) -->
-      <section class="ledger-section">
-        <div class="ledger-header">
-          <h2 class="section-heading">§ II. Chronological Record of Work</h2>
-          <a href="/experience/" class="text-link sans-note">Full Career Dossier (06 Roles) →</a>
-        </div>
-
-        <table class="ledger-table">
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Organization</th>
-              <th>Role &amp; Focus</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              experienceList.map((exp) => (
-                <tr>
-                  <td class="mono-cite" style="white-space: nowrap; width: 135px;">{exp.period}</td>
-                  <td style="font-weight: 600; color: var(--ink); width: 185px;">
-                    <a href={`/experience/#${exp.id}`} class="text-link">{exp.organization}</a>
-                  </td>
-                  <td style="color: var(--ink-secondary);">
-                    <strong style="color: var(--ink); font-weight: 500;">{exp.role}</strong> — {exp.domainTag}
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </section>
+      <div class="mono-cite">
+        <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a>
+      </div>
     </div>
 
-    <!-- Right Marginalia & Archival Plate Column -->
-    <aside class="margin-column" aria-label="Marginalia and Archival Notes">
-      <div class="sidenote-block">
-        <span class="sidenote-label">Note 1 · Academic Training</span>
-        <p>
-          <strong>UC Berkeley</strong> — M.Eng. in Materials Science &amp; Engineering, Concentration in Data Science (June 2023, Major GPA 3.92).
+    <div class="identity-pillars-grid">
+      {identityPillars.map((pillar) => (
+        <div class="identity-pillar">
+          <span class="pillar-label">{pillar.label}</span>
+          <strong class="pillar-title">{pillar.primary}</strong>
+          <p class="pillar-detail">{pillar.detail}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 1: Biographical Essay + Marginalia & Laboratory Plate -->
+  <div class="reading-with-margin">
+    <div class="main-reading-col">
+      <span class="rubric-mark">I. Biographical Overview</span>
+      <h1 class="monograph-title">
+        Data engineering, <em>materials science</em>, and agricultural operations.
+      </h1>
+
+      <div class="essay-prose" style="margin-top: 1.5rem;">
+        <p class="dropcap essay-lead">
+          {biographyNarrative.lead}
         </p>
-        <p style="margin-top: 0.45rem;">
-          <strong>UC San Diego</strong> — B.S. in Chemical Engineering, Minor in Computer Science (June 2021).
-        </p>
+        {biographyNarrative.paragraphs.map((para) => <p>{para}</p>)}
       </div>
 
+      <div style="margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <a href="/experience/" class="folio-action folio-action-rubric">
+          Inspect Work Experience →
+        </a>
+        <a href="/projects/" class="folio-action">
+          Completed Engineering Projects →
+        </a>
+        <a href="/cv/" class="folio-action">
+          Curriculum Vitae
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Margin Column: Laboratory Photograph Plate & Quick Notes -->
+    <aside class="margin-column" aria-label="Laboratory documentation and quick references">
       <figure class="archival-plate">
         <img
           src="/images/portfolio1.jpg"
-          alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer in the laboratory"
-          width="400"
-          height="300"
+          alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer bench used for semiconductor thin-film band-gap characterization"
+          loading="eager"
         />
         <figcaption class="plate-caption">
-          <span class="sidenote-label" style="display:block; margin-bottom:0.2rem;">Plate I · Laboratory Archive</span>
-          Shimadzu SolidSpec-3700 UV-Vis-NIR spectrophotometer bench used to determine semiconductor thin-film optical band gaps (<a href="/projects/uv-vis-semiconductor-spectroscopy/" class="text-link">Monograph No. 03</a>).
+          <span class="sidenote-label" style="display: block; margin-bottom: 0.25rem;">
+            Laboratory Archive · Optical Physics
+          </span>
+          Shimadzu SolidSpec-3700 UV-Vis-NIR spectrophotometer workstation used to measure semiconductor thin-film optical band gaps (<a href="/projects/uv-vis-semiconductor-spectroscopy/" class="text-link">Project 02</a>).
         </figcaption>
       </figure>
 
       <div class="sidenote-block">
-        <span class="sidenote-label">Note 2 · UCSD Instruction &amp; Letters</span>
+        <span class="sidenote-label">Teaching &amp; Reference Letters</span>
         <p>
-          Taught undergraduate computer science at UC San Diego (<a href="/teaching/" class="text-link">CSE 8A: Python</a> &amp; <a href="/teaching/" class="text-link">CSE 20: Discrete Math</a>).
-        </p>
-        <p style="margin-top: 0.45rem;">
-          Former colleagues at Stripe/Tesla and UCSD students may request recommendation letters via <a href="/letters/" class="text-link">§ VI. Letters</a> (please allow 3–4 weeks).
+          Contributed to undergraduate computer science instruction at UC San Diego (<a href="/teaching/" class="text-link">CSE 8A &amp; CSE 20</a>). Former colleagues and students may review the protocol for <a href="/letters/" class="text-link">recommendation letters</a>.
         </p>
       </div>
 
       <div class="sidenote-block">
-        <span class="sidenote-label">Note 3 · Curriculum Vitae</span>
+        <span class="sidenote-label">Direct Contact</span>
         <p>
-          A typeset, print-ready <a href="/cv/" class="text-link">Curriculum Vitae (§ VII)</a> and the archived 2024 engineering resume PDF are available for direct download.
+          Reach out directly via <a href={`mailto:${siteMetadata.email}`} class="text-link">{siteMetadata.email}</a> or view <a href="/contact/" class="text-link">contact details →</a>
         </p>
       </div>
     </aside>
   </div>
 
-  <!-- § III. Selected Engineering Monographs -->
-  <section class="ledger-section" style="margin-top: 4rem;">
-    <div class="ledger-header">
-      <div>
-        <span class="rubric-mark">§ III — SELECTED TECHNICAL MONOGRAPHS</span>
-        <h2 class="section-heading">Systems, Instruments &amp; Case Studies</h2>
-      </div>
-      <a href="/projects/" class="text-link sans-note">Complete Archive (06 Monographs) →</a>
-    </div>
+  <!-- Tinted Callout: Current Agricultural Responsibilities & Ongoing Initiatives -->
+  <section class="initiatives-callout" aria-labelledby="agri-initiatives-heading">
+    <span class="rubric-mark" style="margin-bottom: 0.2rem;">
+      Family-Owned Agricultural Business · Acting President (as needed)
+    </span>
+    <h2 id="agri-initiatives-heading" class="section-heading">
+      {biographyNarrative.currentInitiativesTitle}
+    </h2>
+    <p class="sans-note" style="margin-top: 0.35rem;">
+      {biographyNarrative.currentInitiativesSubtitle}
+    </p>
 
-    <div>
-      {selectedMonographs.map((project) => <ProjectCard project={project} showDiagram={true} />)}
+    <div class="initiatives-grid">
+      {
+        biographyNarrative.currentInitiatives.map((item) => (
+          <div class="initiative-item">
+            <div style="margin-bottom: 0.35rem;">
+              <span
+                class:list={[
+                  'status-tag',
+                  { 'status-tag-rubric': item.status === 'Active Operations' },
+                ]}
+              >
+                {item.status}
+              </span>
+            </div>
+            <strong style="font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink); display: block; margin-bottom: 0.25rem;">
+              {item.title}
+            </strong>
+            <p class="sans-note" style="font-size: 0.82rem;">{item.description}</p>
+          </div>
+        ))
+      }
     </div>
   </section>
 
-  <!-- § IV. Technical Concordance (Tabular, Zero Pill Clouds) -->
-  <section class="ledger-section">
+  <!-- Section 2: Chronological Experience Summary -->
+  <section class="ledger-section" aria-labelledby="home-career-heading">
     <div class="ledger-header">
       <div>
-        <span class="rubric-mark">§ IV — TECHNICAL CONCORDANCE</span>
-        <h2 class="section-heading">Languages, Data Platforms &amp; Scientific Instruments</h2>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">II. Career Record</span>
+        <h2 id="home-career-heading" class="section-heading">
+          Professional &amp; Research Appointments
+        </h2>
       </div>
-      <a href="/about/" class="text-link sans-note">Read Essay &amp; Methodology →</a>
+      <a href="/experience/" class="text-link mono-cite">Full Experience Dossier →</a>
     </div>
 
     <table class="ledger-table">
       <thead>
         <tr>
-          <th style="width: 110px;">Ref.</th>
-          <th style="width: 240px;">Discipline</th>
-          <th>Primary Tools, Frameworks &amp; Experimental Methods</th>
+          <th style="width: 19%;">Period</th>
+          <th style="width: 27%;">Organization</th>
+          <th style="width: 26%;">Role &amp; Classification</th>
+          <th>Primary Scope</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          experienceList.map((exp) => (
+            <tr>
+              <td class="mono-cite" style="color: var(--rubric); font-weight: 500;">{exp.period}</td>
+              <td>
+                <strong style="color: var(--ink); font-weight: 600;">
+                  <a href={`/experience/#${exp.id}`} class="text-link">{exp.organization}</a>
+                </strong>
+                <div class="mono-cite">{exp.location}</div>
+              </td>
+              <td>
+                <div style="color: var(--ink); font-weight: 500;">{exp.role}</div>
+                <div class="mono-cite">{exp.statusType}</div>
+              </td>
+              <td style="color: var(--ink-secondary);">{exp.summary}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Section 3: Selected Completed Engineering & Research Projects -->
+  <section class="ledger-section" aria-labelledby="home-projects-heading">
+    <div class="ledger-header">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">III. Completed Technical Works</span>
+        <h2 id="home-projects-heading" class="section-heading">
+          Selected Engineering &amp; Research Studies
+        </h2>
+      </div>
+      <a href="/projects/" class="text-link mono-cite">All 5 Completed Projects &amp; Field Initiatives →</a>
+    </div>
+
+    <div>
+      {completedFeaturedProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <!-- Section 4: Technical Stack & Laboratory Instrumentation -->
+  <section class="ledger-section" aria-labelledby="home-skills-heading">
+    <div class="ledger-header">
+      <div>
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">IV. Technical Capabilities</span>
+        <h2 id="home-skills-heading" class="section-heading">
+          Software Stack &amp; Laboratory Instrumentation
+        </h2>
+      </div>
+      <a href="/cv/" class="text-link mono-cite">Full Curriculum Vitae →</a>
+    </div>
+
+    <table class="ledger-table">
+      <thead>
+        <tr>
+          <th style="width: 34%;">Domain</th>
+          <th>Documented Languages, Platforms &amp; Instruments</th>
         </tr>
       </thead>
       <tbody>
         {
           skillGroups.map((group) => (
             <tr>
-              <td class="mono-cite">{group.code}</td>
-              <td style="font-weight: 600; color: var(--ink);">{group.category}</td>
+              <td>
+                <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
+                <div class="mono-cite">{group.sourceNote}</div>
+              </td>
               <td style="color: var(--ink-secondary);">
-                {group.skills.map((s) => s.name).join(' · ')}
+                {group.skills.join(' · ')}
               </td>
             </tr>
           ))
@@ -177,39 +239,3 @@ const selectedMonographs = projectsList.slice(0, 3);
     </table>
   </section>
 </BaseLayout>
-
-<style>
-  .field-notes-block {
-    margin-top: 2.75rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--rule);
-  }
-
-  .numbered-initiatives {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-family: var(--font-sans);
-    font-size: 0.84rem;
-    line-height: 1.6;
-    color: var(--ink-secondary);
-  }
-
-  .numbered-initiatives li {
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    align-items: baseline;
-  }
-
-  .init-num {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--rubric);
-  }
-
-  .numbered-initiatives strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
-</style>

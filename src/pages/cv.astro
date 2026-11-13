@@ -9,19 +9,23 @@ import {
   skillGroups,
   teachingCourses,
 } from '../data/profile';
+
+const completedProjects = projectsList.filter(
+  (p) => p.statusLabel !== 'Ongoing & Exploratory Initiative'
+);
 ---
 
 <BaseLayout
-  title="VII. Curriculum Vitae — Putra Wibisono"
-  description="Complete academic and professional Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Cofounder at Agros Industry, Ex-Stripe, Ex-Tesla)."
+  title="Curriculum Vitae — Putra Wibisono"
+  description="Complete academic and professional Curriculum Vitae of Putra Wibisono (UC Berkeley M.Eng., UC San Diego B.S., Ex-Stripe, Ex-Tesla, Acting President as needed at Family-Owned Agricultural Business)."
 >
   <article class="cv-folio">
     <!-- Top Archival Action Bar (Hidden in Print) -->
     <div class="cv-action-bar no-print">
       <div>
-        <span class="rubric-mark" style="margin-bottom: 0.2rem;">§ VII. Curriculum Vitae · Fol. 07</span>
-        <p class="sans-note" style="font-size: 0.76rem;">
-          Typeset for direct browser reading and standard A4/Letter archival printing.
+        <span class="rubric-mark" style="margin-bottom: 0.2rem;">VII. Curriculum Vitae</span>
+        <p class="sans-note" style="font-size: 0.8rem;">
+          Updated web edition with print formatting. (Note: the archived 2024 PDF download reflects records through Dec 2024.)
         </p>
       </div>
       <div class="cv-action-buttons">
@@ -39,7 +43,7 @@ import {
       <div>
         <h1 class="cv-name">{siteMetadata.name}</h1>
         <p class="cv-subtitle">
-          Cofounder, Agricultural Technologies (Agros Industry) · Former Senior Data Engineer (Stripe, Tesla)
+          Data Engineer &amp; Materials Scientist (Ex-Stripe, Ex-Tesla) · Acting President (as needed), Family-Owned Agricultural Business
         </p>
       </div>
       <div class="cv-contact-ledger">
@@ -57,7 +61,7 @@ import {
         {educationList.map((edu) => (
           <div class="cv-row">
             <div class="cv-left">
-              <div class="mono-cite" style="color: var(--rubric);">{edu.graduationDate}</div>
+              <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{edu.graduationDate}</div>
               <div class="mono-cite">{edu.location}</div>
             </div>
             <div class="cv-right">
@@ -66,7 +70,7 @@ import {
                 {edu.honorsOrGpa && <span class="mono-cite" style="color: var(--ink);">{edu.honorsOrGpa}</span>}
               </div>
               <div class="cv-degree">{edu.degree} — <em>{edu.concentrationOrMinor}</em></div>
-              <div class="sans-note" style="font-size: 0.78rem; margin-top: 0.2rem;">
+              <div class="sans-note" style="font-size: 0.8rem; margin-top: 0.2rem;">
                 Focus: {edu.focusAreas.join(' · ')}
               </div>
             </div>
@@ -75,15 +79,16 @@ import {
       </div>
     </section>
 
-    <!-- II. Professional & Research Appointments -->
+    <!-- II. Professional & Research Experience -->
     <section class="cv-section" aria-labelledby="cv-exp">
-      <h2 id="cv-exp" class="cv-section-title">II. Professional &amp; Research Experience</h2>
+      <h2 id="cv-exp" class="cv-section-title">II. Professional Experience, Field Stewardship &amp; Research</h2>
       <div class="cv-entries">
         {experienceList.map((exp) => (
           <div class="cv-row">
             <div class="cv-left">
-              <div class="mono-cite" style="color: var(--rubric);">{exp.period}</div>
+              <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{exp.period}</div>
               <div class="mono-cite">{exp.location}</div>
+              <div class="mono-cite" style="margin-top: 0.15rem;">{exp.statusType}</div>
             </div>
             <div class="cv-right">
               <div class="cv-entry-header">
@@ -91,13 +96,15 @@ import {
                 <span class="cv-org">{exp.organization}</span>
               </div>
               {exp.periodNote && (
-                <div class="mono-cite" style="margin-top: 0.1rem; margin-bottom: 0.25rem;">
+                <div class="mono-cite" style="margin-top: 0.15rem; margin-bottom: 0.25rem;">
                   {exp.periodNote}
                 </div>
               )}
               <ul class="cv-bullets">
                 {exp.highlights.map((bullet) => (
-                  <li>{bullet}</li>
+                  <li>
+                    <strong>{bullet.label}:</strong> {bullet.detail}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -106,11 +113,11 @@ import {
       </div>
     </section>
 
-    <!-- III. Selected Engineering Monographs & Research Studies -->
+    <!-- III. Completed Technical Studies & Engineering Projects -->
     <section class="cv-section" aria-labelledby="cv-proj">
-      <h2 id="cv-proj" class="cv-section-title">III. Selected Technical Studies &amp; Engineering Systems</h2>
+      <h2 id="cv-proj" class="cv-section-title">III. Completed Engineering &amp; Research Studies</h2>
       <div class="cv-entries">
-        {projectsList.map((proj) => (
+        {completedProjects.map((proj) => (
           <div class="cv-row">
             <div class="cv-left">
               <div class="mono-cite">{proj.period}</div>
@@ -123,7 +130,7 @@ import {
                 </strong>
                 <span class="mono-cite">{proj.organizationOrContext}</span>
               </div>
-              <p class="sans-note" style="font-size: 0.8rem; margin-top: 0.2rem;">
+              <p class="sans-note" style="font-size: 0.82rem; margin-top: 0.2rem;">
                 {proj.summary}
               </p>
               <div class="mono-cite" style="margin-top: 0.25rem;">
@@ -136,9 +143,9 @@ import {
 
       <div style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px dotted var(--rule-dotted);">
         <span class="mono-cite" style="color: var(--rubric); display: block; margin-bottom: 0.35rem;">
-          Additional Documented Engineering &amp; Coursework Models:
+          Additional Documented Coursework &amp; Simulation Projects:
         </span>
-        <p class="sans-note" style="font-size: 0.78rem;">
+        <p class="sans-note" style="font-size: 0.8rem;">
           {additionalEngineeringProjects.map((p) => `${p.name} (${p.domain})`).join(' · ')}
         </p>
       </div>
@@ -151,7 +158,7 @@ import {
         {teachingCourses.map((course) => (
           <div class="cv-row">
             <div class="cv-left">
-              <div class="mono-cite" style="color: var(--rubric);">{course.code}</div>
+              <div class="mono-cite" style="color: var(--rubric); font-weight: 500;">{course.code}</div>
               <div class="mono-cite">{course.institution}</div>
             </div>
             <div class="cv-right">
@@ -159,7 +166,7 @@ import {
                 <strong>{course.title}</strong>
                 <span class="mono-cite">{course.department}</span>
               </div>
-              <p class="sans-note" style="font-size: 0.8rem; margin-top: 0.15rem;">
+              <p class="sans-note" style="font-size: 0.82rem; margin-top: 0.15rem;">
                 {course.summary}
               </p>
             </div>
@@ -170,7 +177,7 @@ import {
 
     <!-- V. Technical Concordance -->
     <section class="cv-section" aria-labelledby="cv-skills">
-      <h2 id="cv-skills" class="cv-section-title">V. Technical Concordance &amp; Instrumentation</h2>
+      <h2 id="cv-skills" class="cv-section-title">V. Technical Stack &amp; Laboratory Instrumentation</h2>
       <table class="ledger-table">
         <tbody>
           {skillGroups.map((group) => (
@@ -179,7 +186,7 @@ import {
                 <strong style="color: var(--ink); font-weight: 600;">{group.category}</strong>
               </td>
               <td class="sans-note">
-                {group.skills.map((s) => s.name).join(' · ')}
+                {group.skills.join(' · ')}
               </td>
             </tr>
           ))}
@@ -240,11 +247,12 @@ import {
     font-size: 1.02rem;
     color: var(--ink-secondary);
     margin-top: 0.35rem;
+    max-width: 58ch;
   }
 
   .cv-contact-ledger {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     line-height: 1.65;
     color: var(--ink-secondary);
     text-align: left;
@@ -264,7 +272,7 @@ import {
     font-family: var(--font-serif);
     font-weight: 400;
     font-style: italic;
-    font-size: 1.25rem;
+    font-size: 1.28rem;
     color: var(--rubric);
     padding-bottom: 0.4rem;
     border-bottom: 1px solid var(--rule-strong);
@@ -274,18 +282,18 @@ import {
   .cv-entries {
     display: flex;
     flex-direction: column;
-    gap: 1.35rem;
+    gap: 1.45rem;
   }
 
   .cv-row {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.35rem;
   }
 
   @media (min-width: 720px) {
     .cv-row {
-      grid-template-columns: 185px 1fr;
+      grid-template-columns: 195px minmax(0, 1fr);
       gap: 1.75rem;
     }
   }
@@ -297,20 +305,20 @@ import {
     align-items: baseline;
     gap: 0.5rem;
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: var(--ink);
   }
 
   .cv-org {
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     font-weight: 600;
     color: var(--ink-secondary);
   }
 
   .cv-degree {
     font-family: var(--font-serif);
-    font-size: 0.96rem;
+    font-size: 0.98rem;
     color: var(--ink);
     margin-top: 0.1rem;
   }
@@ -320,16 +328,21 @@ import {
     margin-top: 0.45rem;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
   .cv-bullets li {
     position: relative;
     padding-left: 1rem;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
-    line-height: 1.54;
+    font-size: 0.82rem;
+    line-height: 1.56;
+    color: var(--ink-secondary);
+  }
+
+  .cv-bullets li strong {
     color: var(--ink);
+    font-weight: 600;
   }
 
   .cv-bullets li::before {

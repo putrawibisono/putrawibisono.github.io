@@ -4,19 +4,19 @@ import { recommendationLetterPolicy } from '../data/profile';
 ---
 
 <BaseLayout
-  title="VI. Recommendation Letters & Correspondence Guide — Putra Wibisono"
+  title="Recommendation Letters & Reference Protocol — Putra Wibisono"
   description="Protocol and required materials for requesting academic or professional recommendation letters from Putra Wibisono."
 >
   <article>
     <div class="reading-with-margin">
       <div class="main-reading-col">
-        <span class="rubric-mark">§ VI. Academic &amp; Professional References · Fol. 06</span>
+        <span class="rubric-mark">VI. Academic &amp; Professional References</span>
         <h1 class="monograph-title">
           Recommendation <em>Letters</em> &amp; Protocol.
         </h1>
 
         <div class="essay-prose" style="margin-top: 1.5rem;">
-          <p class="dropcap">
+          <p class="essay-lead">
             {recommendationLetterPolicy.lead}
           </p>
           <p>
@@ -34,9 +34,9 @@ import { recommendationLetterPolicy } from '../data/profile';
         </div>
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Direct Dispatch</span>
+          <span class="sidenote-label">Direct Email</span>
           <p>
-            Address requests to <a href={`mailto:${recommendationLetterPolicy.contactEmail}?subject=${encodeURIComponent(recommendationLetterPolicy.subjectLine)}`} class="text-link mono-cite">{recommendationLetterPolicy.contactEmail}</a> with the subject line <code>"{recommendationLetterPolicy.subjectLine}"</code>.
+            Send requests to <a href={`mailto:${recommendationLetterPolicy.contactEmail}?subject=${encodeURIComponent(recommendationLetterPolicy.subjectLine)}`} class="text-link mono-cite">{recommendationLetterPolicy.contactEmail}</a> with the subject line <code>"{recommendationLetterPolicy.subjectLine}"</code>.
           </p>
         </div>
       </aside>
@@ -45,11 +45,7 @@ import { recommendationLetterPolicy } from '../data/profile';
     <!-- Part I: Eligibility & Evaluation Scope -->
     <section class="ledger-section" aria-labelledby="eligibility-heading">
       <div class="ledger-header">
-        <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Part I · Standing &amp; Scope</span>
-          <h2 id="eligibility-heading" class="section-heading">Eligible Candidates &amp; Areas of Evaluation</h2>
-        </div>
-        <span class="mono-cite">Reference Protocol</span>
+        <h2 id="eligibility-heading" class="section-heading">Who I Can Write For &amp; Areas of Evaluation</h2>
       </div>
 
       <table class="ledger-table">
@@ -70,7 +66,7 @@ import { recommendationLetterPolicy } from '../data/profile';
           ))}
           <tr>
             <td>
-              <strong style="color: var(--rubric); font-weight: 600;">Credible Evaluation Domains</strong>
+              <strong style="color: var(--rubric); font-weight: 600;">Areas of Expertise</strong>
             </td>
             <td class="sans-note">
               {recommendationLetterPolicy.credibleAreas.join(' · ')}
@@ -80,14 +76,10 @@ import { recommendationLetterPolicy } from '../data/profile';
       </table>
     </section>
 
-    <!-- Part II: Required Dossier Packet & Interactive Draft Generator -->
+    <!-- Part II: Required Materials & Interactive Draft Generator -->
     <section class="ledger-section" aria-labelledby="packet-heading">
       <div class="ledger-header">
-        <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Part II · Required Dossier Packet</span>
-          <h2 id="packet-heading" class="section-heading">Five Materials to Include in Your Request</h2>
-        </div>
-        <span class="mono-cite">Checklist 01–05</span>
+        <h2 id="packet-heading" class="section-heading">What I Need From You (Checklist 01–05)</h2>
       </div>
 
       <div class="reading-with-margin" style="margin-top: 1rem;">
@@ -109,9 +101,9 @@ import { recommendationLetterPolicy } from '../data/profile';
 
         <!-- Archival Worksheet: Pre-populate Mailto Request -->
         <aside class="worksheet-box" aria-labelledby="worksheet-title">
-          <span class="sidenote-label" id="worksheet-title">Correspondence Worksheet</span>
-          <p class="sans-note" style="font-size: 0.74rem; margin-top: 0.3rem;">
-            Complete the fields below to format a structured email draft with all five required sections:
+          <span class="sidenote-label" id="worksheet-title">Request Email Formatter</span>
+          <p class="sans-note" style="font-size: 0.78rem; margin-top: 0.3rem;">
+            Complete the fields below to format a structured email draft to <code>{recommendationLetterPolicy.contactEmail}</code>:
           </p>
 
           <div class="worksheet-fields">
@@ -121,12 +113,12 @@ import { recommendationLetterPolicy } from '../data/profile';
             </label>
 
             <label class="worksheet-label" for="req-context">
-              <span>Collaboration Context</span>
+              <span>How We Worked Together</span>
               <select id="req-context" class="worksheet-input">
                 <option value="UC San Diego (CSE 8A / CSE 20)">UC San Diego (CSE 8A / CSE 20)</option>
                 <option value="Tesla Battery / Data Engineering">Tesla Battery / Data Engineering</option>
                 <option value="Stripe Data Engineering">Stripe Data Engineering</option>
-                <option value="Agros Industry / Agri-Tech Field Project">Agros Industry / Agri-Tech Field Project</option>
+                <option value="Agricultural Field Trials / Operations">Agricultural Field Trials / Operations</option>
                 <option value="Research / Project Collaboration">Research / Project Collaboration</option>
               </select>
             </label>
@@ -169,19 +161,19 @@ import { recommendationLetterPolicy } from '../data/profile';
       const body = [
         'Dear Putra,',
         '',
-        `I hope you are doing well. I am writing to request a letter of recommendation in support of my upcoming application.`,
+        'I hope you are doing well. I am writing to request a letter of recommendation in support of my upcoming application.',
         '',
         '1. CURRENT RESUME / CV:',
         '[Attached to this email / Linked here]',
         '',
         '2. OPPORTUNITY DETAILS & EARLIEST DEADLINE:',
-        `- Target Program / Role: [Insert Graduate Program or Position]`,
+        '- Target Program / Role: [Insert Graduate Program or Position]',
         `- Earliest Deadline: ${deadline}`,
-        `- Submission Method: [Portal Link / Direct Email]`,
+        '- Submission Method: [Portal Link / Direct Email]',
         '',
         '3. OUR CONNECTION & TIMEFRAME:',
         `- Context: ${context}`,
-        `- Dates Worked Together: [Insert Term or Dates]`,
+        '- Dates Worked Together: [Insert Term or Dates]',
         '',
         '4. SPECIFIC PROJECTS & ACCOMPLISHMENTS:',
         '- [Highlight 1-2 projects, trials, or coursework milestones]',
@@ -195,7 +187,7 @@ import { recommendationLetterPolicy } from '../data/profile';
         name,
       ].join('\r\n');
 
-      window.location.href = `mailto:president@agrosindustry.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:putrawibisonos@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
 
@@ -222,7 +214,7 @@ import { recommendationLetterPolicy } from '../data/profile';
   .worksheet-box {
     background: var(--paper-tint);
     border: 1px solid var(--rule);
-    padding: 1.15rem;
+    padding: 1.25rem;
     align-self: start;
   }
 
@@ -238,14 +230,14 @@ import { recommendationLetterPolicy } from '../data/profile';
     flex-direction: column;
     gap: 0.25rem;
     font-family: var(--font-mono);
-    font-size: 0.64rem;
+    font-size: 0.66rem;
     color: var(--ink-secondary);
   }
 
   .worksheet-input {
     font-family: var(--font-sans);
-    font-size: 0.78rem;
-    padding: 0.42rem 0.55rem;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.6rem;
     background: var(--paper);
     color: var(--ink);
     border: 1px solid var(--rule-strong);

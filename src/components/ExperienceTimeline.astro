@@ -11,172 +11,47 @@ const { items, compact = false } = Astro.props;
 
 <div class="dossier-ledger">
   {
-    items.map((item, idx) => (
-      <article class="dossier-row" id={item.id}>
-        <!-- Col 1: Dates, Organization, Location -->
-        <div class="dossier-meta">
-          <span class="dossier-index">0{idx + 1} // {item.period}</span>
-          <h3 class="dossier-org">{item.organization}</h3>
-          <p class="dossier-loc">{item.location}</p>
-          {item.periodNote && !compact && <p class="dossier-note">{item.periodNote}</p>}
-        </div>
-
-        <!-- Col 2: Role, Narrative & Record -->
-        <div class="dossier-content">
-          <div class="dossier-role-line">
-            <h4 class="dossier-role">{item.role}</h4>
-            <span class="dossier-domain">{item.domainTag}</span>
+    items.map((item) => {
+      const isAdHoc = item.statusType === 'Current Responsibility (Ad Hoc)';
+      return (
+        <article class="dossier-row" id={item.id}>
+          <!-- Col 1: Dates, Organization, Location & Verification Status -->
+          <div class="dossier-meta">
+            <span class="dossier-period">{item.period}</span>
+            <h3 class="dossier-org">{item.organization}</h3>
+            <p class="dossier-loc">{item.location}</p>
+            <div style="margin-top: 0.35rem;">
+              <span class:list={['status-tag', { 'status-tag-rubric': isAdHoc }]}>
+                {item.statusType}
+              </span>
+            </div>
+            {item.periodNote && !compact && <p class="dossier-note">{item.periodNote}</p>}
           </div>
-          {item.secondaryRole && <p class="dossier-secondary">{item.secondaryRole}</p>}
 
-          <p class="dossier-summary">{item.summary}</p>
+          <!-- Col 2: Role, Scannable Highlights & Stack -->
+          <div class="dossier-content">
+            <div class="dossier-role-line">
+              <h4 class="dossier-role">{item.role}</h4>
+              <span class="mono-cite">{item.domainTag}</span>
+            </div>
+            {item.secondaryRole && <p class="dossier-secondary">{item.secondaryRole}</p>}
 
-          <ul class="dossier-points">
-            {(compact ? item.highlights.slice(0, 2) : item.highlights).map((pt) => (
-              <li>{pt}</li>
-            ))}
-          </ul>
+            <p class="dossier-summary">{item.summary}</p>
 
-          <p class="dossier-stack">
-            <span class="sidenote-label">Stack &amp; Methods:</span> {item.technologies.join(' · ')}
-          </p>
-        </div>
-      </article>
-    ))
+            <ul class="dossier-points">
+              {(compact ? item.highlights.slice(0, 2) : item.highlights).map((pt) => (
+                <li>
+                  <strong>{pt.label}:</strong> {pt.detail}
+                </li>
+              ))}
+            </ul>
+
+            <p class="dossier-stack">
+              <span class="sidenote-label">Methods &amp; Tools:</span> {item.technologies.join(' · ')}
+            </p>
+          </div>
+        </article>
+      );
+    })
   }
 </div>
-
-<style>
-  .dossier-ledger {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .dossier-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    padding: 2.1rem 0;
-    border-top: 1px solid var(--rule);
-  }
-
-  .dossier-row:first-child {
-    border-top: 1px solid var(--rule-strong);
-  }
-
-  @media (min-width: 820px) {
-    .dossier-row {
-      grid-template-columns: 215px minmax(0, 1fr);
-      gap: 2.75rem;
-    }
-  }
-
-  .dossier-meta {
-    font-family: var(--font-sans);
-    display: flex;
-    flex-direction: column;
-    gap: 0.22rem;
-  }
-
-  .dossier-index {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    color: var(--rubric);
-    letter-spacing: 0.04em;
-  }
-
-  .dossier-org {
-    font-family: var(--font-sans);
-    font-size: 0.98rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-top: 0.15rem;
-  }
-
-  .dossier-loc {
-    font-size: 0.76rem;
-    color: var(--ink-secondary);
-  }
-
-  .dossier-note {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    color: var(--ink-muted);
-    margin-top: 0.4rem;
-    line-height: 1.45;
-  }
-
-  .dossier-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    max-width: 68ch;
-  }
-
-  .dossier-role-line {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-
-  .dossier-role {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 1.45rem;
-    line-height: 1.2;
-    color: var(--ink);
-  }
-
-  .dossier-domain {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--ink-muted);
-  }
-
-  .dossier-secondary {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--ink-secondary);
-    margin-top: -0.35rem;
-  }
-
-  .dossier-summary {
-    font-size: 0.95rem;
-    color: var(--ink);
-    line-height: 1.65;
-  }
-
-  .dossier-points {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    color: var(--ink-secondary);
-  }
-
-  .dossier-points li {
-    position: relative;
-    padding-left: 1.15rem;
-    line-height: 1.56;
-  }
-
-  .dossier-points li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--rubric);
-  }
-
-  .dossier-stack {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    color: var(--ink-muted);
-    padding-top: 0.35rem;
-    border-top: 1px dotted var(--rule-dotted);
-  }
-</style>

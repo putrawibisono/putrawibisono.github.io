@@ -21,24 +21,27 @@ interface Props {
 }
 
 const { project, prevProject, nextProject } = Astro.props;
+const isOngoing = project.statusLabel === 'Ongoing & Exploratory Initiative';
 ---
 
 <BaseLayout
-  title={`Monograph No. ${project.index}: ${project.title} — Putra Wibisono`}
+  title={`${project.title} — Putra Wibisono`}
   description={project.summary}
 >
   <article>
     <div style="margin-bottom: 1.25rem;">
       <a href="/projects/" class="text-link mono-cite">
-        ← Return to § IV. Engineering Monographs Index
+        ← Return to Projects &amp; Research Index
       </a>
     </div>
 
     <div class="reading-with-margin">
       <div class="main-reading-col">
-        <span class="rubric-mark">
-          Monograph No. {project.index} · {project.category}
-        </span>
+        <div style="margin-bottom: 0.75rem;">
+          <span class:list={['status-tag', { 'status-tag-rubric': isOngoing }]}>
+            {project.statusLabel}
+          </span>
+        </div>
         <h1 class="monograph-title">{project.title}</h1>
         <p class="monograph-subtitle">{project.subtitle}</p>
 
@@ -47,20 +50,20 @@ const { project, prevProject, nextProject } = Astro.props;
           <SystemDiagram type={project.diagramType} />
         </div>
 
-        <!-- Section 1: Abstract & Problem Formulation -->
+        <!-- Section 1: Problem & Context -->
         <section class="monograph-subsection">
-          <span class="rubric-mark">§ {project.index}.1 · Problem Formulation</span>
-          <h2 class="section-heading">Context &amp; Engineering Challenge</h2>
+          <h2 class="section-heading">Context &amp; Engineering Scope</h2>
           <div class="essay-prose" style="margin-top: 0.85rem;">
-            <p class="dropcap">{project.summary}</p>
+            <p class="essay-lead">{project.summary}</p>
             <p>{project.challenge}</p>
           </div>
         </section>
 
         <!-- Section 2: System Architecture & Methodology -->
         <section class="monograph-subsection">
-          <span class="rubric-mark">§ {project.index}.2 · Methodology &amp; System Design</span>
-          <h2 class="section-heading">Architecture &amp; Analytical Approach</h2>
+          <h2 class="section-heading">
+            {isOngoing ? 'Active Operations, Development & Exploration' : 'Methodology & System Design'}
+          </h2>
           <ol class="methodology-list">
             {project.architectureAndApproach.map((step, idx) => (
               <li>
@@ -74,8 +77,7 @@ const { project, prevProject, nextProject } = Astro.props;
         <!-- Optional Archival Photograph (e.g. Shimadzu UV-Vis-NIR Spectrophotometer) -->
         {project.image && (
           <section class="monograph-subsection">
-            <span class="rubric-mark">§ {project.index}.3 · Laboratory Documentation</span>
-            <h2 class="section-heading">Experimental Instrumentation Plate</h2>
+            <h2 class="section-heading">Laboratory Instrumentation Photograph</h2>
             <figure class="archival-plate" style="margin-top: 1rem;">
               <img src={project.image} alt={project.title} loading="lazy" />
               {project.imageCaption && (
@@ -87,10 +89,11 @@ const { project, prevProject, nextProject } = Astro.props;
           </section>
         )}
 
-        <!-- Section 3: Empirical Outcomes -->
+        <!-- Section 3: Outcomes or Status Note -->
         <section class="monograph-subsection">
-          <span class="rubric-mark">§ {project.index}.{project.image ? '4' : '3'} · Verification &amp; Results</span>
-          <h2 class="section-heading">Documented Outcomes</h2>
+          <h2 class="section-heading">
+            {isOngoing ? 'Verification & Status Note' : 'Verified Outcomes'}
+          </h2>
           <ul class="outcomes-list">
             {project.outcomes.map((outcome) => (
               <li class="sans-note" style="color: var(--ink); font-size: 0.88rem;">
@@ -101,66 +104,69 @@ const { project, prevProject, nextProject } = Astro.props;
         </section>
       </div>
 
-      <!-- Right Marginalia Dossier Metadata -->
-      <aside class="margin-column" aria-label="Monograph metadata">
+      <!-- Right Marginalia Metadata -->
+      <aside class="margin-column" aria-label="Project metadata">
         <div class="sidenote-block">
-          <span class="sidenote-label">Monograph Classification</span>
-          <p>
-            <strong style="color: var(--ink);">No. {project.index}</strong> — {project.category}
-          </p>
+          <span class="sidenote-label">Status</span>
+          <p><strong style="color: var(--ink);">{project.statusLabel}</strong></p>
         </div>
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Institution / Context</span>
+          <span class="sidenote-label">Discipline</span>
+          <p>{project.category}</p>
+        </div>
+
+        <div class="sidenote-block">
+          <span class="sidenote-label">Context</span>
           <p>{project.organizationOrContext}</p>
         </div>
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Chronology</span>
+          <span class="sidenote-label">Period</span>
           <p>{project.period}</p>
         </div>
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Instruments &amp; Methods</span>
+          <span class="sidenote-label">Tools &amp; Methods</span>
           <p>{project.technologies.join(' · ')}</p>
         </div>
 
         {project.codeAvailabilityNote && (
           <div class="sidenote-block">
-            <span class="sidenote-label">Archival Access Note</span>
+            <span class="sidenote-label">Code &amp; Reports</span>
             <p>{project.codeAvailabilityNote}</p>
           </div>
         )}
 
         <div class="sidenote-block">
-          <span class="sidenote-label">Technical Correspondence</span>
+          <span class="sidenote-label">Direct Inquiry</span>
           <p>
-            For questions regarding methodology, code inspection, or research collaboration:
+            For questions regarding methodology, view-only code access, or collaboration:
           </p>
           <p style="margin-top: 0.35rem;">
             <a
-              href={`mailto:${siteMetadata.email}?subject=${encodeURIComponent(`Inquiry regarding Monograph No. ${project.index}: ${project.title}`)}`}
+              href={`mailto:${siteMetadata.email}?subject=${encodeURIComponent(`Inquiry regarding: ${project.title}`)}`}
               class="text-link mono-cite"
             >
-              Email {siteMetadata.email} →
+              {siteMetadata.email} →
             </a>
           </p>
         </div>
       </aside>
     </div>
 
-    <!-- Sequential Folio Navigation -->
-    <nav class="ledger-section folio-pagination" aria-label="Adjacent monographs">
+    <!-- Sequential Navigation -->
+    <nav class="ledger-section folio-pagination" aria-label="Adjacent projects">
       <div>
         {prevProject ? (
           <a href={`/projects/${prevProject.slug}/`} class="pagination-link">
-            <span class="mono-cite">← Preceding Monograph (No. {prevProject.index})</span>
+            <span class="mono-cite">← Previous Entry</span>
             <span class="pagination-title">{prevProject.title}</span>
           </a>
         ) : (
           <a href="/projects/" class="pagination-link">
-            <span class="mono-cite">← Index</span>
-            <span class="pagination-title">All Engineering Monographs</span>
+            <span class="mono-cite">← Directory</span>
+            <span class="pagination-title">All Projects &amp; Research</span>
           </a>
         )}
       </div>
@@ -168,13 +174,13 @@ const { project, prevProject, nextProject } = Astro.props;
       <div style="text-align: right;">
         {nextProject ? (
           <a href={`/projects/${nextProject.slug}/`} class="pagination-link">
-            <span class="mono-cite">Following Monograph (No. {nextProject.index}) →</span>
+            <span class="mono-cite">Next Entry →</span>
             <span class="pagination-title">{nextProject.title}</span>
           </a>
         ) : (
           <a href="/projects/" class="pagination-link">
-            <span class="mono-cite">Return to Index →</span>
-            <span class="pagination-title">All Engineering Monographs</span>
+            <span class="mono-cite">Return to Directory →</span>
+            <span class="pagination-title">All Projects &amp; Research</span>
           </a>
         )}
       </div>
@@ -194,7 +200,7 @@ const { project, prevProject, nextProject } = Astro.props;
   }
 
   .monograph-subsection {
-    margin-top: 2.75rem;
+    margin-top: 2.5rem;
     padding-top: 1.35rem;
     border-top: 1px solid var(--rule);
   }
@@ -235,12 +241,10 @@ const { project, prevProject, nextProject } = Astro.props;
   }
 
   .outcomes-list li::before {
-    content: '§';
+    content: '—';
     position: absolute;
     left: 0;
     top: 0;
-    font-family: var(--font-serif);
-    font-style: italic;
     color: var(--rubric);
   }
 

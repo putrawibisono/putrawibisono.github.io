@@ -3,150 +3,151 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { projectsList, additionalEngineeringProjects } from '../../data/profile';
 
+const completedProjects = projectsList.filter(
+  (p) => p.statusLabel !== 'Ongoing & Exploratory Initiative'
+);
+const ongoingInitiatives = projectsList.filter(
+  (p) => p.statusLabel === 'Ongoing & Exploratory Initiative'
+);
+
 const categories = [
-  'All Monographs',
-  'Agri-Tech & IoT',
+  'All Entries',
   'Data & Battery Systems',
   'Scientific Computing & Materials',
   'Software Engineering',
+  'Agricultural Operations (In Progress)',
 ];
 ---
 
 <BaseLayout
-  title="IV. Engineering Monographs & Laboratory Archive — Putra Wibisono"
-  description="Technical monographs, system schematics, and experimental studies spanning agricultural IoT pipelines, Tesla 4680 battery telemetry, UV-Vis semiconductor spectroscopy, and COMSOL reactor modeling."
+  title="Projects, Research & Field Initiatives — Putra Wibisono"
+  description="Verified completed engineering and research projects (Tesla 4680 battery telemetry, UV-Vis semiconductor spectroscopy, COMSOL LPCVD reactor modeling, Java Gitlet, MATLAB acoustic scanning) and ongoing agricultural field initiatives."
 >
   <article>
-    <div class="reading-with-margin">
-      <div class="main-reading-col">
-        <span class="rubric-mark">§ IV. Technical Monographs · Fol. 04</span>
-        <h1 class="monograph-title">
-          Engineering <em>Monographs</em> &amp; Laboratory Archive.
-        </h1>
+    <!-- Header + Authentic Laboratory Photograph Feature Spread (Distinct Composition for Projects Page) -->
+    <header style="margin-bottom: 2.25rem;">
+      <span class="rubric-mark">IV. Technical Studies &amp; Field Initiatives</span>
+      <h1 class="monograph-title">
+        Engineering <em>Projects</em> &amp; Laboratory Archive.
+      </h1>
+      <p class="sans-note" style="max-width: 68ch; margin-top: 0.75rem;">
+        This archive separates <strong>completed industry and university engineering projects (01–05)</strong> from <strong>ongoing and exploratory agricultural initiatives (06)</strong> so that verified technical deliverables are clearly distinguished from work currently in progress.
+      </p>
+    </header>
 
-        <div class="essay-prose" style="margin-top: 1.5rem;">
-          <p class="dropcap">
-            Rather than presenting software and physical engineering work as interchangeable marketing tiles, this archive documents six technical studies as self-contained monographs. Each entry pairs a statement of the underlying physical or computational problem with an architectural figure and a record of empirical outcomes.
-          </p>
-        </div>
-      </div>
-
-      <aside class="margin-column" aria-label="Archive notes">
-        <div class="sidenote-block">
-          <span class="sidenote-label">Indexing Convention</span>
-          <p>
-            Monographs 01–06 include dedicated system diagrams (<code>Fig. 1.1</code> through <code>Fig. 6.1</code>) and full methodological breakdowns on their individual folio pages.
-          </p>
-        </div>
-        <div class="sidenote-block">
-          <span class="sidenote-label">Source &amp; Reproducibility</span>
-          <p>
-            Where academic integrity policies or proprietary industrial agreements govern source code, view-only access or simulation reports are noted explicitly.
-          </p>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Typographic Index Filter Bar -->
-    <section class="ledger-section" aria-label="Monograph index filter">
-      <div class="filter-bar" role="toolbar" aria-label="Filter monographs by discipline">
-        <span class="mono-cite" style="margin-right: 0.5rem;">Filter Index:</span>
-        {categories.map((cat, idx) => (
-          <button
-            type="button"
-            class:list={['index-filter-btn', { active: idx === 0 }]}
-            data-filter={cat}
-            aria-pressed={idx === 0 ? 'true' : 'false'}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <div id="projects-monograph-list">
-        {projectsList.map((project) => (
-          <div class="project-item-wrapper" data-category={project.category}>
-            <ProjectCard project={project} />
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Archival Plate Feature: UV-Vis-NIR Spectrophotometer -->
-    <section class="ledger-section" aria-labelledby="archival-plate-heading">
-      <div class="ledger-header">
-        <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Archival Plate I · Experimental Optical Physics</span>
-          <h2 id="archival-plate-heading" class="section-heading">
-            Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer Workstation
-          </h2>
-        </div>
-        <a href="/projects/uv-vis-semiconductor-spectroscopy/" class="text-link mono-cite">
-          Open Monograph No. 03 →
-        </a>
-      </div>
-
+    <!-- Featured Authentic Laboratory Plate Showcase -->
+    <section class="plate-feature-banner" aria-labelledby="featured-plate-heading">
       <div class="plate-showcase">
         <figure class="archival-plate">
           <img
             src="/images/portfolio1.jpg"
             alt="Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer and optical reference standards in the laboratory"
-            loading="lazy"
+            loading="eager"
           />
           <figcaption class="plate-caption">
-            <strong>Plate I (Original Laboratory Photograph):</strong> Experimental optical bench featuring the Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer, spectral reference standards, and acquisition terminal used to measure transmission and reflectance across semiconductor thin-film samples.
+            <strong>Authentic Laboratory Photograph (Project 02):</strong> Experimental optical workstation featuring the Shimadzu SolidSpec-3700 UV-Vis-NIR Spectrophotometer and reference standards used to measure semiconductor thin-film band gaps.
           </figcaption>
         </figure>
 
         <div class="plate-commentary">
-          <span class="sidenote-label">Instrument &amp; Calibration Notes</span>
-          <p class="sans-note" style="margin-top: 0.4rem;">
-            Wide-band optical characterization requires stitching spectral measurements across ultraviolet, visible, and near-infrared regimes while correcting for detector switching artifacts and substrate interference.
+          <span class="status-tag">Completed Research / Lab Study</span>
+          <h2 id="featured-plate-heading" class="section-heading" style="margin-top: 0.65rem;">
+            Semiconductor Thin-Film Band Gap Analysis via UV-Vis Spectroscopy
+          </h2>
+          <p class="sans-note" style="margin-top: 0.65rem;">
+            Combines ultraviolet, visible, and near-infrared optical measurements across two UV-Vis spectrometers to extract continuous absorption spectra and determine electronic band gaps in semiconductor thin films.
           </p>
-          <p class="sans-note" style="margin-top: 0.75rem;">
-            By reconciling dual-spectrometer transmittance and reflectance curves in Python and MATLAB, the pipeline extracts continuous absorption coefficients ($\alpha$) and constructs Tauc plots ($(\alpha h\nu)^n$ vs. $h\nu$) to resolve direct and indirect electronic band gaps.
-          </p>
-          <div style="margin-top: 1.25rem;">
-            <a href="/projects/uv-vis-semiconductor-spectroscopy/" class="folio-action">
-              Read Full Spectroscopy Study →
+          <div style="margin-top: 1.15rem;">
+            <a href="/projects/uv-vis-semiconductor-spectroscopy/" class="folio-action folio-action-rubric">
+              Open Spectroscopy Case Study →
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Additional Engineering & Simulation Studies Table -->
+    <!-- Filter Toolbar -->
+    <section class="ledger-section" aria-label="Project directory">
+      <div class="filter-bar" role="toolbar" aria-label="Filter projects by domain">
+        <span class="mono-cite" style="margin-right: 0.4rem;">Filter by Domain:</span>
+        {
+          categories.map((cat, idx) => (
+            <button
+              type="button"
+              class:list={['index-filter-btn', { active: idx === 0 }]}
+              data-filter={cat}
+              aria-pressed={idx === 0 ? 'true' : 'false'}
+            >
+              {cat}
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Part I: Completed Engineering & Research Projects -->
+      <div id="completed-projects-group" style="margin-top: 1.75rem;">
+        <div class="ledger-header" style="margin-bottom: 0.5rem;">
+          <h2 class="section-heading">Part I — Verified Completed Engineering &amp; Research Projects</h2>
+          <span class="mono-cite">5 Completed Works (2020 – 2024)</span>
+        </div>
+        {
+          completedProjects.map((project) => (
+            <div class="project-item-wrapper" data-category={project.category}>
+              <ProjectCard project={project} />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Part II: Ongoing & Exploratory Agricultural Initiatives -->
+      <div id="ongoing-projects-group" style="margin-top: 3rem;">
+        <div class="ledger-header" style="margin-bottom: 0.5rem;">
+          <h2 class="section-heading">
+            Part II — Current &amp; Exploratory Agricultural Initiatives <em>(In Progress)</em>
+          </h2>
+          <span class="mono-cite">Family-Owned Agricultural Business</span>
+        </div>
+        {
+          ongoingInitiatives.map((project) => (
+            <div class="project-item-wrapper" data-category={project.category}>
+              <ProjectCard project={project} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Appendix: Additional Coursework & Simulation Models -->
     <section class="ledger-section" aria-labelledby="additional-studies-heading">
       <div class="ledger-header">
         <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Appendix A · Additional Works</span>
           <h2 id="additional-studies-heading" class="section-heading">
-            Supplementary Coursework, Simulations &amp; Software Engines
+            Additional Documented Coursework &amp; Simulation Projects
           </h2>
         </div>
-        <span class="mono-cite">Verified CV Archive</span>
+        <span class="mono-cite">Verified in 2024 Resume</span>
       </div>
 
       <table class="ledger-table">
         <thead>
           <tr>
-            <th style="width: 14%;">Ref.</th>
-            <th style="width: 44%;">Study or System Title</th>
-            <th style="width: 24%;">Primary Methods</th>
+            <th style="width: 46%;">Project Title</th>
+            <th style="width: 26%;">Discipline / Language</th>
             <th>Context</th>
           </tr>
         </thead>
         <tbody>
-          {additionalEngineeringProjects.map((item, idx) => (
-            <tr>
-              <td class="mono-cite">APP. 0{idx + 1}</td>
-              <td>
-                <strong style="color: var(--ink); font-weight: 600;">{item.name}</strong>
-              </td>
-              <td class="mono-cite" style="color: var(--rubric);">{item.domain}</td>
-              <td class="sans-note">{item.context}</td>
-            </tr>
-          ))}
+          {
+            additionalEngineeringProjects.map((item) => (
+              <tr>
+                <td>
+                  <strong style="color: var(--ink); font-weight: 600;">{item.name}</strong>
+                </td>
+                <td class="mono-cite" style="color: var(--rubric);">{item.domain}</td>
+                <td class="sans-note">{item.context}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </section>
@@ -161,7 +162,7 @@ const categories = [
 
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter') || 'All Monographs';
+        const filter = btn.getAttribute('data-filter') || 'All Entries';
         buttons.forEach((b) => {
           const active = b === btn;
           b.classList.toggle('active', active);
@@ -170,7 +171,7 @@ const categories = [
 
         items.forEach((item) => {
           const cat = item.getAttribute('data-category');
-          const match = filter === 'All Monographs' || cat === filter;
+          const match = filter === 'All Entries' || cat === filter;
           item.style.display = match ? '' : 'none';
         });
       });
@@ -182,12 +183,33 @@ const categories = [
 </script>
 
 <style>
+  .plate-feature-banner {
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--rule-strong);
+    padding: 1.5rem;
+  }
+
+  .plate-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .plate-showcase {
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2.25rem;
+    }
+  }
+
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.55rem 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-bottom: 1.15rem;
     border-bottom: 1px solid var(--rule);
   }
 
@@ -196,8 +218,8 @@ const categories = [
     border: none;
     padding: 0.2rem 0;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.03em;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
     color: var(--ink-muted);
     cursor: pointer;
     border-bottom: 1.5px solid transparent;
@@ -212,24 +234,5 @@ const categories = [
     color: var(--rubric);
     border-bottom-color: var(--rubric);
     font-weight: 500;
-  }
-
-  .plate-showcase {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  @media (min-width: 860px) {
-    .plate-showcase {
-      grid-template-columns: 1.35fr 1fr;
-      gap: 2.5rem;
-    }
-  }
-
-  .plate-commentary {
-    border-top: 1px solid var(--rule);
-    padding-top: 1rem;
   }
 </style>

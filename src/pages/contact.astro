@@ -4,83 +4,84 @@ import { siteMetadata } from '../data/profile';
 
 const inquiryTopics = [
   {
-    code: 'CORR // 01',
-    topic: 'Agricultural Technology & Demonstration Trials',
-    detail: 'Collaborations regarding soil IoT telemetry, satellite field characterization, organic fertilizer trials, or institutional reporting.',
-    subject: 'Agri-Tech Collaboration Inquiry — Agros Industry',
+    topic: 'Data Engineering, Battery Telemetry & Materials Science',
+    detail: 'Technical correspondence regarding distributed data pipelines, electrochemical cell formation analytics, or physical systems ML.',
+    subject: 'Engineering / Technical Correspondence',
   },
   {
-    code: 'CORR // 02',
-    topic: 'Data Engineering, Battery Telemetry & ML Advisory',
-    detail: 'Technical correspondence concerning distributed data architectures, electrochemical formation pipelines, or physical systems ML.',
-    subject: 'Engineering / Advisory Correspondence',
+    topic: 'Agricultural Operations & Field Trial Collaboration',
+    detail: "Inquiries related to organic fertilizer demonstration plot trials, field telemetry initiatives, or partner reporting at my family's agricultural business.",
+    subject: 'Agricultural Operations / Field Trial Inquiry',
   },
   {
-    code: 'CORR // 03',
     topic: 'Academic & Professional Recommendation Letters',
-    detail: 'Reference requests from former UC San Diego students (CSE 8A / CSE 20) or colleagues from Stripe, Tesla, and Agros Industry.',
+    detail: 'Reference requests from former UC San Diego students (CSE 8A / CSE 20) or colleagues from Stripe, Tesla, Rivian, and agricultural projects.',
     subject: 'Recommendation Letter Request',
     internalHref: '/letters/',
   },
   {
-    code: 'CORR // 04',
-    topic: 'Monograph Source Code & Simulation Archives',
-    detail: 'Requests for view-only access to academic repositories (e.g., Gitlet, MATLAB/COMSOL reactor models, or acoustic scanning code).',
-    subject: 'Archival Code / Monograph Inquiry',
+    topic: 'Academic Project Source Code & Simulation Reports',
+    detail: 'Requests for view-only access to individual academic project code (Gitlet, LPCVD COMSOL/MATLAB models, or acoustic scanning code).',
+    subject: 'Project Source Code Inquiry',
   },
 ];
 ---
 
 <BaseLayout
-  title="VIII. Correspondence & Directory — Putra Wibisono"
-  description="Direct email correspondence, verified GitHub profiles, and inquiry routing for Putra Wibisono."
+  title="Contact & Correspondence — Putra Wibisono"
+  description="Direct email address (putrawibisonos@gmail.com) and verified GitHub profiles for Putra Wibisono."
 >
   <article>
     <div class="reading-with-margin">
       <div class="main-reading-col">
-        <span class="rubric-mark">§ VIII. Correspondence · Fol. 08</span>
+        <span class="rubric-mark">VIII. Contact &amp; Directory</span>
         <h1 class="monograph-title">
-          Direct <em>Correspondence</em> &amp; Directory.
+          Direct <em>Correspondence</em>.
         </h1>
 
-        <div class="essay-prose" style="margin-top: 1.5rem;">
-          <p class="dropcap">
-            Whether you are an agronomist or institutional partner interested in field trials with Agros Industry, an engineer or researcher discussing distributed telemetry and battery formation systems, or a former student requesting a letter of reference, direct electronic mail is the fastest and most reliable channel.
+        <div class="essay-prose" style="margin-top: 1.25rem;">
+          <p class="essay-lead">
+            Direct email is the best way to reach me for engineering discussions, agricultural operations and field-trial inquiries, or academic recommendation letters.
           </p>
         </div>
 
         <!-- Primary Dispatch Card -->
         <div class="dispatch-ledger">
           <div class="dispatch-row">
-            <span class="mono-cite" style="color: var(--rubric);">Primary Electronic Mail</span>
+            <span class="mono-cite" style="color: var(--rubric); font-weight: 500;">Preferred Public Email</span>
             <div class="dispatch-address-group">
               <a id="primary-email-link" href={`mailto:${siteMetadata.email}`} class="dispatch-email">
                 {siteMetadata.email}
               </a>
               <button type="button" id="copy-email-btn" class="folio-action" data-email={siteMetadata.email}>
-                Copy Address
+                Copy Email
               </button>
             </div>
           </div>
 
           <div class="dispatch-row">
-            <span class="mono-cite">Geographic Base</span>
-            <span class="sans-note" style="color: var(--ink);">{siteMetadata.location}</span>
+            <span class="mono-cite">Current Role</span>
+            <span class="sans-note" style="color: var(--ink);">{siteMetadata.currentRoleTag}</span>
           </div>
 
           <div class="dispatch-row">
-            <span class="mono-cite">Academic Affiliation</span>
+            <span class="mono-cite">Academic Background</span>
             <span class="sans-note" style="color: var(--ink);">{siteMetadata.affiliation}</span>
+          </div>
+
+          <div class="dispatch-row">
+            <span class="mono-cite">Location</span>
+            <span class="sans-note" style="color: var(--ink);">{siteMetadata.location}</span>
           </div>
 
           <div class="dispatch-row">
             <span class="mono-cite">Verified GitHub Profiles</span>
             <div style="display: flex; flex-wrap: wrap; gap: 1.25rem;">
               <a href={siteMetadata.githubUrl} target="_blank" rel="noopener noreferrer" class="text-link mono-cite">
-                github.com/EytaW (Primary Engineering Profile) ↗
+                github.com/EytaW (Primary Profile) ↗
               </a>
               <a href={siteMetadata.repoGithubUrl} target="_blank" rel="noopener noreferrer" class="text-link mono-cite">
-                github.com/putrawibisono (Publication Repository) ↗
+                github.com/putrawibisono (Website Repository) ↗
               </a>
             </div>
           </div>
@@ -89,16 +90,9 @@ const inquiryTopics = [
 
       <aside class="margin-column" aria-label="Correspondence notes">
         <div class="sidenote-block">
-          <span class="sidenote-label">Verification Note</span>
-          <p>
-            Only verified profiles and addresses documented in the repository record are listed here. No third-party tracking forms or external CRM widgets are used on this domain.
-          </p>
-        </div>
-
-        <div class="sidenote-block">
           <span class="sidenote-label">Recommendation Protocol</span>
           <p>
-            Before requesting a reference letter, please review the five required dossier items in <a href="/letters/" class="text-link">§ VI. Recommendation Letters →</a>
+            Before requesting a reference letter, please review the five required materials and 3–4 week lead-time notice in <a href="/letters/" class="text-link">Reference Letters →</a>
           </p>
         </div>
       </aside>
@@ -107,26 +101,20 @@ const inquiryTopics = [
     <!-- Subject-Line Routing Ledger -->
     <section class="ledger-section" aria-labelledby="routing-heading">
       <div class="ledger-header">
-        <div>
-          <span class="rubric-mark" style="margin-bottom: 0.2rem;">Index of Inquiries</span>
-          <h2 id="routing-heading" class="section-heading">Structured Subject-Line Routing</h2>
-        </div>
-        <span class="mono-cite">Direct Mailto Dispatch</span>
+        <h2 id="routing-heading" class="section-heading">Direct Email Routing by Topic</h2>
       </div>
 
       <table class="ledger-table">
         <thead>
           <tr>
-            <th style="width: 16%;">Ref.</th>
-            <th style="width: 34%;">Subject Matter</th>
-            <th style="width: 34%;">Scope</th>
+            <th style="width: 36%;">Topic</th>
+            <th style="width: 46%;">Scope</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {inquiryTopics.map((item) => (
             <tr>
-              <td class="mono-cite" style="color: var(--rubric);">{item.code}</td>
               <td>
                 <strong style="color: var(--ink); font-weight: 600;">{item.topic}</strong>
               </td>
@@ -159,11 +147,11 @@ const inquiryTopics = [
     if (!btn) return;
 
     btn.addEventListener('click', async () => {
-      const email = btn.getAttribute('data-email') || 'president@agrosindustry.com';
+      const email = btn.getAttribute('data-email') || 'putrawibisonos@gmail.com';
       try {
         await navigator.clipboard.writeText(email);
         const original = btn.textContent;
-        btn.textContent = 'Copied to Clipboard ✓';
+        btn.textContent = 'Copied ✓';
         setTimeout(() => {
           btn.textContent = original;
         }, 2000);
@@ -179,14 +167,14 @@ const inquiryTopics = [
 
 <style>
   .dispatch-ledger {
-    margin-top: 2rem;
-    border-top: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule-strong);
+    margin-top: 1.75rem;
+    border-top: 1.5px solid var(--rule-strong);
+    border-bottom: 1.5px solid var(--rule-strong);
   }
 
   .dispatch-row {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.35rem;
     padding: 0.95rem 0;
     border-bottom: 1px solid var(--rule);
@@ -199,7 +187,7 @@ const inquiryTopics = [
 
   @media (min-width: 680px) {
     .dispatch-row {
-      grid-template-columns: 190px 1fr;
+      grid-template-columns: 195px minmax(0, 1fr);
       gap: 1.5rem;
     }
   }
